@@ -214,32 +214,31 @@ export function LocationPicker({ value, onChange, compact, scoredMarkers }: Loca
             </span>
           </span>
         </button>
-
-        {scoredMarkers && (
-          <div className="absolute bottom-2 right-2 flex flex-col items-end gap-1.5">
-            <div className="flex items-center gap-2.5 rounded-md bg-card/90 px-2.5 py-1.5 text-[10px] shadow-sm">
-              <span className="flex items-center gap-1 font-medium">
-                <span className="size-2.5 rounded-full bg-green-500" /> {t.location.legendGreat}
-              </span>
-              <span className="flex items-center gap-1 font-medium">
-                <span className="size-2.5 rounded-full bg-amber-400" /> {t.location.legendOk}
-              </span>
-              <span className="flex items-center gap-1 font-medium">
-                <span className="size-2.5 rounded-full bg-red-400" /> {t.location.legendLow}
-              </span>
-            </div>
-            <div className="flex items-center gap-2 rounded-md bg-card/90 px-2.5 py-1 text-[10px] shadow-sm">
-              <span className="flex items-center gap-1">
-                <span className="size-2 rounded-full bg-muted-foreground/50" />{" "}
-                {t.location.legendEvent}
-              </span>
-              <span className="flex items-center gap-1">
-                <span className="size-2 rotate-45 bg-muted-foreground/50" /> {t.location.legendPlace}
-              </span>
-            </div>
-          </div>
-        )}
       </div>
+
+      {scoredMarkers && (
+        <div className="flex flex-wrap items-center justify-end gap-x-3 gap-y-1.5 text-[10px]">
+          <div className="flex items-center gap-2.5 rounded-md bg-card px-2.5 py-1.5 shadow-sm">
+            <span className="flex items-center gap-1 font-medium">
+              <span className="size-2.5 rounded-full bg-green-500" /> {t.location.legendGreat}
+            </span>
+            <span className="flex items-center gap-1 font-medium">
+              <span className="size-2.5 rounded-full bg-amber-400" /> {t.location.legendOk}
+            </span>
+            <span className="flex items-center gap-1 font-medium">
+              <span className="size-2.5 rounded-full bg-red-400" /> {t.location.legendLow}
+            </span>
+          </div>
+          <div className="flex items-center gap-2 rounded-md bg-card px-2.5 py-1.5 shadow-sm">
+            <span className="flex items-center gap-1">
+              <span className="size-2 rounded-full bg-muted-foreground/50" /> {t.location.legendEvent}
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="size-2 rotate-45 bg-muted-foreground/50" /> {t.location.legendPlace}
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
