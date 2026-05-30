@@ -2,6 +2,7 @@
 
 import { LinkButton } from "@/components/link-button";
 import { EventCard } from "@/components/event-card";
+import { SourceCommentsSection } from "@/components/source-comments-section";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -124,6 +125,13 @@ export function EventDetailView({ event }: EventDetailViewProps) {
             ))}
           </div>
         </div>
+
+        {event.sourceComments.length > 0 && (
+          <>
+            <Separator />
+            <SourceCommentsSection comments={event.sourceComments} />
+          </>
+        )}
 
         <Separator />
 

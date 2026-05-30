@@ -51,7 +51,7 @@ export const en = {
       {
         title: "Filter by lifestyle",
         description:
-          "Distance, budget, time of day, interests, and social mode — tuned to how you actually live.",
+          "Distance, budget, when places and events are available, interests, and social mode — tuned to how you actually live.",
       },
     ],
     ctaTitle: "Ready to explore your city?",
@@ -113,7 +113,7 @@ export const en = {
     distance: "Distance",
     budget: "Budget",
     crowd: "Crowd",
-    timeOfDay: "Time of day",
+    timeOfDay: "When available",
     interests: "Interests",
     socialMode: "Social mode",
   },
@@ -151,8 +151,6 @@ export const en = {
       tactile_paving: "Tactile Paving",
       visual_alerts: "Visual Alerts",
       sign_language_support: "Sign Language",
-      hearing_loop: "Hearing Loop",
-      cardiac_friendly_terrain: "Cardiac-Friendly",
       rest_areas: "Rest Areas",
       shaded_areas: "Shaded Areas",
       low_noise: "Low Noise",
@@ -195,6 +193,15 @@ export const en = {
     placeNotFoundDesc: "This place may no longer be listed or the link is incorrect.",
     browseEvents: "Browse events",
     browsePlaces: "Browse places",
+    sourceCommentsTitle: "What others say",
+    sourceCommentsSubtitle: "Comments from other sources (demo data)",
+    commentSources: {
+      google: "Google",
+      tripadvisor: "Tripadvisor",
+      facebook: "Facebook",
+      yelp: "Yelp",
+      eventbrite: "Eventbrite",
+    },
   },
   options: {
     interests: {
@@ -331,7 +338,7 @@ export const en = {
       wellSuitedGoing: "Well suited for going {mode}",
       meetingNewPeople: "meeting new people",
       fitsSchedule: "Fits your {time} schedule",
-      bestTimeOfDay: "Best visited during your preferred time of day",
+      bestTimeOfDay: "Available during your preferred visit times",
       wheelchairAccessible: "Wheelchair accessible venue",
       wheelchairAccessibleShort: "Wheelchair accessible",
       mayNotWheelchair: "May not meet wheelchair accessibility needs",

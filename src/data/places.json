@@ -10,14 +10,52 @@
     "openingHours": "Open 24 hours",
     "entryFee": 0,
     "typicalCrowd": "low",
-    "interests": ["nature", "family", "art"],
-    "socialModes": ["alone", "family", "friends"],
-    "accessibility": ["wheelchair", "seating", "outdoor"],
-    "bestTimeOfDay": ["morning", "evening"],
+    "interests": [
+      "nature",
+      "family",
+      "art"
+    ],
+    "socialModes": [
+      "alone",
+      "family",
+      "friends"
+    ],
+    "accessibility": [
+      "wheelchair",
+      "seating",
+      "outdoor"
+    ],
+    "bestTimeOfDay": [
+      "morning",
+      "evening"
+    ],
     "emoji": "🌊",
     "category": "Riverside",
     "categoryTag": "nature",
-    "managedBy": "City Parks Department"
+    "managedBy": "City Parks Department",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Marta K.",
+        "date": "2026-05-14",
+        "rating": 5,
+        "text": "Perfect for an evening stroll. Benches along the water and stunning sunset views."
+      },
+      {
+        "source": "tripadvisor",
+        "author": "John S.",
+        "date": "2026-04-22",
+        "rating": 5,
+        "text": "Peaceful promenade away from the busy square. Great for picnics."
+      },
+      {
+        "source": "facebook",
+        "author": "Ewa L.",
+        "date": "2026-05-02",
+        "rating": 4,
+        "text": "Always open and wheelchair accessible. Our favorite spot to unwind."
+      }
+    ]
   },
   {
     "id": "greenwood-park",
@@ -30,14 +68,52 @@
     "openingHours": "Dawn to dusk",
     "entryFee": 0,
     "typicalCrowd": "medium",
-    "interests": ["nature", "sports", "family"],
-    "socialModes": ["alone", "family", "friends"],
-    "accessibility": ["outdoor", "seating", "stroller-friendly"],
-    "bestTimeOfDay": ["morning", "afternoon"],
+    "interests": [
+      "nature",
+      "sports",
+      "family"
+    ],
+    "socialModes": [
+      "alone",
+      "family",
+      "friends"
+    ],
+    "accessibility": [
+      "outdoor",
+      "seating",
+      "stroller-friendly"
+    ],
+    "bestTimeOfDay": [
+      "morning",
+      "afternoon"
+    ],
     "emoji": "🌳",
     "category": "Park",
     "categoryTag": "nature",
-    "managedBy": "City Parks Department"
+    "managedBy": "City Parks Department",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Tomasz P.",
+        "date": "2026-05-18",
+        "rating": 5,
+        "text": "Huge oaks, good playgrounds, and plenty of space for jogging or yoga."
+      },
+      {
+        "source": "yelp",
+        "author": "Amy R.",
+        "date": "2026-04-30",
+        "rating": 4,
+        "text": "Gets busy on sunny weekends but still feels spacious. Dawn visits are quietest."
+      },
+      {
+        "source": "facebook",
+        "author": "Natalia W.",
+        "date": "2026-05-10",
+        "rating": 5,
+        "text": "Family favorite. Kids love the meadows and we love the shade in summer."
+      }
+    ]
   },
   {
     "id": "crystal-lake",
@@ -50,14 +126,52 @@
     "openingHours": "Open 24 hours",
     "entryFee": 0,
     "typicalCrowd": "low",
-    "interests": ["nature", "sports", "family"],
-    "socialModes": ["alone", "family", "friends"],
-    "accessibility": ["outdoor", "seating"],
-    "bestTimeOfDay": ["morning", "afternoon", "evening"],
+    "interests": [
+      "nature",
+      "sports",
+      "family"
+    ],
+    "socialModes": [
+      "alone",
+      "family",
+      "friends"
+    ],
+    "accessibility": [
+      "outdoor",
+      "seating"
+    ],
+    "bestTimeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
     "emoji": "🏞️",
     "category": "Lake",
     "categoryTag": "nature",
-    "managedBy": "Regional Nature Trust"
+    "managedBy": "Regional Nature Trust",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Piotr Z.",
+        "date": "2026-05-20",
+        "rating": 5,
+        "text": "Calm lake with a lovely 3 km trail. Kayak rental in summer is worth it."
+      },
+      {
+        "source": "tripadvisor",
+        "author": "Laura M.",
+        "date": "2026-04-15",
+        "rating": 4,
+        "text": "Beautiful year-round. Feeding ducks is fun for kids — bring bird-safe snacks."
+      },
+      {
+        "source": "facebook",
+        "author": "Kasia H.",
+        "date": "2026-05-08",
+        "rating": 5,
+        "text": "Open 24 hours and free. Best at sunrise when the water is mirror-still."
+      }
+    ]
   },
   {
     "id": "greenwood-forest-trail",
@@ -70,14 +184,49 @@
     "openingHours": "Dawn to dusk",
     "entryFee": 0,
     "typicalCrowd": "low",
-    "interests": ["nature", "sports"],
-    "socialModes": ["alone", "friends"],
-    "accessibility": ["outdoor", "walking"],
-    "bestTimeOfDay": ["morning", "afternoon"],
+    "interests": [
+      "nature",
+      "sports"
+    ],
+    "socialModes": [
+      "alone",
+      "friends"
+    ],
+    "accessibility": [
+      "outdoor",
+      "walking"
+    ],
+    "bestTimeOfDay": [
+      "morning",
+      "afternoon"
+    ],
     "emoji": "🌲",
     "category": "Forest",
     "categoryTag": "nature",
-    "managedBy": "Regional Nature Trust"
+    "managedBy": "Regional Nature Trust",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Adam F.",
+        "date": "2026-05-16",
+        "rating": 5,
+        "text": "Shaded forest path — cool even on hot days. Saw woodpeckers and deer tracks."
+      },
+      {
+        "source": "tripadvisor",
+        "author": "Chris B.",
+        "date": "2026-04-28",
+        "rating": 4,
+        "text": "Well marked trail through pine and birch. Wear proper shoes after rain."
+      },
+      {
+        "source": "yelp",
+        "author": "Monika S.",
+        "date": "2026-05-05",
+        "rating": 5,
+        "text": "Fresh air escape from the city. Mushroom foragers were friendly and helpful."
+      }
+    ]
   },
   {
     "id": "city-history-museum",
@@ -90,14 +239,53 @@
     "openingHours": "Tue–Sun 10:00–18:00",
     "entryFee": 8,
     "typicalCrowd": "medium",
-    "interests": ["history", "art", "culture"],
-    "socialModes": ["alone", "family", "friends"],
-    "accessibility": ["wheelchair", "seating", "subtitles", "elevator"],
-    "bestTimeOfDay": ["morning", "afternoon"],
+    "interests": [
+      "history",
+      "art",
+      "culture"
+    ],
+    "socialModes": [
+      "alone",
+      "family",
+      "friends"
+    ],
+    "accessibility": [
+      "wheelchair",
+      "seating",
+      "subtitles",
+      "elevator"
+    ],
+    "bestTimeOfDay": [
+      "morning",
+      "afternoon"
+    ],
     "emoji": "🏛️",
     "category": "Museum",
     "categoryTag": "culture",
-    "managedBy": "City Cultural Foundation"
+    "managedBy": "City Cultural Foundation",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Barbara T.",
+        "date": "2026-05-22",
+        "rating": 5,
+        "text": "Excellent exhibitions from medieval times onward. Audio guides and rooftop terrace are highlights."
+      },
+      {
+        "source": "tripadvisor",
+        "author": "Michael D.",
+        "date": "2026-04-20",
+        "rating": 4,
+        "text": "Interactive displays keep kids engaged. Closed Mondays — plan ahead."
+      },
+      {
+        "source": "facebook",
+        "author": "Zofia R.",
+        "date": "2026-05-11",
+        "rating": 5,
+        "text": "Fully wheelchair accessible with elevator. Worth the entry fee."
+      }
+    ]
   },
   {
     "id": "hilltop-castle",
@@ -110,14 +298,53 @@
     "openingHours": "Daily 09:00–20:00",
     "entryFee": 12,
     "typicalCrowd": "medium",
-    "interests": ["history", "art", "nature"],
-    "socialModes": ["alone", "family", "friends"],
-    "accessibility": ["wheelchair", "seating", "outdoor"],
-    "bestTimeOfDay": ["morning", "afternoon", "evening"],
+    "interests": [
+      "history",
+      "art",
+      "nature"
+    ],
+    "socialModes": [
+      "alone",
+      "family",
+      "friends"
+    ],
+    "accessibility": [
+      "wheelchair",
+      "seating",
+      "outdoor"
+    ],
+    "bestTimeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
     "emoji": "🏰",
     "category": "Castle",
     "categoryTag": "history",
-    "managedBy": "Heritage Society"
+    "managedBy": "Heritage Society",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "James L.",
+        "date": "2026-05-19",
+        "rating": 5,
+        "text": "Panoramic city views from the hill. Ruins are atmospheric and well maintained."
+      },
+      {
+        "source": "tripadvisor",
+        "author": "Helen W.",
+        "date": "2026-04-25",
+        "rating": 5,
+        "text": "Explore at your own pace. Golden hour from the towers is spectacular."
+      },
+      {
+        "source": "facebook",
+        "author": "Marcin K.",
+        "date": "2026-05-06",
+        "rating": 4,
+        "text": "Steep paths in places but seating areas help. History lovers will enjoy this."
+      }
+    ]
   },
   {
     "id": "botanical-gardens",
@@ -130,14 +357,53 @@
     "openingHours": "Daily 08:00–19:00",
     "entryFee": 6,
     "typicalCrowd": "low",
-    "interests": ["nature", "art", "family"],
-    "socialModes": ["alone", "family", "friends"],
-    "accessibility": ["wheelchair", "seating", "outdoor", "stroller-friendly"],
-    "bestTimeOfDay": ["morning", "afternoon"],
+    "interests": [
+      "nature",
+      "art",
+      "family"
+    ],
+    "socialModes": [
+      "alone",
+      "family",
+      "friends"
+    ],
+    "accessibility": [
+      "wheelchair",
+      "seating",
+      "outdoor",
+      "stroller-friendly"
+    ],
+    "bestTimeOfDay": [
+      "morning",
+      "afternoon"
+    ],
     "emoji": "🌺",
     "category": "Garden",
     "categoryTag": "nature",
-    "managedBy": "Botanical Society"
+    "managedBy": "Botanical Society",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Anna P.",
+        "date": "2026-05-21",
+        "rating": 5,
+        "text": "Rose pavilion and Japanese zen corner are stunning. Peaceful oasis all year."
+      },
+      {
+        "source": "tripadvisor",
+        "author": "Sophie G.",
+        "date": "2026-04-18",
+        "rating": 5,
+        "text": "Four hectares of themed gardens — easy to spend half a day here."
+      },
+      {
+        "source": "yelp",
+        "author": "Robert N.",
+        "date": "2026-05-09",
+        "rating": 4,
+        "text": "Stroller-friendly paths and greenhouse is a hit with toddlers."
+      }
+    ]
   },
   {
     "id": "sunset-viewpoint",
@@ -150,14 +416,50 @@
     "openingHours": "Open 24 hours",
     "entryFee": 0,
     "typicalCrowd": "low",
-    "interests": ["nature", "art"],
-    "socialModes": ["alone", "friends", "meeting"],
-    "accessibility": ["outdoor", "seating"],
-    "bestTimeOfDay": ["evening", "night"],
+    "interests": [
+      "nature",
+      "art"
+    ],
+    "socialModes": [
+      "alone",
+      "friends",
+      "meeting"
+    ],
+    "accessibility": [
+      "outdoor",
+      "seating"
+    ],
+    "bestTimeOfDay": [
+      "evening",
+      "night"
+    ],
     "emoji": "🌅",
     "category": "Viewpoint",
     "categoryTag": "nature",
-    "managedBy": "City Parks Department"
+    "managedBy": "City Parks Department",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Ewa M.",
+        "date": "2026-05-23",
+        "rating": 5,
+        "text": "Best golden-hour views in the city. Small café nearby for a drink while you wait."
+      },
+      {
+        "source": "facebook",
+        "author": "Tomek J.",
+        "date": "2026-05-12",
+        "rating": 5,
+        "text": "Open 24/7 and free. Benches face the river valley — perfect for couples."
+      },
+      {
+        "source": "tripadvisor",
+        "author": "Kate H.",
+        "date": "2026-04-14",
+        "rating": 4,
+        "text": "Can get windy at night — bring a jacket. Worth every step up the hill."
+      }
+    ]
   },
   {
     "id": "children-adventure-park",
@@ -170,14 +472,51 @@
     "openingHours": "Daily 08:00–20:00",
     "entryFee": 0,
     "typicalCrowd": "high",
-    "interests": ["family", "nature", "sports"],
-    "socialModes": ["family"],
-    "accessibility": ["wheelchair", "stroller-friendly", "outdoor", "seating"],
-    "bestTimeOfDay": ["morning", "afternoon"],
+    "interests": [
+      "family",
+      "nature",
+      "sports"
+    ],
+    "socialModes": [
+      "family"
+    ],
+    "accessibility": [
+      "wheelchair",
+      "stroller-friendly",
+      "outdoor",
+      "seating"
+    ],
+    "bestTimeOfDay": [
+      "morning",
+      "afternoon"
+    ],
     "emoji": "🎠",
     "category": "Family Park",
     "categoryTag": "family",
-    "managedBy": "City Parks Department"
+    "managedBy": "City Parks Department",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Katarzyna B.",
+        "date": "2026-05-17",
+        "rating": 5,
+        "text": "Kids adore the splash pad and mini train. Free entry makes it a no-brainer for families."
+      },
+      {
+        "source": "facebook",
+        "author": "Paweł S.",
+        "date": "2026-05-04",
+        "rating": 4,
+        "text": "Busy on weekends but well designed. Picnic areas and snack kiosks on site."
+      },
+      {
+        "source": "yelp",
+        "author": "Jenny L.",
+        "date": "2026-04-26",
+        "rating": 5,
+        "text": "Climbing frames for all ages. Stroller-friendly and lots of shade."
+      }
+    ]
   },
   {
     "id": "old-town-square",
@@ -190,14 +529,52 @@
     "openingHours": "Open 24 hours",
     "entryFee": 0,
     "typicalCrowd": "high",
-    "interests": ["history", "food", "art"],
-    "socialModes": ["alone", "family", "friends", "meeting"],
-    "accessibility": ["wheelchair", "seating"],
-    "bestTimeOfDay": ["afternoon", "evening"],
+    "interests": [
+      "history",
+      "food",
+      "art"
+    ],
+    "socialModes": [
+      "alone",
+      "family",
+      "friends",
+      "meeting"
+    ],
+    "accessibility": [
+      "wheelchair",
+      "seating"
+    ],
+    "bestTimeOfDay": [
+      "afternoon",
+      "evening"
+    ],
     "emoji": "⛲",
     "category": "Historic Square",
     "categoryTag": "history",
-    "managedBy": "Old Town Heritage Board"
+    "managedBy": "Old Town Heritage Board",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Marek D.",
+        "date": "2026-05-20",
+        "rating": 5,
+        "text": "Historic heart of the city — cobblestones, cafés, street performers. Always lively."
+      },
+      {
+        "source": "tripadvisor",
+        "author": "Paul R.",
+        "date": "2026-04-22",
+        "rating": 4,
+        "text": "Beautiful architecture and great people-watching. Touristy but authentic."
+      },
+      {
+        "source": "facebook",
+        "author": "Ola K.",
+        "date": "2026-05-15",
+        "rating": 5,
+        "text": "Open around the clock. Evening atmosphere with lights is magical."
+      }
+    ]
   },
   {
     "id": "waterfront-promenade",
@@ -210,14 +587,53 @@
     "openingHours": "Open 24 hours",
     "entryFee": 0,
     "typicalCrowd": "medium",
-    "interests": ["food", "nature", "art"],
-    "socialModes": ["alone", "friends", "meeting"],
-    "accessibility": ["wheelchair", "outdoor", "seating"],
-    "bestTimeOfDay": ["afternoon", "evening", "night"],
+    "interests": [
+      "food",
+      "nature",
+      "art"
+    ],
+    "socialModes": [
+      "alone",
+      "friends",
+      "meeting"
+    ],
+    "accessibility": [
+      "wheelchair",
+      "outdoor",
+      "seating"
+    ],
+    "bestTimeOfDay": [
+      "afternoon",
+      "evening",
+      "night"
+    ],
     "emoji": "🚶",
     "category": "Promenade",
     "categoryTag": "nature",
-    "managedBy": "Harbor Development Authority"
+    "managedBy": "Harbor Development Authority",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Chris A.",
+        "date": "2026-05-18",
+        "rating": 5,
+        "text": "Lively 2 km boardwalk with restaurants and public art. Perfect evening walk."
+      },
+      {
+        "source": "tripadvisor",
+        "author": "Maria F.",
+        "date": "2026-04-30",
+        "rating": 4,
+        "text": "Harbor views and benches every few meters. Wheelchair accessible throughout."
+      },
+      {
+        "source": "facebook",
+        "author": "Daniel W.",
+        "date": "2026-05-07",
+        "rating": 5,
+        "text": "Our go-to after dinner. Street musicians and sunset over the water."
+      }
+    ]
   },
   {
     "id": "industrial-art-district",
@@ -230,13 +646,49 @@
     "openingHours": "Outdoor areas open 24 hours",
     "entryFee": 0,
     "typicalCrowd": "low",
-    "interests": ["art", "history"],
-    "socialModes": ["alone", "friends", "meeting"],
-    "accessibility": ["outdoor", "walking"],
-    "bestTimeOfDay": ["afternoon", "evening"],
+    "interests": [
+      "art",
+      "history"
+    ],
+    "socialModes": [
+      "alone",
+      "friends",
+      "meeting"
+    ],
+    "accessibility": [
+      "outdoor",
+      "walking"
+    ],
+    "bestTimeOfDay": [
+      "afternoon",
+      "evening"
+    ],
     "emoji": "🎨",
     "category": "Art District",
     "categoryTag": "culture",
-    "managedBy": "Urban Canvas Project"
+    "managedBy": "Urban Canvas Project",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Art Lover",
+        "date": "2026-05-16",
+        "rating": 5,
+        "text": "Former factories turned galleries — murals and sculptures everywhere. Explore anytime."
+      },
+      {
+        "source": "tripadvisor",
+        "author": "Nina C.",
+        "date": "2026-04-12",
+        "rating": 4,
+        "text": "Open-air art you can visit on your own schedule. Great for photographers."
+      },
+      {
+        "source": "facebook",
+        "author": "Jakub M.",
+        "date": "2026-05-03",
+        "rating": 5,
+        "text": "Pop-up exhibitions change often. Industrial vibe meets creative energy."
+      }
+    ]
   }
 ]

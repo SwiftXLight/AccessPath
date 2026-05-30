@@ -17,6 +17,16 @@ export type PlaceType =
 
 export type PlaceCategoryTag = "nature" | "culture" | "history" | "family" | "sports";
 
+export type CommentSource = "google" | "tripadvisor" | "facebook" | "yelp" | "eventbrite";
+
+export interface SourceComment {
+  source: CommentSource;
+  author: string;
+  date: string;
+  rating?: number;
+  text: string;
+}
+
 export interface SearchLocation {
   address: string;
   lat: number;
@@ -44,6 +54,7 @@ export interface LocalEvent {
   category: string;
   categoryTag: CategoryTag;
   organizer: string;
+  sourceComments: SourceComment[];
 }
 
 export type AccessibilityNeed =
@@ -58,8 +69,6 @@ export type AccessibilityNeed =
   | "tactile_paving"
   | "visual_alerts"
   | "sign_language_support"
-  | "hearing_loop"
-  | "cardiac_friendly_terrain"
   | "rest_areas"
   | "shaded_areas"
   | "low_noise"
@@ -109,6 +118,7 @@ export interface Place {
   category: string;
   categoryTag: PlaceCategoryTag;
   managedBy: string;
+  sourceComments: SourceComment[];
 }
 
 export interface ScoredPlace {
@@ -212,21 +222,18 @@ export const ACCESSIBILITY_NEED_GROUPS: {
       { value: "braille_signage" },
       { value: "audio_guide" },
       { value: "tactile_paving" },
-      { value: "visual_alerts" },
     ],
   },
   {
     id: "hearing",
     options: [
       { value: "sign_language_support" },
-      { value: "hearing_loop" },
       { value: "visual_alerts" },
     ],
   },
   {
     id: "cardiac",
     options: [
-      { value: "cardiac_friendly_terrain" },
       { value: "rest_areas" },
       { value: "flat_terrain" },
       { value: "shaded_areas" },
@@ -258,8 +265,6 @@ export const ACCESSIBILITY_NEED_EVENT_TAGS: Record<AccessibilityNeed, string[]> 
   tactile_paving: ["wheelchair"],
   visual_alerts: ["subtitles"],
   sign_language_support: ["subtitles"],
-  hearing_loop: ["quiet-room"],
-  cardiac_friendly_terrain: ["seating", "outdoor"],
   rest_areas: ["seating", "quiet-room"],
   shaded_areas: ["outdoor", "seating"],
   low_noise: ["quiet-room"],

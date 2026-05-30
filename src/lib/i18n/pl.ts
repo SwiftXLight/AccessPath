@@ -53,7 +53,7 @@ export const pl: Translations = {
       {
         title: "Filtruj według stylu życia",
         description:
-          "Odległość, budżet, pora dnia, zainteresowania i tryb towarzyski — dopasowane do tego, jak naprawdę żyjesz.",
+          "Odległość, budżet, kiedy miejsca i wydarzenia są dostępne, zainteresowania i tryb towarzyski — dopasowane do tego, jak naprawdę żyjesz.",
       },
     ],
     ctaTitle: "Gotowy, by odkryć swoje miasto?",
@@ -115,7 +115,7 @@ export const pl: Translations = {
     distance: "Odległość",
     budget: "Budżet",
     crowd: "Tłum",
-    timeOfDay: "Pora dnia",
+    timeOfDay: "Kiedy dostępne",
     interests: "Zainteresowania",
     socialMode: "Tryb towarzyski",
   },
@@ -153,8 +153,6 @@ export const pl: Translations = {
       tactile_paving: "Nawierzchnia dotykowa",
       visual_alerts: "Alerty wizualne",
       sign_language_support: "Język migowy",
-      hearing_loop: "Pętla indukcyjna",
-      cardiac_friendly_terrain: "Przyjazny dla serca",
       rest_areas: "Miejsca odpoczynku",
       shaded_areas: "Zacienione miejsca",
       low_noise: "Niski poziom hałasu",
@@ -197,6 +195,15 @@ export const pl: Translations = {
     placeNotFoundDesc: "To miejsce mogło zostać usunięte lub link jest nieprawidłowy.",
     browseEvents: "Przeglądaj wydarzenia",
     browsePlaces: "Przeglądaj miejsca",
+    sourceCommentsTitle: "Co mówią inni",
+    sourceCommentsSubtitle: "Komentarze z innych źródeł (dane demo)",
+    commentSources: {
+      google: "Google",
+      tripadvisor: "Tripadvisor",
+      facebook: "Facebook",
+      yelp: "Yelp",
+      eventbrite: "Eventbrite",
+    },
   },
   options: {
     interests: {
@@ -333,7 +340,7 @@ export const pl: Translations = {
       wellSuitedGoing: "Dobrze nadaje się na {mode}",
       meetingNewPeople: "poznawanie nowych ludzi",
       fitsSchedule: "Pasuje do Twojego harmonogramu ({time})",
-      bestTimeOfDay: "Najlepiej odwiedzić w preferowanej porze dnia",
+      bestTimeOfDay: "Dostępne w preferowanych godzinach wizyty",
       wheelchairAccessible: "Miejsce dostępne dla wózków inwalidzkich",
       wheelchairAccessibleShort: "Dostępne dla wózków",
       mayNotWheelchair: "Może nie spełniać potrzeb dostępności wózka",

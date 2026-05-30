@@ -2,6 +2,7 @@
 
 import { LinkButton } from "@/components/link-button";
 import { PlaceCard } from "@/components/place-card";
+import { SourceCommentsSection } from "@/components/source-comments-section";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -130,6 +131,13 @@ export function PlaceDetailView({ place }: PlaceDetailViewProps) {
             ))}
           </div>
         </div>
+
+        {place.sourceComments.length > 0 && (
+          <>
+            <Separator />
+            <SourceCommentsSection comments={place.sourceComments} />
+          </>
+        )}
 
         <Separator />
 

@@ -8,7 +8,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { DEFAULT_PROFILE, type UserProfile } from "@/lib/types";
+import { DEFAULT_PROFILE, ACCESSIBILITY_NEED_EVENT_TAGS, type UserProfile, type AccessibilityNeed } from "@/lib/types";
 
 const STORAGE_KEY = "accesspath-profile";
 const LEGACY_STORAGE_KEY = "local-life-explorer-profile";
@@ -40,7 +40,9 @@ function loadProfile(): UserProfile {
         ...DEFAULT_PROFILE.searchLocation,
         ...(saved.searchLocation ?? {}),
       },
-      accessibilityNeeds: saved.accessibilityNeeds ?? DEFAULT_PROFILE.accessibilityNeeds,
+      accessibilityNeeds: (saved.accessibilityNeeds ?? DEFAULT_PROFILE.accessibilityNeeds).filter(
+        (need): need is AccessibilityNeed => need in ACCESSIBILITY_NEED_EVENT_TAGS
+      ),
     };
     if (!localStorage.getItem(STORAGE_KEY)) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(profile));

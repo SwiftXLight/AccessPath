@@ -13,13 +13,45 @@
     "endTime": "22:00",
     "price": 12,
     "crowdLevel": "medium",
-    "interests": ["music", "food"],
-    "socialModes": ["friends", "meeting"],
-    "accessibility": ["wheelchair", "seating"],
+    "interests": [
+      "music",
+      "food"
+    ],
+    "socialModes": [
+      "friends",
+      "meeting"
+    ],
+    "accessibility": [
+      "wheelchair",
+      "seating"
+    ],
     "emoji": "🎷",
     "category": "Music",
     "categoryTag": "music",
-    "organizer": "Riverside Arts Collective"
+    "organizer": "Riverside Arts Collective",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Marta K.",
+        "date": "2026-05-12",
+        "rating": 5,
+        "text": "Magical atmosphere by the water. The jazz trio was excellent and the sunset view made it unforgettable."
+      },
+      {
+        "source": "facebook",
+        "author": "Tomasz W.",
+        "date": "2026-05-05",
+        "rating": 4,
+        "text": "Great vibe every Saturday. Gets busy after 8 pm — arrive early for a good spot near the stage."
+      },
+      {
+        "source": "eventbrite",
+        "author": "Anna L.",
+        "date": "2026-04-28",
+        "rating": 5,
+        "text": "Well organized, friendly staff, and the craft drinks menu is a nice touch. Will come back."
+      }
+    ]
   },
   {
     "id": "farmers-market",
@@ -35,13 +67,47 @@
     "endTime": "13:00",
     "price": 0,
     "crowdLevel": "high",
-    "interests": ["food", "family", "nature"],
-    "socialModes": ["family", "friends", "alone"],
-    "accessibility": ["wheelchair", "stroller-friendly"],
+    "interests": [
+      "food",
+      "family",
+      "nature"
+    ],
+    "socialModes": [
+      "family",
+      "friends",
+      "alone"
+    ],
+    "accessibility": [
+      "wheelchair",
+      "stroller-friendly"
+    ],
     "emoji": "🥕",
     "category": "Food",
     "categoryTag": "food",
-    "organizer": "City Market Association"
+    "organizer": "City Market Association",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Ewa P.",
+        "date": "2026-05-18",
+        "rating": 5,
+        "text": "Best Saturday morning routine in the city. Fresh bread, local honey, and the street food stalls are amazing."
+      },
+      {
+        "source": "facebook",
+        "author": "Piotr M.",
+        "date": "2026-05-11",
+        "rating": 4,
+        "text": "Very crowded after 10 am but worth it. Bring a reusable bag and cash for smaller vendors."
+      },
+      {
+        "source": "tripadvisor",
+        "author": "Sarah D.",
+        "date": "2026-04-20",
+        "rating": 5,
+        "text": "A must-visit for food lovers. Loved the artisan cheese stand and friendly community feel."
+      }
+    ]
   },
   {
     "id": "street-art-walk",
@@ -57,13 +123,45 @@
     "endTime": "16:30",
     "price": 8,
     "crowdLevel": "low",
-    "interests": ["art", "history"],
-    "socialModes": ["alone", "friends", "meeting"],
-    "accessibility": ["walking"],
+    "interests": [
+      "art",
+      "history"
+    ],
+    "socialModes": [
+      "alone",
+      "friends",
+      "meeting"
+    ],
+    "accessibility": [
+      "walking"
+    ],
     "emoji": "🎨",
     "category": "Culture",
     "categoryTag": "culture",
-    "organizer": "Urban Canvas Project"
+    "organizer": "Urban Canvas Project",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Jakub R.",
+        "date": "2026-05-08",
+        "rating": 5,
+        "text": "Our guide knew every mural's story. Hidden gems in alleys you'd never find on your own."
+      },
+      {
+        "source": "tripadvisor",
+        "author": "Claire B.",
+        "date": "2026-04-15",
+        "rating": 4,
+        "text": "Informative and visually stunning. Wear comfortable shoes — lots of walking on uneven pavement."
+      },
+      {
+        "source": "facebook",
+        "author": "Ola S.",
+        "date": "2026-05-01",
+        "rating": 5,
+        "text": "Perfect for art lovers and photographers. Small group size made it feel personal."
+      }
+    ]
   },
   {
     "id": "kids-science-lab",
@@ -79,20 +177,52 @@
     "endTime": "12:30",
     "price": 5,
     "crowdLevel": "medium",
-    "interests": ["family", "tech"],
-    "socialModes": ["family"],
-    "accessibility": ["wheelchair", "stroller-friendly", "quiet-room"],
+    "interests": [
+      "family",
+      "tech"
+    ],
+    "socialModes": [
+      "family"
+    ],
+    "accessibility": [
+      "wheelchair",
+      "stroller-friendly",
+      "quiet-room"
+    ],
     "emoji": "🔬",
     "category": "Culture",
     "categoryTag": "culture",
-    "organizer": "Community Science Center"
+    "organizer": "Community Science Center",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Katarzyna N.",
+        "date": "2026-05-14",
+        "rating": 5,
+        "text": "My 8-year-old didn't want to leave. Hands-on experiments kept every kid engaged for two hours."
+      },
+      {
+        "source": "facebook",
+        "author": "Marcin H.",
+        "date": "2026-04-27",
+        "rating": 4,
+        "text": "Staff are patient and enthusiastic. Booking ahead helps on rainy weekends."
+      },
+      {
+        "source": "eventbrite",
+        "author": "Helen T.",
+        "date": "2026-05-03",
+        "rating": 5,
+        "text": "Great value for families. The volcano experiment was the highlight for our group."
+      }
+    ]
   },
   {
     "id": "sunrise-yoga",
     "title": "Sunrise Yoga in the Park",
     "description": "Start your day with gentle yoga surrounded by old oak trees. All levels welcome, mats provided.",
     "location": "Greenwood Park",
-    "distanceKm": 4.0,
+    "distanceKm": 4,
     "lat": 50.458,
     "lng": 30.51,
     "date": "2026-05-31",
@@ -101,13 +231,45 @@
     "endTime": "07:45",
     "price": 0,
     "crowdLevel": "low",
-    "interests": ["nature", "sports"],
-    "socialModes": ["alone", "friends"],
-    "accessibility": ["outdoor", "seating"],
+    "interests": [
+      "nature",
+      "sports"
+    ],
+    "socialModes": [
+      "alone",
+      "friends"
+    ],
+    "accessibility": [
+      "outdoor",
+      "seating"
+    ],
     "emoji": "🧘",
     "category": "Sports",
     "categoryTag": "sports",
-    "organizer": "Greenwood Wellness Group"
+    "organizer": "Greenwood Wellness Group",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Nina V.",
+        "date": "2026-05-20",
+        "rating": 5,
+        "text": "Peaceful start to the day under the oak trees. Instructor adjusts poses for all levels."
+      },
+      {
+        "source": "facebook",
+        "author": "Adam C.",
+        "date": "2026-05-06",
+        "rating": 4,
+        "text": "Free and welcoming. Mats provided — just show up a few minutes early."
+      },
+      {
+        "source": "eventbrite",
+        "author": "Lisa F.",
+        "date": "2026-04-22",
+        "rating": 5,
+        "text": "Calm, uncrowded, and the park setting is beautiful at dawn."
+      }
+    ]
   },
   {
     "id": "tech-meetup",
@@ -123,20 +285,51 @@
     "endTime": "21:00",
     "price": 0,
     "crowdLevel": "medium",
-    "interests": ["tech"],
-    "socialModes": ["alone", "meeting", "friends"],
-    "accessibility": ["wheelchair"],
+    "interests": [
+      "tech"
+    ],
+    "socialModes": [
+      "alone",
+      "meeting",
+      "friends"
+    ],
+    "accessibility": [
+      "wheelchair"
+    ],
     "emoji": "💻",
     "category": "Tech",
     "categoryTag": "tech",
-    "organizer": "Dev Community Local"
+    "organizer": "Dev Community Local",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Dev User",
+        "date": "2026-05-10",
+        "rating": 4,
+        "text": "Solid lightning talks and good networking. Pizza ran out fast — grab some early."
+      },
+      {
+        "source": "facebook",
+        "author": "Karol Z.",
+        "date": "2026-04-30",
+        "rating": 5,
+        "text": "Friendly dev community. Great place to meet collaborators on side projects."
+      },
+      {
+        "source": "eventbrite",
+        "author": "Mike R.",
+        "date": "2026-05-02",
+        "rating": 4,
+        "text": "Monthly staple for local engineers. AI talk this month was especially interesting."
+      }
+    ]
   },
   {
     "id": "heritage-walk",
     "title": "Old Town Heritage Walk",
     "description": "Stories of merchants, revolutions, and everyday life from centuries past. Small groups, big history.",
     "location": "Old Town Square",
-    "distanceKm": 1.0,
+    "distanceKm": 1,
     "lat": 50.45,
     "lng": 30.524,
     "date": "2026-06-01",
@@ -145,13 +338,46 @@
     "endTime": "17:00",
     "price": 10,
     "crowdLevel": "low",
-    "interests": ["history", "art"],
-    "socialModes": ["alone", "family", "friends"],
-    "accessibility": ["wheelchair", "seating"],
+    "interests": [
+      "history",
+      "art"
+    ],
+    "socialModes": [
+      "alone",
+      "family",
+      "friends"
+    ],
+    "accessibility": [
+      "wheelchair",
+      "seating"
+    ],
     "emoji": "🏛️",
     "category": "Culture",
     "categoryTag": "culture",
-    "organizer": "Heritage Society"
+    "organizer": "Heritage Society",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Barbara J.",
+        "date": "2026-05-16",
+        "rating": 5,
+        "text": "The guide brought centuries of history to life. Small groups mean you can actually hear everything."
+      },
+      {
+        "source": "tripadvisor",
+        "author": "James W.",
+        "date": "2026-04-18",
+        "rating": 5,
+        "text": "One of the best walking tours I've done. Stories about merchants and revolutions were fascinating."
+      },
+      {
+        "source": "facebook",
+        "author": "Zofia K.",
+        "date": "2026-05-04",
+        "rating": 4,
+        "text": "Wheelchair-friendly route and plenty of stops to rest. Highly recommend for history buffs."
+      }
+    ]
   },
   {
     "id": "night-food-festival",
@@ -167,13 +393,44 @@
     "endTime": "01:00",
     "price": 15,
     "crowdLevel": "high",
-    "interests": ["food", "music"],
-    "socialModes": ["friends", "meeting"],
-    "accessibility": ["wheelchair"],
+    "interests": [
+      "food",
+      "music"
+    ],
+    "socialModes": [
+      "friends",
+      "meeting"
+    ],
+    "accessibility": [
+      "wheelchair"
+    ],
     "emoji": "🍜",
     "category": "Food",
     "categoryTag": "food",
-    "organizer": "Taste Local Initiative"
+    "organizer": "Taste Local Initiative",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Chris M.",
+        "date": "2026-05-22",
+        "rating": 4,
+        "text": "Incredible variety of street food. Gets packed after 9 pm — go earlier if you hate queues."
+      },
+      {
+        "source": "facebook",
+        "author": "Daria L.",
+        "date": "2026-05-15",
+        "rating": 5,
+        "text": "Best food night of the year. DJs, dessert bars, and vendors from all over the region."
+      },
+      {
+        "source": "eventbrite",
+        "author": "Tom H.",
+        "date": "2026-04-25",
+        "rating": 4,
+        "text": "Lively atmosphere on the waterfront. Bring cash and an appetite."
+      }
+    ]
   },
   {
     "id": "community-garden",
@@ -189,13 +446,46 @@
     "endTime": "16:00",
     "price": 0,
     "crowdLevel": "low",
-    "interests": ["nature", "family"],
-    "socialModes": ["family", "meeting", "alone"],
-    "accessibility": ["outdoor", "stroller-friendly"],
+    "interests": [
+      "nature",
+      "family"
+    ],
+    "socialModes": [
+      "family",
+      "meeting",
+      "alone"
+    ],
+    "accessibility": [
+      "outdoor",
+      "stroller-friendly"
+    ],
     "emoji": "🌱",
     "category": "Culture",
     "categoryTag": "culture",
-    "organizer": "Eastside Growers"
+    "organizer": "Eastside Growers",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Irena S.",
+        "date": "2026-05-09",
+        "rating": 5,
+        "text": "Lovely community spirit. Picked up great urban gardening tips and swapped seeds with neighbors."
+      },
+      {
+        "source": "facebook",
+        "author": "Paweł D.",
+        "date": "2026-04-12",
+        "rating": 4,
+        "text": "Free, relaxed, and kid-friendly. Perfect afternoon for families who like nature."
+      },
+      {
+        "source": "tripadvisor",
+        "author": "Emma G.",
+        "date": "2026-05-01",
+        "rating": 5,
+        "text": "Hidden gem in the east side. The shared plots are inspiring."
+      }
+    ]
   },
   {
     "id": "indie-cinema",
@@ -211,13 +501,44 @@
     "endTime": "22:00",
     "price": 9,
     "crowdLevel": "low",
-    "interests": ["art"],
-    "socialModes": ["alone", "friends"],
-    "accessibility": ["wheelchair", "subtitles"],
+    "interests": [
+      "art"
+    ],
+    "socialModes": [
+      "alone",
+      "friends"
+    ],
+    "accessibility": [
+      "wheelchair",
+      "subtitles"
+    ],
     "emoji": "🎬",
     "category": "Culture",
     "categoryTag": "culture",
-    "organizer": "Regional Film Guild"
+    "organizer": "Regional Film Guild",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Film Fan",
+        "date": "2026-05-17",
+        "rating": 5,
+        "text": "Wonderful selection of local shorts. Q&A with directors afterward was a real treat."
+      },
+      {
+        "source": "facebook",
+        "author": "Monika A.",
+        "date": "2026-04-28",
+        "rating": 4,
+        "text": "Intimate venue with subtitles available. Support regional filmmakers — you won't regret it."
+      },
+      {
+        "source": "eventbrite",
+        "author": "David K.",
+        "date": "2026-05-05",
+        "rating": 5,
+        "text": "Cozy art house vibe. Low crowd, high quality programming."
+      }
+    ]
   },
   {
     "id": "running-club",
@@ -233,20 +554,51 @@
     "endTime": "10:30",
     "price": 0,
     "crowdLevel": "medium",
-    "interests": ["sports", "nature"],
-    "socialModes": ["friends", "meeting"],
-    "accessibility": ["outdoor"],
+    "interests": [
+      "sports",
+      "nature"
+    ],
+    "socialModes": [
+      "friends",
+      "meeting"
+    ],
+    "accessibility": [
+      "outdoor"
+    ],
     "emoji": "🏃",
     "category": "Sports",
     "categoryTag": "sports",
-    "organizer": "Lake Runners Club"
+    "organizer": "Lake Runners Club",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Runner42",
+        "date": "2026-05-19",
+        "rating": 5,
+        "text": "Friendly 5K group run with a beautiful lakeside loop. Coffee afterward is the best part."
+      },
+      {
+        "source": "facebook",
+        "author": "Agata W.",
+        "date": "2026-05-12",
+        "rating": 4,
+        "text": "All paces welcome. Great way to meet people if you're new to the city."
+      },
+      {
+        "source": "facebook",
+        "author": "Ben P.",
+        "date": "2026-04-14",
+        "rating": 5,
+        "text": "Casual, no pressure, and the trail views are stunning in the morning light."
+      }
+    ]
   },
   {
     "id": "senior-tea",
     "title": "Senior Social Tea & Board Games",
     "description": "A welcoming afternoon of tea, board games, and conversation. Free entry, no reservation needed.",
     "location": "Neighborhood Center",
-    "distanceKm": 2.0,
+    "distanceKm": 2,
     "lat": 50.452,
     "lng": 30.53,
     "date": "2026-06-02",
@@ -255,12 +607,44 @@
     "endTime": "17:00",
     "price": 0,
     "crowdLevel": "low",
-    "interests": ["family"],
-    "socialModes": ["alone", "meeting"],
-    "accessibility": ["wheelchair", "seating", "quiet-room"],
+    "interests": [
+      "family"
+    ],
+    "socialModes": [
+      "alone",
+      "meeting"
+    ],
+    "accessibility": [
+      "wheelchair",
+      "seating",
+      "quiet-room"
+    ],
     "emoji": "☕",
     "category": "Culture",
     "categoryTag": "culture",
-    "organizer": "Neighborhood Center"
+    "organizer": "Neighborhood Center",
+    "sourceComments": [
+      {
+        "source": "google",
+        "author": "Janina M.",
+        "date": "2026-05-21",
+        "rating": 5,
+        "text": "Warm, welcoming space. Board games, tea, and good conversation — exactly what the neighborhood needed."
+      },
+      {
+        "source": "facebook",
+        "author": "Stefan B.",
+        "date": "2026-05-07",
+        "rating": 5,
+        "text": "Free entry and no reservation hassle. Quiet room makes it easy to chat."
+      },
+      {
+        "source": "tripadvisor",
+        "author": "Rose T.",
+        "date": "2026-04-19",
+        "rating": 4,
+        "text": "Lovely afternoon activity for seniors. Staff are attentive and kind."
+      }
+    ]
   }
 ]
