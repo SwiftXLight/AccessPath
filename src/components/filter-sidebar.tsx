@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { AccessibilityNeedsFilter } from "@/components/accessibility-needs-filter";
 import { LocationPicker } from "@/components/location-picker";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -14,6 +15,8 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
+import { calculateMatchScore, events as allEvents, toMapMarker as eventToMapMarker } from "@/lib/events";
+import { calculatePlaceMatchScore, places as allPlaces, toMapMarker as placeToMapMarker } from "@/lib/places";
 import {
   CROWD_PREFERENCE_OPTIONS,
   DEFAULT_PROFILE,
@@ -34,6 +37,14 @@ export function FilterSidebar({ profile, onChange }: FilterSidebarProps) {
   const update = (partial: Partial<UserProfile>) => {
     onChange({ ...profile, ...partial });
   };
+
+  const scoredMarkers = useMemo(
+    () => [
+      ...allEvents.map((event) => eventToMapMarker(calculateMatchScore(profile, event))),
+      ...allPlaces.map((place) => placeToMapMarker(calculatePlaceMatchScore(profile, place))),
+    ],
+    [profile]
+  );
 
   const toggleTimeOfDay = (value: TimeOfDay) => {
     const next = profile.timeOfDay.includes(value)
@@ -69,6 +80,7 @@ export function FilterSidebar({ profile, onChange }: FilterSidebarProps) {
         value={profile.searchLocation}
         onChange={(searchLocation) => update({ searchLocation })}
         compact
+        scoredMarkers={scoredMarkers}
       />
 
       <Separator />
@@ -82,8 +94,8 @@ export function FilterSidebar({ profile, onChange }: FilterSidebarProps) {
         </div>
         <Slider
           value={[profile.maxDistanceKm]}
-          min={1}
-          max={20}
+          min={0.5}
+          max={5}
           step={0.5}
           onValueChange={(value) => {
             const next = Array.isArray(value) ? value[0] : value;

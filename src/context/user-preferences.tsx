@@ -10,7 +10,8 @@ import {
 } from "react";
 import { DEFAULT_PROFILE, type UserProfile } from "@/lib/types";
 
-const STORAGE_KEY = "local-life-explorer-profile";
+const STORAGE_KEY = "accesspath-profile";
+const LEGACY_STORAGE_KEY = "local-life-explorer-profile";
 
 interface UserPreferencesContextValue {
   profile: UserProfile;
@@ -27,10 +28,12 @@ const UserPreferencesContext = createContext<UserPreferencesContextValue | null>
 function loadProfile(): UserProfile {
   if (typeof window === "undefined") return DEFAULT_PROFILE;
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw =
+      localStorage.getItem(STORAGE_KEY) ??
+      localStorage.getItem(LEGACY_STORAGE_KEY);
     if (!raw) return DEFAULT_PROFILE;
     const saved = JSON.parse(raw) as Partial<UserProfile>;
-    return {
+    const profile = {
       ...DEFAULT_PROFILE,
       ...saved,
       searchLocation: {
@@ -39,6 +42,10 @@ function loadProfile(): UserProfile {
       },
       accessibilityNeeds: saved.accessibilityNeeds ?? DEFAULT_PROFILE.accessibilityNeeds,
     };
+    if (!localStorage.getItem(STORAGE_KEY)) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(profile));
+    }
+    return profile;
   } catch {
     return DEFAULT_PROFILE;
   }

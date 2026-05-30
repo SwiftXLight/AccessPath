@@ -1,5 +1,6 @@
 import eventsData from "@/data/events.json";
-import { MAP_BOUNDS, type LocalEvent, type SearchLocation } from "@/lib/types";
+import placesData from "@/data/places.json";
+import { MAP_BOUNDS, type LocalEvent, type Place, type SearchLocation } from "@/lib/types";
 
 export type { SearchLocation };
 
@@ -19,7 +20,19 @@ const EVENT_LOCATIONS: SearchLocation[] = (eventsData as LocalEvent[]).map(
   })
 );
 
-const KNOWN_LOCATIONS: SearchLocation[] = [CITY_CENTER, ...EVENT_LOCATIONS];
+const PLACE_LOCATIONS: SearchLocation[] = (placesData as Place[]).map(
+  (place) => ({
+    address: place.location,
+    lat: place.lat,
+    lng: place.lng,
+  })
+);
+
+const KNOWN_LOCATIONS: SearchLocation[] = [
+  CITY_CENTER,
+  ...EVENT_LOCATIONS,
+  ...PLACE_LOCATIONS,
+];
 
 export const LOCATION_SUGGESTIONS = [
   ...new Set(KNOWN_LOCATIONS.map((location) => location.address)),

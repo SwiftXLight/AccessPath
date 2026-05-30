@@ -7,7 +7,7 @@ import { LinkButton } from "@/components/link-button";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { href: "/explore", label: "Discover Events" },
+  { href: "/explore", label: "Discover" },
   { href: "/profile", label: "Profile" },
 ];
 
@@ -22,8 +22,7 @@ export function Header() {
             <MapPin className="size-5 text-primary-foreground" />
           </div>
           <span className="text-xl font-bold tracking-tight text-foreground">
-            <span className="hidden sm:inline">Local Life Explorer</span>
-            <span className="sm:hidden">Explorer</span>
+            AccessPath
           </span>
         </Link>
 

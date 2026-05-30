@@ -1,29 +1,37 @@
-import eventsData from "@/data/events.json";
+import placesData from "@/data/places.json";
+import {
+  formatPrice,
+  getMatchColor,
+  getMatchTier,
+  latLngToPercent,
+} from "@/lib/events";
 import { haversineKm } from "@/lib/location";
 import type {
   AccessibilityNeed,
   CrowdLevel,
   CrowdPreference,
-  LocalEvent,
   MapMarker,
   MobilityPreference,
-  ScoredEvent,
+  Place,
+  ScoredPlace,
   UserProfile,
 } from "./types";
-import { ACCESSIBILITY_NEED_EVENT_TAGS, MAP_BOUNDS } from "./types";
+import { ACCESSIBILITY_NEED_EVENT_TAGS } from "./types";
 
-export const events: LocalEvent[] = eventsData as LocalEvent[];
+export { formatPrice, getMatchColor, getMatchTier, latLngToPercent };
 
-export function getEventById(id: string): LocalEvent | undefined {
-  return events.find((event) => event.id === id);
+export const places: Place[] = placesData as Place[];
+
+export function getPlaceById(id: string): Place | undefined {
+  return places.find((place) => place.id === id);
 }
 
-export function getDistanceKm(profile: UserProfile, event: LocalEvent): number {
+export function getDistanceKm(profile: UserProfile, place: Place): number {
   const distance = haversineKm(
     profile.searchLocation.lat,
     profile.searchLocation.lng,
-    event.lat,
-    event.lng
+    place.lat,
+    place.lng
   );
   return Math.round(distance * 10) / 10;
 }
@@ -49,7 +57,7 @@ function crowdMatchScore(
   if (points >= 10) {
     return {
       points,
-      reason: `${crowdLabels[level]} crowd fits your preference for ${preference === "quiet" ? "minimal crowds" : preference === "lively" ? "energetic atmospheres" : "balanced environments"}`,
+      reason: `${crowdLabels[level]} atmosphere fits your preference for ${preference === "quiet" ? "minimal crowds" : preference === "lively" ? "energetic spaces" : "balanced environments"}`,
     };
   }
   if (points < 0) {
@@ -69,7 +77,7 @@ function mobilityMatchScore(
 
   if (preference === "wheelchair") {
     if (accessibility.includes("wheelchair")) {
-      return { points: 12, reason: "Wheelchair accessible venue" };
+      return { points: 12, reason: "Wheelchair accessible" };
     }
     return { points: -20, reason: "May not meet wheelchair accessibility needs" };
   }
@@ -90,22 +98,22 @@ function mobilityMatchScore(
   return { points: 5 };
 }
 
-function eventMeetsAccessibilityNeed(
+function placeMeetsAccessibilityNeed(
   need: AccessibilityNeed,
-  eventAccessibility: string[]
+  placeAccessibility: string[]
 ): boolean {
   const tags = ACCESSIBILITY_NEED_EVENT_TAGS[need] ?? [];
-  return tags.some((tag) => eventAccessibility.includes(tag));
+  return tags.some((tag) => placeAccessibility.includes(tag));
 }
 
 function accessibilityNeedsMatchScore(
   needs: AccessibilityNeed[],
-  eventAccessibility: string[]
+  placeAccessibility: string[]
 ): { points: number; reason?: string } {
   if (needs.length === 0) return { points: 0 };
 
   const matched = needs.filter((need) =>
-    eventMeetsAccessibilityNeed(need, eventAccessibility)
+    placeMeetsAccessibilityNeed(need, placeAccessibility)
   );
 
   if (matched.length === 0) {
@@ -134,12 +142,11 @@ function capitalize(s: string): string {
 function buildMatchExplanation(
   reasons: string[],
   profile: UserProfile,
-  event: LocalEvent,
+  place: Place,
   distanceKm: number
 ): string {
   const highlights: string[] = [];
 
-  // Distance
   if (distanceKm <= 1) {
     highlights.push(`just ${distanceKm} km away`);
   } else if (distanceKm <= 2) {
@@ -148,17 +155,15 @@ function buildMatchExplanation(
     highlights.push(`${distanceKm} km away — comfortably within your range`);
   }
 
-  // Budget
-  if (event.price === 0) {
-    highlights.push("free entry");
-  } else if (event.price <= Math.max(1, profile.maxBudget * 0.5)) {
-    highlights.push(`budget-friendly at $${event.price}`);
-  } else if (event.price <= profile.maxBudget) {
-    highlights.push(`$${event.price} stays within your budget`);
+  if (place.entryFee === 0) {
+    highlights.push("free to visit anytime");
+  } else if (place.entryFee <= Math.max(1, profile.maxBudget * 0.5)) {
+    highlights.push(`budget-friendly at $${place.entryFee}`);
+  } else if (place.entryFee <= profile.maxBudget) {
+    highlights.push(`$${place.entryFee} stays within your budget`);
   }
 
-  // Interest match
-  const matchingInterests = event.interests.filter((i) =>
+  const matchingInterests = place.interests.filter((i) =>
     profile.interests.includes(i)
   );
   if (matchingInterests.length > 0) {
@@ -167,27 +172,27 @@ function buildMatchExplanation(
     );
   }
 
-  // Crowd match
-  if (profile.crowdPreference === "quiet" && event.crowdLevel === "low") {
+  if (profile.crowdPreference === "quiet" && place.typicalCrowd === "low") {
     highlights.push("calm low-crowd atmosphere");
-  } else if (profile.crowdPreference === "lively" && event.crowdLevel === "high") {
+  } else if (profile.crowdPreference === "lively" && place.typicalCrowd === "high") {
     highlights.push("lively energetic vibe you enjoy");
   }
 
-  // Mobility / accessibility
   if (
     profile.mobilityPreference === "wheelchair" &&
-    event.accessibility.includes("wheelchair")
+    place.accessibility.includes("wheelchair")
   ) {
     highlights.push("fully wheelchair accessible");
   } else if (
     profile.mobilityPreference === "limited" &&
-    event.accessibility.some((a) => ["seating", "wheelchair"].includes(a))
+    place.accessibility.some((a) => ["seating", "wheelchair"].includes(a))
   ) {
     highlights.push("well-suited for limited mobility");
   }
 
-  if (highlights.length === 0) {
+  highlights.push("open whenever you want to go");
+
+  if (highlights.length <= 1) {
     const positives = reasons.filter(
       (r) =>
         !r.startsWith("Crowd level may") &&
@@ -195,11 +200,11 @@ function buildMatchExplanation(
         !r.includes("Beyond")
     );
     if (positives.length > 0) return `${positives[0]}.`;
-    return "A potential discovery outside your usual preferences — could be a pleasant surprise.";
+    return "A place worth discovering — always there when you need a break from the schedule.";
   }
 
-  if (highlights.length === 1) {
-    return `${capitalize(highlights[0])} — worth checking out based on your profile.`;
+  if (highlights.length === 2) {
+    return `${capitalize(highlights[0])} and ${highlights[1]} — a strong match for your profile.`;
   }
 
   const [first, second, ...rest] = highlights;
@@ -209,20 +214,19 @@ function buildMatchExplanation(
   return `${capitalize(first)}, ${second}, and ${rest[0]} — exactly what you're looking for.`;
 }
 
-/** Primary match scoring — returns absolute 0–100 score */
-export function calculateMatchScore(
+export function calculatePlaceMatchScore(
   profile: UserProfile,
-  event: LocalEvent
-): ScoredEvent {
-  let score = 35;
+  place: Place
+): ScoredPlace {
+  let score = 38;
   const reasons: string[] = [];
-  const distanceKm = getDistanceKm(profile, event);
+  const distanceKm = getDistanceKm(profile, place);
 
   if (distanceKm <= profile.maxDistanceKm) {
     const bonus = Math.round(25 * (1 - distanceKm / profile.maxDistanceKm));
     score += bonus;
     if (distanceKm <= 2) {
-      reasons.push(`Only ${distanceKm} km away — easy to reach`);
+      reasons.push(`Only ${distanceKm} km away — easy to reach anytime`);
     } else {
       reasons.push(`Within your ${profile.maxDistanceKm} km comfort zone`);
     }
@@ -231,19 +235,19 @@ export function calculateMatchScore(
     reasons.push(`Beyond your preferred ${profile.maxDistanceKm} km radius`);
   }
 
-  if (event.price <= profile.maxBudget) {
-    score += event.price === 0 ? 18 : 12;
-    if (event.price === 0) {
-      reasons.push("Free entry fits your budget perfectly");
+  if (place.entryFee <= profile.maxBudget) {
+    score += place.entryFee === 0 ? 18 : 12;
+    if (place.entryFee === 0) {
+      reasons.push("Free to visit — no ticket needed");
     } else {
-      reasons.push(`Price (${formatPrice(event.price)}) stays within budget`);
+      reasons.push(`Entry (${formatPrice(place.entryFee)}) stays within budget`);
     }
   } else {
     score -= 22;
-    reasons.push(`Above your $${profile.maxBudget} budget`);
+    reasons.push(`Entry fee above your $${profile.maxBudget} budget`);
   }
 
-  const matchingInterests = event.interests.filter((i) =>
+  const matchingInterests = place.interests.filter((i) =>
     profile.interests.includes(i)
   );
   if (profile.interests.length === 0) {
@@ -255,11 +259,11 @@ export function calculateMatchScore(
     score -= 12;
   }
 
-  const crowd = crowdMatchScore(profile.crowdPreference, event.crowdLevel);
+  const crowd = crowdMatchScore(profile.crowdPreference, place.typicalCrowd);
   score += crowd.points;
   if (crowd.reason) reasons.push(crowd.reason);
 
-  if (profile.socialMode === "any" || event.socialModes.includes(profile.socialMode)) {
+  if (profile.socialMode === "any" || place.socialModes.includes(profile.socialMode)) {
     score += 10;
     if (profile.socialMode !== "any") {
       const label =
@@ -270,95 +274,68 @@ export function calculateMatchScore(
     score -= 12;
   }
 
-  const mobility = mobilityMatchScore(profile.mobilityPreference, event.accessibility);
+  const mobility = mobilityMatchScore(profile.mobilityPreference, place.accessibility);
   score += mobility.points;
   if (mobility.reason) reasons.push(mobility.reason);
 
   const accessibility = accessibilityNeedsMatchScore(
     profile.accessibilityNeeds,
-    event.accessibility
+    place.accessibility
   );
   score += accessibility.points;
   if (accessibility.reason) reasons.push(accessibility.reason);
 
-  if (
-    profile.timeOfDay.length === 0 ||
-    profile.timeOfDay.includes(event.timeOfDay)
-  ) {
+  if (profile.timeOfDay.length === 0) {
     score += 8;
-    if (profile.timeOfDay.length > 0) {
-      reasons.push(`Fits your ${event.timeOfDay} schedule`);
-    }
+  } else if (
+    place.bestTimeOfDay.some((t) => profile.timeOfDay.includes(t))
+  ) {
+    score += 10;
+    reasons.push("Best visited during your preferred time of day");
   } else {
-    score -= 10;
+    score -= 4;
   }
 
   score = Math.max(0, Math.min(100, Math.round(score)));
-  const explanation = buildMatchExplanation(reasons, profile, event, distanceKm);
+  const explanation = buildMatchExplanation(reasons, profile, place, distanceKm);
 
-  return { event, score, reasons, explanation, distanceKm };
+  return { place, score, reasons, explanation, distanceKm };
 }
 
-export function scoreEvent(
-  event: LocalEvent,
-  profile: UserProfile
-): ScoredEvent {
-  return calculateMatchScore(profile, event);
-}
-
-export function getMatchTier(score: number): "high" | "medium" | "low" {
-  if (score >= 70) return "high";
-  if (score >= 45) return "medium";
-  return "low";
-}
-
-export function getMatchColor(score: number): string {
-  const tier = getMatchTier(score);
-  if (tier === "high") return "bg-green-500";
-  if (tier === "medium") return "bg-amber-400";
-  return "bg-red-400";
-}
-
-export function getRecommendedEvents(
+export function getRecommendedPlaces(
   profile: UserProfile,
   limit = 5
-): ScoredEvent[] {
-  return events
-    .map((event) => calculateMatchScore(profile, event))
+): ScoredPlace[] {
+  return places
+    .map((place) => calculatePlaceMatchScore(profile, place))
     .filter(({ score }) => score >= 30)
     .sort((a, b) => b.score - a.score)
     .slice(0, limit);
 }
 
-export function getFilteredEvents(profile: UserProfile): ScoredEvent[] {
-  return events
-    .map((event) => calculateMatchScore(profile, event))
-    .filter(({ event, score, distanceKm }) => {
+export function getFilteredPlaces(profile: UserProfile): ScoredPlace[] {
+  return places
+    .map((place) => calculatePlaceMatchScore(profile, place))
+    .filter(({ place, score, distanceKm }) => {
       if (score < 25) return false;
       if (distanceKm > profile.maxDistanceKm) return false;
-      if (event.price > profile.maxBudget) return false;
-      if (
-        profile.timeOfDay.length > 0 &&
-        !profile.timeOfDay.includes(event.timeOfDay)
-      ) {
-        return false;
-      }
+      if (place.entryFee > profile.maxBudget) return false;
       if (
         profile.interests.length > 0 &&
-        !event.interests.some((i) => profile.interests.includes(i))
+        !place.interests.some((i) => profile.interests.includes(i))
       ) {
         return false;
       }
       if (
         profile.socialMode !== "any" &&
-        !event.socialModes.includes(profile.socialMode)
+        !place.socialModes.includes(profile.socialMode)
       ) {
         return false;
       }
       if (
         profile.accessibilityNeeds.length > 0 &&
         !profile.accessibilityNeeds.every((need) =>
-          eventMeetsAccessibilityNeed(need, event.accessibility)
+          placeMeetsAccessibilityNeed(need, place.accessibility)
         )
       ) {
         return false;
@@ -368,58 +345,39 @@ export function getFilteredEvents(profile: UserProfile): ScoredEvent[] {
     .sort((a, b) => b.score - a.score);
 }
 
-export function getSimilarEvents(
-  event: LocalEvent,
+export function getSimilarPlaces(
+  place: Place,
   profile: UserProfile,
   limit = 3
-): ScoredEvent[] {
-  return events
-    .filter((e) => e.id !== event.id)
-    .map((e) => {
-      const scored = calculateMatchScore(profile, e);
+): ScoredPlace[] {
+  return places
+    .filter((p) => p.id !== place.id)
+    .map((p) => {
+      const scored = calculatePlaceMatchScore(profile, p);
       let bonus = 0;
-      if (e.categoryTag === event.categoryTag) bonus += 15;
-      if (e.interests.some((i) => event.interests.includes(i))) bonus += 10;
-      if (Math.abs(scored.distanceKm - getDistanceKm(profile, event)) <= 2) bonus += 5;
+      if (p.categoryTag === place.categoryTag) bonus += 15;
+      if (p.placeType === place.placeType) bonus += 10;
+      if (p.interests.some((i) => place.interests.includes(i))) bonus += 10;
+      if (Math.abs(scored.distanceKm - getDistanceKm(profile, place)) <= 2) bonus += 5;
       return { ...scored, score: Math.min(100, scored.score + bonus) };
     })
     .sort((a, b) => b.score - a.score)
     .slice(0, limit);
 }
 
-export function latLngToPercent(lat: number, lng: number): { x: number; y: number } {
-  const x =
-    ((lng - MAP_BOUNDS.minLng) / (MAP_BOUNDS.maxLng - MAP_BOUNDS.minLng)) * 100;
-  const y =
-    ((MAP_BOUNDS.maxLat - lat) / (MAP_BOUNDS.maxLat - MAP_BOUNDS.minLat)) * 100;
-  return { x: Math.max(4, Math.min(96, x)), y: Math.max(4, Math.min(96, y)) };
-}
-
-export function formatPrice(price: number): string {
-  return price === 0 ? "Free" : `$${price}`;
-}
-
-export function formatDate(dateStr: string): string {
-  return new Date(dateStr + "T12:00:00").toLocaleDateString("en-US", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-  });
+export function toMapMarker(scored: ScoredPlace): MapMarker {
+  return {
+    id: scored.place.id,
+    kind: "place",
+    lat: scored.place.lat,
+    lng: scored.place.lng,
+    score: scored.score,
+    title: scored.place.title,
+    emoji: scored.place.emoji,
+    location: scored.place.location,
+  };
 }
 
 export function formatCrowdLevel(level: CrowdLevel): string {
   return { low: "Calm", medium: "Moderate", high: "Lively" }[level];
-}
-
-export function toMapMarker(scored: ScoredEvent): MapMarker {
-  return {
-    id: scored.event.id,
-    kind: "event",
-    lat: scored.event.lat,
-    lng: scored.event.lng,
-    score: scored.score,
-    title: scored.event.title,
-    emoji: scored.event.emoji,
-    location: scored.event.location,
-  };
 }

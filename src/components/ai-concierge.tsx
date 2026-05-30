@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useUserPreferences } from "@/context/user-preferences";
 import { getRecommendedEvents } from "@/lib/events";
+import { getRecommendedPlaces } from "@/lib/places";
 import { buildConciergeResponse } from "@/lib/recommendations";
 
 export function AiConcierge() {
@@ -24,8 +25,9 @@ export function AiConcierge() {
   > | null>(null);
 
   const handleAsk = () => {
-    const recommendations = getRecommendedEvents(profile, 3);
-    setResponse(buildConciergeResponse(query, recommendations, profile));
+    const eventRecs = getRecommendedEvents(profile, 5);
+    const placeRecs = getRecommendedPlaces(profile, 5);
+    setResponse(buildConciergeResponse(query, eventRecs, placeRecs, profile));
   };
 
   return (
@@ -35,7 +37,7 @@ export function AiConcierge() {
           <span aria-hidden>✨</span>
           AI Concierge
         </CardTitle>
-        <CardDescription>Ask what you can do today</CardDescription>
+        <CardDescription>Ask what you can do today — events or places anytime</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="flex gap-2">
@@ -54,12 +56,22 @@ export function AiConcierge() {
             <ul className="space-y-3">
               {response.picks.map((pick) => (
                 <li
-                  key={pick.title}
+                  key={`${pick.kind}-${pick.title}`}
                   className="rounded-lg border bg-background p-3 shadow-sm"
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-medium">{pick.title}</span>
-                    <Badge variant="secondary">{pick.score}% match</Badge>
+                    <Link
+                      href={pick.href}
+                      className="font-medium hover:text-primary hover:underline"
+                    >
+                      {pick.title}
+                    </Link>
+                    <div className="flex shrink-0 items-center gap-2">
+                      <Badge variant="outline" className="capitalize">
+                        {pick.kind}
+                      </Badge>
+                      <Badge variant="secondary">{pick.score}% match</Badge>
+                    </div>
                   </div>
                   <p className="mt-1 text-sm text-muted-foreground">
                     {pick.explanation}

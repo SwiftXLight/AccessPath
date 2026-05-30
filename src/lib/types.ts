@@ -5,6 +5,18 @@ export type CrowdPreference = "quiet" | "moderate" | "lively" | "any";
 export type MobilityPreference = "full" | "limited" | "wheelchair" | "any";
 export type CategoryTag = "music" | "food" | "sports" | "culture" | "tech";
 
+export type PlaceType =
+  | "park"
+  | "riverside"
+  | "lake"
+  | "forest"
+  | "museum"
+  | "castle"
+  | "garden"
+  | "viewpoint";
+
+export type PlaceCategoryTag = "nature" | "culture" | "history" | "family" | "sports";
+
 export interface SearchLocation {
   address: string;
   lat: number;
@@ -77,6 +89,59 @@ export interface ScoredEvent {
   explanation: string;
   distanceKm: number;
 }
+
+export interface Place {
+  id: string;
+  title: string;
+  description: string;
+  location: string;
+  lat: number;
+  lng: number;
+  placeType: PlaceType;
+  openingHours: string;
+  entryFee: number;
+  typicalCrowd: CrowdLevel;
+  interests: string[];
+  socialModes: SocialMode[];
+  accessibility: string[];
+  bestTimeOfDay: TimeOfDay[];
+  emoji: string;
+  category: string;
+  categoryTag: PlaceCategoryTag;
+  managedBy: string;
+}
+
+export interface ScoredPlace {
+  place: Place;
+  score: number;
+  reasons: string[];
+  explanation: string;
+  distanceKm: number;
+}
+
+export type DiscoverKind = "event" | "place";
+
+export interface MapMarker {
+  id: string;
+  kind: DiscoverKind;
+  lat: number;
+  lng: number;
+  score: number;
+  title: string;
+  emoji: string;
+  location: string;
+}
+
+export const PLACE_TYPE_LABELS: Record<PlaceType, string> = {
+  park: "Park",
+  riverside: "Riverside",
+  lake: "Lake",
+  forest: "Forest",
+  museum: "Museum",
+  castle: "Castle",
+  garden: "Garden",
+  viewpoint: "Viewpoint",
+};
 
 export const INTEREST_OPTIONS = [
   "music",
@@ -218,7 +283,7 @@ export const DEFAULT_SEARCH_LOCATION: SearchLocation = {
 export const DEFAULT_PROFILE: UserProfile = {
   displayName: "Explorer",
   searchLocation: DEFAULT_SEARCH_LOCATION,
-  maxDistanceKm: 10,
+  maxDistanceKm: 2,
   maxBudget: 25,
   timeOfDay: [],
   interests: [],

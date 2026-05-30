@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AI Local Life Explorer",
+  title: "AccessPath",
   description:
-    "An inclusive local companion that creates personalized event recommendations tailored to your lifestyle, mobility, and preferences.",
+    "An inclusive local companion that creates personalized event and place recommendations tailored to your lifestyle, mobility, and preferences.",
 };
 
 export default function RootLayout({

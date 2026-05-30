@@ -14,7 +14,7 @@ const features = [
     icon: Compass,
     title: "Discover instantly",
     description:
-      "Browse local events from one place instead of hunting across Facebook, city sites, and posters.",
+      "Browse local events and always-open places — parks, museums, riversides — from one feed instead of hunting across apps and websites.",
   },
   {
     icon: Sparkles,
@@ -50,16 +50,16 @@ export default function HomePage() {
               Discover what&apos;s happening around you
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              AI Local Life Explorer creates personalized, accessible event
-              recommendations tailored to your unique lifestyle and preferences —
-              like Google Maps + Eventbrite + an AI assistant for community life.
+              AccessPath creates personalized, accessible recommendations
+              for local events and always-open places — parks, museums, riversides, and
+              more — tailored to your unique lifestyle and preferences.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <LinkButton size="lg" href="/profile" className="shadow-sm">
                 Build your profile
               </LinkButton>
               <LinkButton size="lg" variant="outline" href="/explore">
-                Discover events
+                Start exploring
               </LinkButton>
             </div>
             <div className="mt-8 flex flex-wrap justify-center gap-2">
@@ -110,8 +110,8 @@ export default function HomePage() {
               Ready to explore your city?
             </h2>
             <p className="mx-auto mt-2 max-w-xl text-muted-foreground">
-              Set your preferences, browse the feed, and let the simulated AI
-              assistant explain why each event matches you.
+              Set your preferences, browse events and places, and let the simulated AI
+              assistant explain why each recommendation matches you.
             </p>
             <LinkButton className="mt-6 shadow-sm" size="lg" href="/explore">
               Start exploring
@@ -120,7 +120,7 @@ export default function HomePage() {
         </section>
       </main>
       <footer className="border-t border-border bg-card py-6 text-center text-sm text-muted-foreground">
-        AI Local Life Explorer · Hackathon MVP · Mock data, no backend
+        AccessPath · Hackathon MVP · Mock data, no backend
       </footer>
     </>
   );
