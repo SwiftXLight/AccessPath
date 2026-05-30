@@ -46,7 +46,7 @@ function SelectableCard({
       className={cn(
         "rounded-xl border p-4 text-left transition-all hover:shadow-sm",
         selected
-          ? "border-primary bg-primary/5 ring-2 ring-primary/20"
+          ? "border-primary bg-card ring-2 ring-primary/20 shadow-sm"
           : "bg-card hover:bg-muted/40"
       )}
     >

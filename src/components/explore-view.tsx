@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { AiConcierge } from "@/components/ai-concierge";
 import { EventCard } from "@/components/event-card";
 import { FilterSidebar } from "@/components/filter-sidebar";
 import { LinkButton } from "@/components/link-button";
 import { PlaceCard } from "@/components/place-card";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Sheet,
@@ -91,10 +91,32 @@ const TAB_OPTIONS: { value: ExploreTab; label: string }[] = [
   { value: "place", label: "Places" },
 ];
 
+const ROWS_PER_PAGE = 3;
+
+function useGridColumns() {
+  const [columns, setColumns] = useState(3);
+
+  useEffect(() => {
+    const update = () => {
+      if (window.matchMedia("(min-width: 1280px)").matches) setColumns(3);
+      else if (window.matchMedia("(min-width: 640px)").matches) setColumns(2);
+      else setColumns(1);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  return columns;
+}
+
 export function ExploreView() {
   const { profile, setProfile } = useUserPreferences();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState<ExploreTab>("all");
+  const [visibleCount, setVisibleCount] = useState(ROWS_PER_PAGE * 3);
+  const gridColumns = useGridColumns();
+  const pageSize = gridColumns * ROWS_PER_PAGE;
 
   const filteredEvents = useMemo(
     () => getFilteredEvents(profile),
@@ -147,6 +169,14 @@ export function ExploreView() {
     if (!q) return tabItems;
     return tabItems.filter((item) => item.searchText.includes(q));
   }, [tabItems, searchQuery]);
+
+  useEffect(() => {
+    setVisibleCount(pageSize);
+  }, [pageSize, activeTab, searchQuery, displayedItems.length, profile]);
+
+  const visibleItems = displayedItems.slice(0, visibleCount);
+  const hasMore = visibleCount < displayedItems.length;
+  const showLoadMore = displayedItems.length > pageSize && hasMore;
 
   const profileSummary = buildProfileSummary(profile);
 
@@ -233,7 +263,7 @@ export function ExploreView() {
                   "rounded-full border px-4 py-1.5 text-sm font-medium transition-colors",
                   activeTab === value
                     ? "border-primary bg-primary text-primary-foreground"
-                    : "hover:bg-muted"
+                    : "border bg-card hover:bg-muted/60"
                 )}
               >
                 {label}
@@ -316,23 +346,43 @@ export function ExploreView() {
               </p>
             </div>
           ) : (
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {displayedItems.map((item, index) =>
-                item.kind === "event" ? (
-                  <EventCard
-                    key={item.id}
-                    scored={item.event}
-                    highlight={index === 0}
-                  />
-                ) : (
-                  <PlaceCard
-                    key={item.id}
-                    scored={item.place}
-                    highlight={index === 0}
-                  />
-                )
+            <>
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                {visibleItems.map((item, index) =>
+                  item.kind === "event" ? (
+                    <EventCard
+                      key={item.id}
+                      scored={item.event}
+                      highlight={index === 0}
+                    />
+                  ) : (
+                    <PlaceCard
+                      key={item.id}
+                      scored={item.place}
+                      highlight={index === 0}
+                    />
+                  )
+                )}
+              </div>
+
+              {showLoadMore && (
+                <div className="mt-6 flex justify-center">
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      setVisibleCount((count) =>
+                        Math.min(count + pageSize, displayedItems.length)
+                      )
+                    }
+                  >
+                    Load more
+                    <span className="ml-1.5 text-muted-foreground">
+                      ({displayedItems.length - visibleCount} remaining)
+                    </span>
+                  </Button>
+                </div>
               )}
-            </div>
+            </>
           )}
         </section>
       </div>
