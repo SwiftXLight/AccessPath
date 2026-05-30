@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useTranslation } from "@/context/locale";
 import { useUserPreferences } from "@/context/user-preferences";
 import {
   calculatePlaceMatchScore,
@@ -18,13 +19,14 @@ import {
   formatPrice,
   getSimilarPlaces,
 } from "@/lib/places";
+import { getCategoryTagLabel, interpolate } from "@/lib/i18n/types";
 import {
   buildPlaceRecommendation,
   buildWhatToExpectAtPlace,
   buildWhoIsPlaceBestFor,
   getCategoryGradient,
 } from "@/lib/recommendations";
-import { PLACE_TYPE_LABELS, type Place } from "@/lib/types";
+import type { Place, PlaceType } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 interface PlaceDetailViewProps {
@@ -33,14 +35,20 @@ interface PlaceDetailViewProps {
 
 export function PlaceDetailView({ place }: PlaceDetailViewProps) {
   const { profile } = useUserPreferences();
-  const scored = calculatePlaceMatchScore(profile, place);
-  const similar = getSimilarPlaces(place, profile, 3);
+  const { t, locale } = useTranslation();
+  const scored = calculatePlaceMatchScore(profile, place, t);
+  const similar = getSimilarPlaces(place, profile, 3, t);
   const gradient = getCategoryGradient(place.categoryTag);
+
+  const addressDisplay =
+    profile.searchLocation.address === "City Center"
+      ? t.common.cityCenter
+      : profile.searchLocation.address;
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-8">
       <LinkButton variant="ghost" size="sm" href="/explore" className="mb-6">
-        ← Back to recommendations
+        {t.common.backToRecommendations}
       </LinkButton>
 
       <div className="overflow-hidden rounded-2xl border bg-card shadow-sm">
@@ -63,20 +71,22 @@ export function PlaceDetailView({ place }: PlaceDetailViewProps) {
                   : "bg-red-500"
             )}
           >
-            {scored.score}% match for you
+            {interpolate(t.detail.matchForYou, { score: scored.score })}
           </Badge>
           <Badge
             variant="secondary"
             className="absolute left-4 top-4 bg-background/90 shadow-sm"
           >
-            Always available
+            {t.common.alwaysAvailable}
           </Badge>
         </div>
 
         <div className="px-6 py-6">
           <div className="mb-2 flex flex-wrap gap-2">
-            <Badge>{PLACE_TYPE_LABELS[place.placeType]}</Badge>
-            <Badge variant="outline">{place.category}</Badge>
+            <Badge>{t.options.placeType[place.placeType as PlaceType]}</Badge>
+            <Badge variant="outline">
+              {getCategoryTagLabel(place.categoryTag, t, place.category)}
+            </Badge>
           </div>
           <h1 className="text-3xl font-bold tracking-tight">{place.title}</h1>
           <p className="mt-1 text-muted-foreground">{place.managedBy}</p>
@@ -84,35 +94,38 @@ export function PlaceDetailView({ place }: PlaceDetailViewProps) {
 
         <div className="grid gap-6 px-6 pb-6 sm:grid-cols-2">
           <div className="space-y-1">
-            <p className="text-sm text-muted-foreground">Hours</p>
+            <p className="text-sm text-muted-foreground">{t.detail.hours}</p>
             <p className="font-medium">{place.openingHours}</p>
           </div>
           <div className="space-y-1">
-            <p className="text-sm text-muted-foreground">Where</p>
+            <p className="text-sm text-muted-foreground">{t.detail.where}</p>
             <p className="font-medium">{place.location}</p>
             <p className="text-sm text-muted-foreground">
-              {scored.distanceKm} km from {profile.searchLocation.address}
+              {interpolate(t.detail.kmFrom, {
+                distance: scored.distanceKm,
+                address: addressDisplay,
+              })}
             </p>
           </div>
           <div className="space-y-1">
-            <p className="text-sm text-muted-foreground">Entry</p>
-            <p className="font-medium">{formatPrice(place.entryFee)}</p>
+            <p className="text-sm text-muted-foreground">{t.detail.entry}</p>
+            <p className="font-medium">{formatPrice(place.entryFee, t)}</p>
           </div>
           <div className="space-y-1">
-            <p className="text-sm text-muted-foreground">Typical crowd</p>
-            <p className="font-medium">{formatCrowdLevel(place.typicalCrowd)}</p>
+            <p className="text-sm text-muted-foreground">{t.detail.typicalCrowd}</p>
+            <p className="font-medium">{formatCrowdLevel(place.typicalCrowd, t)}</p>
           </div>
         </div>
 
         <Separator />
 
         <div className="space-y-4 p-6">
-          <h2 className="font-semibold">About this place</h2>
+          <h2 className="font-semibold">{t.detail.aboutPlace}</h2>
           <p className="leading-relaxed text-muted-foreground">{place.description}</p>
           <div className="flex flex-wrap gap-2">
             {place.interests.map((interest) => (
               <Badge key={interest} variant="secondary" className="capitalize">
-                {interest}
+                {t.options.interests[interest as keyof typeof t.options.interests] ?? interest}
               </Badge>
             ))}
           </div>
@@ -125,16 +138,14 @@ export function PlaceDetailView({ place }: PlaceDetailViewProps) {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <span aria-hidden>🤖</span>
-                Why this is recommended for you
+                {t.detail.whyRecommended}
               </CardTitle>
               <CardDescription>
-                Based on {profile.displayName}&apos;s profile
+                {interpolate(t.detail.basedOnProfile, { name: profile.displayName })}
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-sm leading-relaxed">
-                {buildPlaceRecommendation(scored)}
-              </p>
+              <p className="text-sm leading-relaxed">{buildPlaceRecommendation(scored)}</p>
               {scored.reasons.length > 0 && (
                 <ul className="mt-4 space-y-2">
                   {scored.reasons.slice(0, 4).map((reason) => (
@@ -153,27 +164,29 @@ export function PlaceDetailView({ place }: PlaceDetailViewProps) {
 
           <Card className="shadow-sm">
             <CardHeader>
-              <CardTitle className="text-lg">What to expect</CardTitle>
+              <CardTitle className="text-lg">{t.detail.whatToExpect}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                {buildWhatToExpectAtPlace(place)}
+                {buildWhatToExpectAtPlace(place, t)}
               </p>
             </CardContent>
           </Card>
 
           <Card className="shadow-sm">
             <CardHeader>
-              <CardTitle className="text-lg">Who this is best for</CardTitle>
+              <CardTitle className="text-lg">{t.detail.whoBestFor}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                {buildWhoIsPlaceBestFor(place)}
+                {buildWhoIsPlaceBestFor(place, t, locale)}
               </p>
               <div className="mt-3 flex flex-wrap gap-1">
                 {place.socialModes.map((mode) => (
                   <Badge key={mode} variant="outline" className="capitalize">
-                    {mode === "meeting" ? "Meet people" : mode}
+                    {mode === "meeting"
+                      ? t.detail.meetPeople
+                      : t.options.socialMode[mode]}
                   </Badge>
                 ))}
               </div>
@@ -185,7 +198,7 @@ export function PlaceDetailView({ place }: PlaceDetailViewProps) {
           <>
             <Separator />
             <div className="p-6">
-              <h2 className="mb-4 font-semibold">Similar places</h2>
+              <h2 className="mb-4 font-semibold">{t.detail.similarPlaces}</h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {similar.map((s) => (
                   <PlaceCard key={s.place.id} scored={s} />

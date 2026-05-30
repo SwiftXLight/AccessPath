@@ -1,78 +1,101 @@
+import type { Locale } from "@/lib/i18n/types";
 import type { LocalEvent, Place, ScoredEvent, ScoredPlace, UserProfile } from "./types";
+import { getTranslations } from "@/lib/i18n";
+import { interpolate, type Translations } from "@/lib/i18n/types";
 import { formatPrice } from "./events";
 
-export function buildProfileSummary(profile: UserProfile): string {
+export function buildProfileSummary(
+  profile: UserProfile,
+  t: Translations = getTranslations("en")
+): string {
   const parts: string[] = [];
+  const traits = t.ai.traits;
 
   if (profile.crowdPreference === "quiet") {
-    parts.push("calm");
+    parts.push(traits.calm);
   } else if (profile.crowdPreference === "lively") {
-    parts.push("lively");
+    parts.push(traits.lively);
   } else if (profile.crowdPreference === "moderate") {
-    parts.push("balanced");
+    parts.push(traits.balanced);
   }
 
   if (profile.maxDistanceKm <= 5) {
-    parts.push("low-distance");
+    parts.push(traits.lowDistance);
   } else if (profile.maxDistanceKm >= 15) {
-    parts.push("wide-ranging");
+    parts.push(traits.wideRanging);
   }
 
   if (profile.maxBudget === 0) {
-    parts.push("free-only");
+    parts.push(traits.freeOnly);
   } else if (profile.maxBudget <= 15) {
-    parts.push("budget-friendly");
+    parts.push(traits.budgetFriendly);
   }
 
   if (profile.crowdPreference === "quiet") {
-    parts.push("minimal crowds");
+    parts.push(traits.minimalCrowds);
   } else if (profile.crowdPreference === "lively") {
-    parts.push("social energy");
+    parts.push(traits.socialEnergy);
   }
 
   if (profile.interests.length > 0) {
-    parts.push(`${profile.interests.slice(0, 2).join(" & ")} focused`);
+    const interests = profile.interests
+      .slice(0, 2)
+      .map((i) => t.options.interests[i as keyof typeof t.options.interests] ?? i)
+      .join(" & ");
+    parts.push(interpolate(traits.focused, { interests }));
   }
 
-  if (profile.socialMode === "alone") parts.push("solo-friendly");
-  if (profile.socialMode === "family") parts.push("family-oriented");
-  if (profile.socialMode === "meeting") parts.push("great for meeting people");
+  if (profile.socialMode === "alone") parts.push(traits.soloFriendly);
+  if (profile.socialMode === "family") parts.push(traits.familyOriented);
+  if (profile.socialMode === "meeting") parts.push(traits.meetingPeople);
 
   if (profile.mobilityPreference === "wheelchair") {
-    parts.push("accessibility-first");
+    parts.push(traits.accessibilityFirst);
   }
 
   if (parts.length === 0) {
-    return "You're open to all kinds of local experiences — the city is your playground.";
+    return t.ai.profileOpen;
   }
 
   const unique = [...new Set(parts)];
-  return `You prefer ${unique.slice(0, 4).join(", ")} experiences.`;
+  return interpolate(t.ai.profilePrefer, {
+    traits: unique.slice(0, 4).join(", "),
+  });
 }
 
 export function buildAiSummary(
   recommendations: ScoredEvent[],
-  profile: UserProfile
+  profile: UserProfile,
+  t: Translations = getTranslations("en")
 ): string {
   if (recommendations.length === 0) {
-    return "I couldn't find strong matches right now. Try adjusting your profile or widening distance and budget.";
+    return t.ai.noMatches;
   }
 
   const top = recommendations[0];
   const count = recommendations.length;
 
   const parts: string[] = [
-    `Based on your profile, I found ${count} strong ${count === 1 ? "match" : "matches"} for you today.`,
+    interpolate(t.ai.summaryFound, {
+      count,
+      matchWord: count === 1 ? t.ai.match : t.ai.matches,
+    }),
   ];
 
   if (profile.interests.length > 0) {
-    parts.push(
-      `Prioritizing your interest in ${profile.interests.slice(0, 3).join(", ")}.`
-    );
+    const interests = profile.interests
+      .slice(0, 3)
+      .map((i) => t.options.interests[i as keyof typeof t.options.interests] ?? i)
+      .join(", ");
+    parts.push(interpolate(t.ai.prioritizingInterests, { interests }));
   }
 
   parts.push(
-    `My top pick is **${top.event.title}** (${top.score}% match) — ${top.explanation.toLowerCase()}`
+    interpolate(t.ai.topPick, {
+      title: top.event.title,
+      score: top.score,
+      explanation: top.explanation.toLowerCase(),
+    })
   );
 
   return parts.join(" ");
@@ -82,63 +105,112 @@ export function buildEventRecommendation(scored: ScoredEvent): string {
   return scored.explanation;
 }
 
-export function buildWhatToExpect(event: LocalEvent): string {
-  const crowd = {
-    low: "a relaxed, intimate atmosphere with plenty of space",
-    medium: "a comfortable buzz without feeling overwhelming",
-    high: "an energetic crowd and lively social energy",
-  }[event.crowdLevel];
+export function buildWhatToExpect(
+  event: LocalEvent,
+  t: Translations = getTranslations("en")
+): string {
+  const crowd = t.ai.whatToExpect[event.crowdLevel];
 
-  return `Expect ${crowd}. ${event.description.split(".")[0]}. Plan for ${event.startTime}–${event.endTime} at ${event.location}.`;
+  return interpolate(t.ai.whatToExpectEvent, {
+    crowd,
+    description: event.description.split(".")[0],
+    startTime: event.startTime,
+    endTime: event.endTime,
+    location: event.location,
+  });
 }
 
-export function buildWhoIsBestFor(event: LocalEvent): string {
+export function buildWhoIsBestFor(
+  event: LocalEvent,
+  t: Translations = getTranslations("en"),
+  locale: Locale = "en"
+): string {
+  const w = t.ai.whoBestFor;
   const modes = event.socialModes.map((m) => {
-    if (m === "meeting") return "people looking to connect";
-    if (m === "alone") return "solo explorers";
-    return `${m} outings`;
+    if (m === "meeting") return w.meeting;
+    if (m === "alone") return w.alone;
+    return w[m as "family" | "friends"];
   });
 
+  const orWord = locale === "pl" ? "lub" : "or";
   const interestHint =
     event.interests.length > 0
-      ? ` especially if you enjoy ${event.interests.slice(0, 2).join(" or ")}`
+      ? interpolate(w.interestHint, {
+          interests: event.interests
+            .slice(0, 2)
+            .map((i) => t.options.interests[i as keyof typeof t.options.interests] ?? i)
+            .join(` ${orWord} `),
+        })
       : "";
 
-  return `Best for ${modes.join(", ")}${interestHint}. ${formatPrice(event.price)} entry makes it ${event.price <= 10 ? "accessible for most budgets" : "a worthwhile splurge"}.`;
+  const priceHint = interpolate(w.entryHint, {
+    price: formatPrice(event.price, t),
+    budgetHint:
+      event.price <= 10 ? w.accessibleBudget : w.worthwhileSplurge,
+  });
+
+  return interpolate(w.bestFor, {
+    modes: modes.join(", "),
+    interestHint,
+    priceHint,
+  });
 }
 
 export function buildPlaceRecommendation(scored: ScoredPlace): string {
   return scored.explanation;
 }
 
-export function buildWhatToExpectAtPlace(place: Place): string {
-  const crowd = {
-    low: "a relaxed, uncrowded atmosphere you can enjoy at your own pace",
-    medium: "a comfortable level of activity without feeling overwhelming",
-    high: "a lively, social environment with plenty of energy",
-  }[place.typicalCrowd];
+export function buildWhatToExpectAtPlace(
+  place: Place,
+  t: Translations = getTranslations("en")
+): string {
+  const crowd = t.ai.whatToExpectPlace[place.typicalCrowd];
 
-  return `Expect ${crowd}. ${place.description.split(".")[0]}. Open ${place.openingHours.toLowerCase()} at ${place.location} — visit whenever suits you.`;
+  return interpolate(t.ai.whatToExpectPlaceFull, {
+    crowd,
+    description: place.description.split(".")[0],
+    hours: place.openingHours.toLowerCase(),
+    location: place.location,
+  });
 }
 
-export function buildWhoIsPlaceBestFor(place: Place): string {
+export function buildWhoIsPlaceBestFor(
+  place: Place,
+  t: Translations = getTranslations("en"),
+  locale: Locale = "en"
+): string {
+  const w = t.ai.whoBestFor;
   const modes = place.socialModes.map((m) => {
-    if (m === "meeting") return "people looking to connect";
-    if (m === "alone") return "solo explorers";
-    return `${m} outings`;
+    if (m === "meeting") return w.meeting;
+    if (m === "alone") return w.alone;
+    return w[m as "family" | "friends"];
   });
 
+  const orWord = locale === "pl" ? "lub" : "or";
   const interestHint =
     place.interests.length > 0
-      ? ` especially if you enjoy ${place.interests.slice(0, 2).join(" or ")}`
+      ? interpolate(w.interestHint, {
+          interests: place.interests
+            .slice(0, 2)
+            .map((i) => t.options.interests[i as keyof typeof t.options.interests] ?? i)
+            .join(` ${orWord} `),
+        })
       : "";
 
-  const feeHint =
+  const priceHint =
     place.entryFee === 0
-      ? "Free entry makes it easy to drop by anytime."
-      : `${formatPrice(place.entryFee)} entry is ${place.entryFee <= 10 ? "accessible for most budgets" : "a worthwhile visit"}.`;
+      ? w.freeEntry
+      : interpolate(w.entryHint, {
+          price: formatPrice(place.entryFee, t),
+          budgetHint:
+            place.entryFee <= 10 ? w.accessibleBudget : w.worthwhileVisit,
+        });
 
-  return `Best for ${modes.join(", ")}${interestHint}. ${feeHint}`;
+  return interpolate(w.bestFor, {
+    modes: modes.join(", "),
+    interestHint,
+    priceHint,
+  });
 }
 
 export type ConciergePick = {
@@ -153,14 +225,34 @@ export function buildConciergeResponse(
   query: string,
   recommendations: ScoredEvent[],
   placeRecommendations: ScoredPlace[],
-  profile: UserProfile
+  profile: UserProfile,
+  t: Translations = getTranslations("en"),
+  locale: Locale = "en"
 ): { intro: string; picks: ConciergePick[] } {
-  const timeHints = ["today", "tonight", "this morning", "this weekend", "now", "anytime", "always"];
+  const timeHints = [
+    "today",
+    "tonight",
+    "this morning",
+    "this weekend",
+    "now",
+    "anytime",
+    "always",
+    "dziś",
+    "dzisiaj",
+    "dziś wieczorem",
+    "rano",
+    "teraz",
+    "w weekend",
+  ];
   const isTodayQuery = timeHints.some((h) => query.toLowerCase().includes(h));
 
   const intro = isTodayQuery
-    ? `Here's what I'd suggest for ${profile.displayName || "you"} — events and places you can visit anytime:`
-    : `Based on "${query.trim() || "your preferences"}", here are my top picks:`;
+    ? interpolate(t.ai.conciergeToday, {
+        name: profile.displayName || t.common.you,
+      })
+    : interpolate(t.ai.conciergeQuery, {
+        query: query.trim() || (locale === "pl" ? "Twoje preferencje" : "your preferences"),
+      });
 
   const combined: ConciergePick[] = [
     ...recommendations.map(({ event, score, explanation }) => ({

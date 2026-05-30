@@ -17,8 +17,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useTranslation } from "@/context/locale";
 import { useUserPreferences } from "@/context/user-preferences";
 import { getFilteredEvents } from "@/lib/events";
+import { interpolate } from "@/lib/i18n/types";
 import { getFilteredPlaces } from "@/lib/places";
 import { buildProfileSummary } from "@/lib/recommendations";
 import {
@@ -29,67 +31,11 @@ import {
 } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-const DEMO_PERSONAS: { label: string; emoji: string; description: string; profile: UserProfile }[] = [
-  {
-    label: "Janek",
-    emoji: "♿",
-    description: "Wheelchair user · Quiet, nearby · Culture & music",
-    profile: {
-      ...DEFAULT_PROFILE,
-      displayName: "Janek",
-      mobilityPreference: "wheelchair",
-      crowdPreference: "quiet",
-      maxDistanceKm: 1.5,
-      maxBudget: 15,
-      interests: ["culture", "music"],
-      accessibilityNeeds: [
-        "wheelchair_ramp",
-        "accessible_restroom",
-        "elevator",
-      ] as AccessibilityNeed[],
-    },
-  },
-  {
-    label: "Anna",
-    emoji: "🎓",
-    description: "Student · Low budget · Music & food · Meet new people",
-    profile: {
-      ...DEFAULT_PROFILE,
-      displayName: "Anna",
-      maxBudget: 10,
-      crowdPreference: "moderate",
-      interests: ["music", "food"],
-      socialMode: "meeting",
-      maxDistanceKm: 3,
-    },
-  },
-  {
-    label: "Kowalski Family",
-    emoji: "👨‍👩‍👧",
-    description: "Family outings · Nature & food · Comfortable budget",
-    profile: {
-      ...DEFAULT_PROFILE,
-      displayName: "Kowalski Family",
-      socialMode: "family",
-      crowdPreference: "moderate",
-      interests: ["family", "nature", "food"],
-      maxDistanceKm: 4,
-      maxBudget: 30,
-    },
-  },
-];
-
 type ExploreTab = "all" | DiscoverKind;
 
 type DiscoverItem =
   | { kind: "event"; score: number; id: string; searchText: string; event: ReturnType<typeof getFilteredEvents>[number] }
   | { kind: "place"; score: number; id: string; searchText: string; place: ReturnType<typeof getFilteredPlaces>[number] };
-
-const TAB_OPTIONS: { value: ExploreTab; label: string }[] = [
-  { value: "all", label: "All" },
-  { value: "event", label: "Events" },
-  { value: "place", label: "Places" },
-];
 
 const ROWS_PER_PAGE = 3;
 
@@ -112,20 +58,77 @@ function useGridColumns() {
 
 export function ExploreView() {
   const { profile, setProfile } = useUserPreferences();
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState<ExploreTab>("all");
   const [visibleCount, setVisibleCount] = useState(ROWS_PER_PAGE * 3);
   const gridColumns = useGridColumns();
   const pageSize = gridColumns * ROWS_PER_PAGE;
 
+  const demoPersonas: { label: string; emoji: string; description: string; profile: UserProfile }[] = [
+    {
+      label: "Janek",
+      emoji: "♿",
+      description: t.explore.personas.janek,
+      profile: {
+        ...DEFAULT_PROFILE,
+        displayName: "Janek",
+        mobilityPreference: "wheelchair",
+        crowdPreference: "quiet",
+        maxDistanceKm: 1.5,
+        maxBudget: 15,
+        interests: ["culture", "music"],
+        accessibilityNeeds: [
+          "wheelchair_ramp",
+          "accessible_restroom",
+          "elevator",
+        ] as AccessibilityNeed[],
+      },
+    },
+    {
+      label: "Anna",
+      emoji: "🎓",
+      description: t.explore.personas.anna,
+      profile: {
+        ...DEFAULT_PROFILE,
+        displayName: "Anna",
+        maxBudget: 10,
+        crowdPreference: "moderate",
+        interests: ["music", "food"],
+        socialMode: "meeting",
+        maxDistanceKm: 3,
+      },
+    },
+    {
+      label: "Kowalski Family",
+      emoji: "👨‍👩‍👧",
+      description: t.explore.personas.kowalski,
+      profile: {
+        ...DEFAULT_PROFILE,
+        displayName: "Kowalski Family",
+        socialMode: "family",
+        crowdPreference: "moderate",
+        interests: ["family", "nature", "food"],
+        maxDistanceKm: 4,
+        maxBudget: 30,
+      },
+    },
+  ];
+
+  const tabOptions: { value: ExploreTab; label: string }[] = [
+    { value: "all", label: t.explore.tabs.all },
+    { value: "event", label: t.explore.tabs.event },
+    { value: "place", label: t.explore.tabs.place },
+  ];
+
   const filteredEvents = useMemo(
-    () => getFilteredEvents(profile),
-    [profile]
+    () => getFilteredEvents(profile, t),
+    [profile, t]
   );
 
   const filteredPlaces = useMemo(
-    () => getFilteredPlaces(profile),
-    [profile]
+    () => getFilteredPlaces(profile, t),
+    [profile, t]
   );
 
   const allItems = useMemo((): DiscoverItem[] => {
@@ -178,7 +181,8 @@ export function ExploreView() {
   const hasMore = visibleCount < displayedItems.length;
   const showLoadMore = displayedItems.length > pageSize && hasMore;
 
-  const profileSummary = buildProfileSummary(profile);
+  const profileSummary = buildProfileSummary(profile, t);
+  const displayName = profile.displayName || t.common.you;
 
   const tabCounts = {
     all: allItems.length,
@@ -190,24 +194,25 @@ export function ExploreView() {
     <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
       <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">
-            AI Recommended for You
-          </h1>
+          <h1 className="text-3xl font-bold tracking-tight">{t.explore.title}</h1>
           <p className="mt-2 max-w-2xl text-muted-foreground">
-            Events and always-open places for {profile.displayName || "you"} — {profileSummary.toLowerCase()}
+            {interpolate(t.explore.subtitle, {
+              name: displayName,
+              summary: profileSummary.toLowerCase(),
+            })}
           </p>
         </div>
         <LinkButton variant="outline" size="sm" href="/profile">
-          Edit profile
+          {t.explore.editProfile}
         </LinkButton>
       </div>
 
       <div className="mb-6 rounded-xl border bg-card/60 px-4 py-3">
         <p className="mb-2.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-          Quick demo profiles
+          {t.explore.quickDemoProfiles}
         </p>
         <div className="flex flex-wrap gap-2">
-          {DEMO_PERSONAS.map((persona) => (
+          {demoPersonas.map((persona) => (
             <button
               key={persona.label}
               type="button"
@@ -234,11 +239,11 @@ export function ExploreView() {
           <SheetTrigger
             className={buttonVariants({ variant: "outline", className: "w-full" })}
           >
-            Open filters
+            {t.explore.openFilters}
           </SheetTrigger>
           <SheetContent side="left" className="overflow-y-auto">
             <SheetHeader>
-              <SheetTitle>Filters</SheetTitle>
+              <SheetTitle>{t.explore.filters}</SheetTitle>
             </SheetHeader>
             <div className="mt-4">
               <FilterSidebar profile={profile} onChange={setProfile} />
@@ -254,7 +259,7 @@ export function ExploreView() {
 
         <section>
           <div className="mb-4 flex flex-wrap gap-2">
-            {TAB_OPTIONS.map(({ value, label }) => (
+            {tabOptions.map(({ value, label }) => (
               <button
                 key={value}
                 type="button"
@@ -275,7 +280,7 @@ export function ExploreView() {
           <div className="relative mb-4">
             <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
             <Input
-              placeholder='Search — try "park", "museum", "music", "free"…'
+              placeholder={t.explore.searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-9"
@@ -284,11 +289,12 @@ export function ExploreView() {
 
           <div className="mb-4 flex items-center justify-between">
             <h2 className="font-semibold">
-              {displayedItems.length} personalized match
-              {displayedItems.length !== 1 ? "es" : ""}
+              {displayedItems.length === 1
+                ? interpolate(t.explore.matchCount, { count: displayedItems.length })
+                : interpolate(t.explore.matchCountPlural, { count: displayedItems.length })}
               {searchQuery.trim() && (
                 <span className="ml-1 text-sm font-normal text-muted-foreground">
-                  for &ldquo;{searchQuery}&rdquo;
+                  {interpolate(t.explore.forQuery, { query: searchQuery })}
                 </span>
               )}
             </h2>
@@ -298,7 +304,7 @@ export function ExploreView() {
                 onClick={() => setSearchQuery("")}
                 className="text-xs text-muted-foreground hover:text-foreground"
               >
-                Clear
+                {t.common.clear}
               </button>
             )}
           </div>
@@ -306,37 +312,37 @@ export function ExploreView() {
           {displayedItems.length === 0 ? (
             <div className="rounded-xl border border-dashed p-12 text-center shadow-sm">
               <p className="text-lg font-medium">
-                {searchQuery.trim() ? "No results found" : "No strong matches found"}
+                {searchQuery.trim() ? t.explore.noResults : t.explore.noMatches}
               </p>
               <p className="mt-2 text-sm text-muted-foreground">
                 {searchQuery.trim() ? (
                   <>
-                    Try a different keyword or{" "}
+                    {t.explore.tryDifferentKeyword}{" "}
                     <button
                       type="button"
                       onClick={() => setSearchQuery("")}
                       className="text-primary underline-offset-4 hover:underline"
                     >
-                      clear the search
+                      {t.explore.clearSearch}
                     </button>
                     .
                   </>
                 ) : (
                   <>
-                    Try widening your profile settings on the{" "}
+                    {t.explore.widenProfile}{" "}
                     <Link href="/profile" className="text-primary underline-offset-4 hover:underline">
-                      profile page
+                      {t.explore.profilePage}
                     </Link>
                     {activeTab !== "all" && (
                       <>
                         {" "}
-                        or switch to{" "}
+                        {t.explore.orSwitchTo}{" "}
                         <button
                           type="button"
                           onClick={() => setActiveTab("all")}
                           className="text-primary underline-offset-4 hover:underline"
                         >
-                          All
+                          {t.explore.tabs.all}
                         </button>
                       </>
                     )}
@@ -375,9 +381,11 @@ export function ExploreView() {
                       )
                     }
                   >
-                    Load more
+                    {t.explore.loadMore}
                     <span className="ml-1.5 text-muted-foreground">
-                      ({displayedItems.length - visibleCount} remaining)
+                      {interpolate(t.explore.remaining, {
+                        count: displayedItems.length - visibleCount,
+                      })}
                     </span>
                   </Button>
                 </div>

@@ -12,22 +12,25 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { useTranslation } from "@/context/locale";
 import { useUserPreferences } from "@/context/user-preferences";
 import { getRecommendedEvents } from "@/lib/events";
+import { interpolate } from "@/lib/i18n/types";
 import { getRecommendedPlaces } from "@/lib/places";
 import { buildConciergeResponse } from "@/lib/recommendations";
 
 export function AiConcierge() {
   const { profile } = useUserPreferences();
+  const { t, locale } = useTranslation();
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState<ReturnType<
     typeof buildConciergeResponse
   > | null>(null);
 
   const handleAsk = () => {
-    const eventRecs = getRecommendedEvents(profile, 5);
-    const placeRecs = getRecommendedPlaces(profile, 5);
-    setResponse(buildConciergeResponse(query, eventRecs, placeRecs, profile));
+    const eventRecs = getRecommendedEvents(profile, 5, t);
+    const placeRecs = getRecommendedPlaces(profile, 5, t);
+    setResponse(buildConciergeResponse(query, eventRecs, placeRecs, profile, t, locale));
   };
 
   return (
@@ -35,19 +38,19 @@ export function AiConcierge() {
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-base">
           <span aria-hidden>✨</span>
-          AI Concierge
+          {t.concierge.title}
         </CardTitle>
-        <CardDescription>Ask what you can do today — events or places anytime</CardDescription>
+        <CardDescription>{t.concierge.description}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="flex gap-2">
           <Input
-            placeholder="What can I do today?"
+            placeholder={t.concierge.placeholder}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleAsk()}
           />
-          <Button onClick={handleAsk}>Ask</Button>
+          <Button onClick={handleAsk}>{t.common.ask}</Button>
         </div>
 
         {response && (
@@ -68,14 +71,14 @@ export function AiConcierge() {
                     </Link>
                     <div className="flex shrink-0 items-center gap-2">
                       <Badge variant="outline" className="capitalize">
-                        {pick.kind}
+                        {pick.kind === "event" ? t.common.event : t.common.place}
                       </Badge>
-                      <Badge variant="secondary">{pick.score}% match</Badge>
+                      <Badge variant="secondary">
+                        {interpolate(t.cards.matchPercent, { score: pick.score })}
+                      </Badge>
                     </div>
                   </div>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {pick.explanation}
-                  </p>
+                  <p className="mt-1 text-sm text-muted-foreground">{pick.explanation}</p>
                 </li>
               ))}
             </ul>
@@ -83,7 +86,7 @@ export function AiConcierge() {
               href="/explore"
               className="text-sm font-medium text-primary underline-offset-4 hover:underline"
             >
-              See all recommendations →
+              {t.common.seeAllRecommendations}
             </Link>
           </div>
         )}

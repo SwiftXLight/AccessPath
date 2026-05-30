@@ -192,55 +192,55 @@ export const MOBILITY_OPTIONS: {
 ];
 
 export const ACCESSIBILITY_NEED_GROUPS: {
-  title: string;
-  options: { value: AccessibilityNeed; label: string }[];
+  id: "mobility" | "visual" | "hearing" | "cardiac" | "comfort";
+  options: { value: AccessibilityNeed }[];
 }[] = [
   {
-    title: "Mobility & Wheelchair",
+    id: "mobility",
     options: [
-      { value: "wheelchair_ramp", label: "Wheelchair Ramp" },
-      { value: "accessible_restroom", label: "Accessible Restroom" },
-      { value: "elevator", label: "Elevator" },
-      { value: "accessible_parking", label: "Accessible Parking" },
-      { value: "wide_corridors", label: "Wide Corridors" },
-      { value: "flat_terrain", label: "Flat Terrain" },
+      { value: "wheelchair_ramp" },
+      { value: "accessible_restroom" },
+      { value: "elevator" },
+      { value: "accessible_parking" },
+      { value: "wide_corridors" },
+      { value: "flat_terrain" },
     ],
   },
   {
-    title: "Visual Impairment",
+    id: "visual",
     options: [
-      { value: "braille_signage", label: "Braille Signage" },
-      { value: "audio_guide", label: "Audio Guide" },
-      { value: "tactile_paving", label: "Tactile Paving" },
-      { value: "visual_alerts", label: "Visual Alerts" },
+      { value: "braille_signage" },
+      { value: "audio_guide" },
+      { value: "tactile_paving" },
+      { value: "visual_alerts" },
     ],
   },
   {
-    title: "Hearing Impairment",
+    id: "hearing",
     options: [
-      { value: "sign_language_support", label: "Sign Language" },
-      { value: "hearing_loop", label: "Hearing Loop" },
-      { value: "visual_alerts", label: "Visual Alerts" },
+      { value: "sign_language_support" },
+      { value: "hearing_loop" },
+      { value: "visual_alerts" },
     ],
   },
   {
-    title: "Cardiac & Respiratory",
+    id: "cardiac",
     options: [
-      { value: "cardiac_friendly_terrain", label: "Cardiac-Friendly" },
-      { value: "rest_areas", label: "Rest Areas" },
-      { value: "flat_terrain", label: "Flat Terrain" },
-      { value: "shaded_areas", label: "Shaded Areas" },
-      { value: "low_noise", label: "Low Noise" },
+      { value: "cardiac_friendly_terrain" },
+      { value: "rest_areas" },
+      { value: "flat_terrain" },
+      { value: "shaded_areas" },
+      { value: "low_noise" },
     ],
   },
   {
-    title: "General Comfort",
+    id: "comfort",
     options: [
-      { value: "rest_areas", label: "Rest Areas" },
-      { value: "low_noise", label: "Low Noise" },
-      { value: "shaded_areas", label: "Shaded Areas" },
-      { value: "service_animal_welcome", label: "Service Animals" },
-      { value: "accessible_transport_nearby", label: "Accessible Transport" },
+      { value: "rest_areas" },
+      { value: "low_noise" },
+      { value: "shaded_areas" },
+      { value: "service_animal_welcome" },
+      { value: "accessible_transport_nearby" },
     ],
   },
 ];

@@ -15,15 +15,15 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "@/context/locale";
 import { calculateMatchScore, events as allEvents, toMapMarker as eventToMapMarker } from "@/lib/events";
 import { calculatePlaceMatchScore, places as allPlaces, toMapMarker as placeToMapMarker } from "@/lib/places";
 import {
-  CROWD_PREFERENCE_OPTIONS,
   DEFAULT_PROFILE,
   INTEREST_OPTIONS,
-  SOCIAL_MODE_OPTIONS,
-  TIME_OF_DAY_OPTIONS,
   type AccessibilityNeed,
+  type CrowdPreference,
+  type SocialMode,
   type TimeOfDay,
   type UserProfile,
 } from "@/lib/types";
@@ -34,21 +34,23 @@ interface FilterSidebarProps {
 }
 
 export function FilterSidebar({ profile, onChange }: FilterSidebarProps) {
+  const { t } = useTranslation();
+
   const update = (partial: Partial<UserProfile>) => {
     onChange({ ...profile, ...partial });
   };
 
   const scoredMarkers = useMemo(
     () => [
-      ...allEvents.map((event) => eventToMapMarker(calculateMatchScore(profile, event))),
-      ...allPlaces.map((place) => placeToMapMarker(calculatePlaceMatchScore(profile, place))),
+      ...allEvents.map((event) => eventToMapMarker(calculateMatchScore(profile, event, t))),
+      ...allPlaces.map((place) => placeToMapMarker(calculatePlaceMatchScore(profile, place, t))),
     ],
-    [profile]
+    [profile, t]
   );
 
   const toggleTimeOfDay = (value: TimeOfDay) => {
     const next = profile.timeOfDay.includes(value)
-      ? profile.timeOfDay.filter((t) => t !== value)
+      ? profile.timeOfDay.filter((slot) => slot !== value)
       : [...profile.timeOfDay, value];
     update({ timeOfDay: next });
   };
@@ -67,12 +69,22 @@ export function FilterSidebar({ profile, onChange }: FilterSidebarProps) {
     update({ accessibilityNeeds: next });
   };
 
+  const crowdOptions = Object.entries(t.options.crowd) as [
+    CrowdPreference,
+    { label: string; description: string },
+  ][];
+
+  const socialOptions = Object.entries(t.options.socialMode) as [
+    SocialMode | "any",
+    string,
+  ][];
+
   return (
     <aside className="space-y-6 rounded-2xl border border-border/80 bg-card p-5 shadow-sm">
       <div className="flex items-center justify-between">
-        <h2 className="font-semibold">Quick filters</h2>
+        <h2 className="font-semibold">{t.filters.quickFilters}</h2>
         <Button variant="ghost" size="sm" onClick={() => onChange(DEFAULT_PROFILE)}>
-          Reset
+          {t.common.reset}
         </Button>
       </div>
 
@@ -87,9 +99,9 @@ export function FilterSidebar({ profile, onChange }: FilterSidebarProps) {
 
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <Label>Distance</Label>
+          <Label>{t.filters.distance}</Label>
           <span className="text-sm text-muted-foreground">
-            {profile.maxDistanceKm} km
+            {profile.maxDistanceKm} {t.common.km}
           </span>
         </div>
         <Slider
@@ -108,9 +120,9 @@ export function FilterSidebar({ profile, onChange }: FilterSidebarProps) {
 
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <Label>Budget</Label>
+          <Label>{t.filters.budget}</Label>
           <span className="text-sm text-muted-foreground">
-            {profile.maxBudget === 0 ? "Free only" : `$${profile.maxBudget}`}
+            {profile.maxBudget === 0 ? t.common.freeOnly : `$${profile.maxBudget}`}
           </span>
         </div>
         <Slider
@@ -128,7 +140,7 @@ export function FilterSidebar({ profile, onChange }: FilterSidebarProps) {
       <Separator />
 
       <div className="space-y-3">
-        <Label>Crowd</Label>
+        <Label>{t.filters.crowd}</Label>
         <Select
           value={profile.crowdPreference}
           onValueChange={(value) =>
@@ -141,7 +153,7 @@ export function FilterSidebar({ profile, onChange }: FilterSidebarProps) {
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            {CROWD_PREFERENCE_OPTIONS.map(({ value, label }) => (
+            {crowdOptions.map(([value, { label }]) => (
               <SelectItem key={value} value={value}>
                 {label}
               </SelectItem>
@@ -153,30 +165,34 @@ export function FilterSidebar({ profile, onChange }: FilterSidebarProps) {
       <Separator />
 
       <div className="space-y-3">
-        <Label>Time of day</Label>
+        <Label>{t.filters.timeOfDay}</Label>
         <div className="grid grid-cols-2 gap-2">
-          {TIME_OF_DAY_OPTIONS.map(({ value, label }) => (
-            <label
-              key={value}
-              className="flex cursor-pointer items-center gap-2 rounded-md border px-3 py-2 text-sm hover:bg-muted/50"
-            >
-              <Checkbox
-                checked={profile.timeOfDay.includes(value)}
-                onCheckedChange={() => toggleTimeOfDay(value)}
-              />
-              {label}
-            </label>
-          ))}
+          {(Object.entries(t.options.timeOfDay) as [TimeOfDay, string][]).map(
+            ([value, label]) => (
+              <label
+                key={value}
+                className="flex cursor-pointer items-center gap-2 rounded-md border px-3 py-2 text-sm hover:bg-muted/50"
+              >
+                <Checkbox
+                  checked={profile.timeOfDay.includes(value)}
+                  onCheckedChange={() => toggleTimeOfDay(value)}
+                />
+                {label}
+              </label>
+            )
+          )}
         </div>
       </div>
 
       <Separator />
 
       <div className="space-y-3">
-        <Label>Interests</Label>
+        <Label>{t.filters.interests}</Label>
         <div className="flex flex-wrap gap-2">
           {INTEREST_OPTIONS.map((interest) => {
             const active = profile.interests.includes(interest);
+            const label =
+              t.options.interests[interest as keyof typeof t.options.interests];
             return (
               <button
                 key={interest}
@@ -188,7 +204,7 @@ export function FilterSidebar({ profile, onChange }: FilterSidebarProps) {
                     : "hover:bg-muted"
                 }`}
               >
-                {interest}
+                {label}
               </button>
             );
           })}
@@ -198,7 +214,7 @@ export function FilterSidebar({ profile, onChange }: FilterSidebarProps) {
       <Separator />
 
       <div className="space-y-3">
-        <Label>Social mode</Label>
+        <Label>{t.filters.socialMode}</Label>
         <Select
           value={profile.socialMode}
           onValueChange={(value) =>
@@ -209,7 +225,7 @@ export function FilterSidebar({ profile, onChange }: FilterSidebarProps) {
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            {SOCIAL_MODE_OPTIONS.map(({ value, label }) => (
+            {socialOptions.map(([value, label]) => (
               <SelectItem key={value} value={value}>
                 {label}
               </SelectItem>

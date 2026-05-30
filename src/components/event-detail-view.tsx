@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { LinkButton } from "@/components/link-button";
 import { EventCard } from "@/components/event-card";
 import { Badge } from "@/components/ui/badge";
@@ -12,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useTranslation } from "@/context/locale";
 import { useUserPreferences } from "@/context/user-preferences";
 import {
   calculateMatchScore,
@@ -20,6 +20,7 @@ import {
   formatPrice,
   getSimilarEvents,
 } from "@/lib/events";
+import { getCategoryTagLabel, interpolate } from "@/lib/i18n/types";
 import {
   buildEventRecommendation,
   buildWhatToExpect,
@@ -35,14 +36,20 @@ interface EventDetailViewProps {
 
 export function EventDetailView({ event }: EventDetailViewProps) {
   const { profile } = useUserPreferences();
-  const scored = calculateMatchScore(profile, event);
-  const similar = getSimilarEvents(event, profile, 3);
+  const { t, locale } = useTranslation();
+  const scored = calculateMatchScore(profile, event, t);
+  const similar = getSimilarEvents(event, profile, 3, t);
   const gradient = getCategoryGradient(event.categoryTag);
+
+  const addressDisplay =
+    profile.searchLocation.address === "City Center"
+      ? t.common.cityCenter
+      : profile.searchLocation.address;
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-8">
       <LinkButton variant="ghost" size="sm" href="/explore" className="mb-6">
-        ← Back to recommendations
+        {t.common.backToRecommendations}
       </LinkButton>
 
       <div className="overflow-hidden rounded-2xl border bg-card shadow-sm">
@@ -65,49 +72,54 @@ export function EventDetailView({ event }: EventDetailViewProps) {
                   : "bg-red-500"
             )}
           >
-            {scored.score}% match for you
+            {interpolate(t.detail.matchForYou, { score: scored.score })}
           </Badge>
         </div>
 
         <div className="px-6 py-6">
-          <Badge className="mb-2">{event.category}</Badge>
+          <Badge className="mb-2">
+            {getCategoryTagLabel(event.categoryTag, t, event.category)}
+          </Badge>
           <h1 className="text-3xl font-bold tracking-tight">{event.title}</h1>
           <p className="mt-1 text-muted-foreground">{event.organizer}</p>
         </div>
 
         <div className="grid gap-6 px-6 pb-6 sm:grid-cols-2">
           <div className="space-y-1">
-            <p className="text-sm text-muted-foreground">When</p>
+            <p className="text-sm text-muted-foreground">{t.detail.when}</p>
             <p className="font-medium">
-              {formatDate(event.date)} · {event.startTime}–{event.endTime}
+              {formatDate(event.date, locale)} · {event.startTime}–{event.endTime}
             </p>
           </div>
           <div className="space-y-1">
-            <p className="text-sm text-muted-foreground">Where</p>
+            <p className="text-sm text-muted-foreground">{t.detail.where}</p>
             <p className="font-medium">{event.location}</p>
             <p className="text-sm text-muted-foreground">
-              {scored.distanceKm} km from {profile.searchLocation.address}
+              {interpolate(t.detail.kmFrom, {
+                distance: scored.distanceKm,
+                address: addressDisplay,
+              })}
             </p>
           </div>
           <div className="space-y-1">
-            <p className="text-sm text-muted-foreground">Price</p>
-            <p className="font-medium">{formatPrice(event.price)}</p>
+            <p className="text-sm text-muted-foreground">{t.detail.price}</p>
+            <p className="font-medium">{formatPrice(event.price, t)}</p>
           </div>
           <div className="space-y-1">
-            <p className="text-sm text-muted-foreground">Crowd level</p>
-            <p className="font-medium">{formatCrowdLevel(event.crowdLevel)}</p>
+            <p className="text-sm text-muted-foreground">{t.detail.crowdLevel}</p>
+            <p className="font-medium">{formatCrowdLevel(event.crowdLevel, t)}</p>
           </div>
         </div>
 
         <Separator />
 
         <div className="space-y-4 p-6">
-          <h2 className="font-semibold">About this event</h2>
+          <h2 className="font-semibold">{t.detail.aboutEvent}</h2>
           <p className="leading-relaxed text-muted-foreground">{event.description}</p>
           <div className="flex flex-wrap gap-2">
             {event.interests.map((interest) => (
               <Badge key={interest} variant="secondary" className="capitalize">
-                {interest}
+                {t.options.interests[interest as keyof typeof t.options.interests] ?? interest}
               </Badge>
             ))}
           </div>
@@ -120,16 +132,14 @@ export function EventDetailView({ event }: EventDetailViewProps) {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <span aria-hidden>🤖</span>
-                Why this is recommended for you
+                {t.detail.whyRecommended}
               </CardTitle>
               <CardDescription>
-                Based on {profile.displayName}&apos;s profile
+                {interpolate(t.detail.basedOnProfile, { name: profile.displayName })}
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-sm leading-relaxed">
-                {buildEventRecommendation(scored)}
-              </p>
+              <p className="text-sm leading-relaxed">{buildEventRecommendation(scored)}</p>
               {scored.reasons.length > 0 && (
                 <ul className="mt-4 space-y-2">
                   {scored.reasons.slice(0, 4).map((reason) => (
@@ -148,27 +158,29 @@ export function EventDetailView({ event }: EventDetailViewProps) {
 
           <Card className="shadow-sm">
             <CardHeader>
-              <CardTitle className="text-lg">What to expect</CardTitle>
+              <CardTitle className="text-lg">{t.detail.whatToExpect}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                {buildWhatToExpect(event)}
+                {buildWhatToExpect(event, t)}
               </p>
             </CardContent>
           </Card>
 
           <Card className="shadow-sm">
             <CardHeader>
-              <CardTitle className="text-lg">Who this is best for</CardTitle>
+              <CardTitle className="text-lg">{t.detail.whoBestFor}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                {buildWhoIsBestFor(event)}
+                {buildWhoIsBestFor(event, t, locale)}
               </p>
               <div className="mt-3 flex flex-wrap gap-1">
                 {event.socialModes.map((mode) => (
                   <Badge key={mode} variant="outline" className="capitalize">
-                    {mode === "meeting" ? "Meet people" : mode}
+                    {mode === "meeting"
+                      ? t.detail.meetPeople
+                      : t.options.socialMode[mode]}
                   </Badge>
                 ))}
               </div>
@@ -180,7 +192,7 @@ export function EventDetailView({ event }: EventDetailViewProps) {
           <>
             <Separator />
             <div className="p-6">
-              <h2 className="mb-4 font-semibold">Similar events</h2>
+              <h2 className="mb-4 font-semibold">{t.detail.similarEvents}</h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {similar.map((s) => (
                   <EventCard key={s.event.id} scored={s} />

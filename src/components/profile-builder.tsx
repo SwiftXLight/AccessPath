@@ -14,17 +14,14 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "@/context/locale";
 import { useUserPreferences } from "@/context/user-preferences";
 import { buildProfileSummary } from "@/lib/recommendations";
 import {
-  CROWD_PREFERENCE_OPTIONS,
   INTEREST_OPTIONS,
-  MOBILITY_OPTIONS,
-  SOCIAL_MODE_OPTIONS,
   type CrowdPreference,
   type MobilityPreference,
   type SocialMode,
-  type TimeOfDay,
 } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -60,7 +57,26 @@ function SelectableCard({
 
 export function ProfileBuilder() {
   const { profile, updateProfile, resetProfile } = useUserPreferences();
-  const summary = buildProfileSummary(profile);
+  const { t } = useTranslation();
+  const summary = buildProfileSummary(profile, t);
+
+  const mobilityOptions = (
+    Object.entries(t.options.mobility) as [
+      MobilityPreference,
+      { label: string; description: string },
+    ][]
+  ).map(([value, { label, description }]) => ({ value, label, description }));
+
+  const crowdOptions = (
+    Object.entries(t.options.crowd) as [
+      CrowdPreference,
+      { label: string; description: string },
+    ][]
+  ).map(([value, { label, description }]) => ({ value, label, description }));
+
+  const socialOptions = (
+    Object.entries(t.options.socialMode) as [SocialMode | "any", string][]
+  ).map(([value, label]) => ({ value, label }));
 
   return (
     <>
@@ -68,24 +84,19 @@ export function ProfileBuilder() {
       <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
         <div className="mb-8">
           <Badge variant="secondary" className="mb-3">
-            AI Preference Builder
+            {t.profile.badge}
           </Badge>
-          <h1 className="text-3xl font-bold tracking-tight">
-            Build your local life profile
-          </h1>
-          <p className="mt-2 text-muted-foreground">
-            Tell us how you like to explore — our simulated AI uses this to
-            personalize every recommendation.
-          </p>
+          <h1 className="text-3xl font-bold tracking-tight">{t.profile.title}</h1>
+          <p className="mt-2 text-muted-foreground">{t.profile.subtitle}</p>
         </div>
 
         <Card className="mb-8 rounded-2xl border-primary/20 bg-gradient-to-br from-primary/5 via-secondary/30 to-card shadow-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <span aria-hidden>🤖</span>
-              AI Summary of your profile
+              {t.profile.aiSummaryTitle}
             </CardTitle>
-            <CardDescription>Updates live as you adjust preferences</CardDescription>
+            <CardDescription>{t.profile.aiSummaryDescription}</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-base leading-relaxed">&ldquo;{summary}&rdquo;</p>
@@ -95,14 +106,14 @@ export function ProfileBuilder() {
         <div className="space-y-8">
           <section>
             <Label htmlFor="displayName" className="text-base font-semibold">
-              Your name
+              {t.profile.yourName}
             </Label>
             <Input
               id="displayName"
               className="mt-3 max-w-sm"
               value={profile.displayName}
               onChange={(e) => updateProfile({ displayName: e.target.value })}
-              placeholder="How should we greet you?"
+              placeholder={t.profile.namePlaceholder}
             />
           </section>
 
@@ -110,19 +121,15 @@ export function ProfileBuilder() {
 
           <section className="space-y-4">
             <div>
-              <h2 className="font-semibold">Mobility & accessibility</h2>
-              <p className="text-sm text-muted-foreground">
-                We&apos;ll prioritize venues that fit your needs
-              </p>
+              <h2 className="font-semibold">{t.profile.mobilityTitle}</h2>
+              <p className="text-sm text-muted-foreground">{t.profile.mobilitySubtitle}</p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              {MOBILITY_OPTIONS.map(({ value, label, description }) => (
+              {mobilityOptions.map(({ value, label, description }) => (
                 <SelectableCard
                   key={value}
                   selected={profile.mobilityPreference === value}
-                  onClick={() =>
-                    updateProfile({ mobilityPreference: value as MobilityPreference })
-                  }
+                  onClick={() => updateProfile({ mobilityPreference: value })}
                   title={label}
                   description={description}
                 />
@@ -135,12 +142,12 @@ export function ProfileBuilder() {
           <section className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="font-semibold">Distance tolerance</h2>
-                <p className="text-sm text-muted-foreground">
-                  How far are you willing to travel?
-                </p>
+                <h2 className="font-semibold">{t.profile.distanceTitle}</h2>
+                <p className="text-sm text-muted-foreground">{t.profile.distanceSubtitle}</p>
               </div>
-              <Badge variant="outline">{profile.maxDistanceKm} km</Badge>
+              <Badge variant="outline">
+                {profile.maxDistanceKm} {t.common.km}
+              </Badge>
             </div>
             <Slider
               value={[profile.maxDistanceKm]}
@@ -158,19 +165,15 @@ export function ProfileBuilder() {
 
           <section className="space-y-4">
             <div>
-              <h2 className="font-semibold">Crowd preference</h2>
-              <p className="text-sm text-muted-foreground">
-                What atmosphere feels right for you?
-              </p>
+              <h2 className="font-semibold">{t.profile.crowdTitle}</h2>
+              <p className="text-sm text-muted-foreground">{t.profile.crowdSubtitle}</p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              {CROWD_PREFERENCE_OPTIONS.map(({ value, label, description }) => (
+              {crowdOptions.map(({ value, label, description }) => (
                 <SelectableCard
                   key={value}
                   selected={profile.crowdPreference === value}
-                  onClick={() =>
-                    updateProfile({ crowdPreference: value as CrowdPreference })
-                  }
+                  onClick={() => updateProfile({ crowdPreference: value })}
                   title={label}
                   description={description}
                 />
@@ -183,13 +186,11 @@ export function ProfileBuilder() {
           <section className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="font-semibold">Budget preference</h2>
-                <p className="text-sm text-muted-foreground">
-                  Maximum you&apos;d spend per event
-                </p>
+                <h2 className="font-semibold">{t.profile.budgetTitle}</h2>
+                <p className="text-sm text-muted-foreground">{t.profile.budgetSubtitle}</p>
               </div>
               <Badge variant="outline">
-                {profile.maxBudget === 0 ? "Free only" : `$${profile.maxBudget}`}
+                {profile.maxBudget === 0 ? t.common.freeOnly : `$${profile.maxBudget}`}
               </Badge>
             </div>
             <Slider
@@ -208,14 +209,14 @@ export function ProfileBuilder() {
 
           <section className="space-y-4">
             <div>
-              <h2 className="font-semibold">Interests</h2>
-              <p className="text-sm text-muted-foreground">
-                Select all that apply
-              </p>
+              <h2 className="font-semibold">{t.profile.interestsTitle}</h2>
+              <p className="text-sm text-muted-foreground">{t.profile.interestsSubtitle}</p>
             </div>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               {INTEREST_OPTIONS.map((interest) => {
                 const active = profile.interests.includes(interest);
+                const label =
+                  t.options.interests[interest as keyof typeof t.options.interests];
                 return (
                   <button
                     key={interest}
@@ -233,7 +234,7 @@ export function ProfileBuilder() {
                         : "bg-card hover:bg-muted/50"
                     )}
                   >
-                    {interest}
+                    {label}
                   </button>
                 );
               })}
@@ -244,19 +245,15 @@ export function ProfileBuilder() {
 
           <section className="space-y-4">
             <div>
-              <h2 className="font-semibold">Social preference</h2>
-              <p className="text-sm text-muted-foreground">
-                How do you usually like to go out?
-              </p>
+              <h2 className="font-semibold">{t.profile.socialTitle}</h2>
+              <p className="text-sm text-muted-foreground">{t.profile.socialSubtitle}</p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {SOCIAL_MODE_OPTIONS.map(({ value, label }) => (
+              {socialOptions.map(({ value, label }) => (
                 <SelectableCard
                   key={value}
                   selected={profile.socialMode === value}
-                  onClick={() =>
-                    updateProfile({ socialMode: value as SocialMode | "any" })
-                  }
+                  onClick={() => updateProfile({ socialMode: value })}
                   title={label}
                 />
               ))}
@@ -265,7 +262,7 @@ export function ProfileBuilder() {
 
           <div className="flex justify-end pt-4">
             <Button variant="outline" onClick={resetProfile}>
-              Reset to defaults
+              {t.profile.resetDefaults}
             </Button>
           </div>
         </div>

@@ -1,7 +1,12 @@
+"use client";
+
 import { Header } from "@/components/header";
 import { LinkButton } from "@/components/link-button";
+import { useTranslation } from "@/context/locale";
 
 export default function NotFound() {
+  const { t } = useTranslation();
+
   return (
     <>
       <Header />
@@ -9,12 +14,10 @@ export default function NotFound() {
         <span className="text-5xl" aria-hidden>
           🗺️
         </span>
-        <h1 className="mt-4 text-2xl font-bold">Event not found</h1>
-        <p className="mt-2 text-muted-foreground">
-          This event may have ended or the link is incorrect.
-        </p>
+        <h1 className="mt-4 text-2xl font-bold">{t.detail.eventNotFound}</h1>
+        <p className="mt-2 text-muted-foreground">{t.detail.eventNotFoundDesc}</p>
         <LinkButton className="mt-6" href="/explore">
-          Browse events
+          {t.detail.browseEvents}
         </LinkButton>
       </main>
     </>

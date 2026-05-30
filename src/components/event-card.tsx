@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -7,7 +9,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useTranslation } from "@/context/locale";
 import { formatDate, formatPrice } from "@/lib/events";
+import { getCategoryTagLabel, interpolate } from "@/lib/i18n/types";
 import { getCategoryGradient } from "@/lib/recommendations";
 import type { ScoredEvent } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -18,6 +22,7 @@ interface EventCardProps {
 }
 
 export function EventCard({ scored, highlight }: EventCardProps) {
+  const { t, locale } = useTranslation();
   const { event, score, explanation, distanceKm } = scored;
   const gradient = getCategoryGradient(event.categoryTag);
 
@@ -48,39 +53,37 @@ export function EventCard({ scored, highlight }: EventCardProps) {
                   : "bg-red-500"
             )}
           >
-            {score}% match
+            {interpolate(t.cards.matchPercent, { score })}
           </Badge>
         </div>
 
         <CardHeader className="pb-2">
           <div className="flex items-center gap-2">
-            <Badge variant="outline">{event.category}</Badge>
-            {highlight && <Badge>Top pick</Badge>}
+            <Badge variant="outline">
+              {getCategoryTagLabel(event.categoryTag, t, event.category)}
+            </Badge>
+            {highlight && <Badge>{t.common.topPick}</Badge>}
           </div>
           <CardTitle className="line-clamp-2 text-lg">{event.title}</CardTitle>
-          <CardDescription className="line-clamp-2">
-            {event.description}
-          </CardDescription>
+          <CardDescription className="line-clamp-2">{event.description}</CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-3">
           <div className="flex flex-wrap gap-2 text-sm text-muted-foreground">
-            <span>{formatDate(event.date)}</span>
+            <span>{formatDate(event.date, locale)}</span>
             <span>·</span>
             <span>{event.startTime}</span>
             <span>·</span>
-            <span>{distanceKm} km</span>
-            <span>·</span>
-            <span className="font-medium text-foreground">
-              {formatPrice(event.price)}
+            <span>
+              {distanceKm} {t.common.km}
             </span>
+            <span>·</span>
+            <span className="font-medium text-foreground">{formatPrice(event.price, t)}</span>
           </div>
 
           <div className="rounded-lg bg-muted/50 p-3">
-            <p className="text-xs font-medium text-primary">Why this matches you</p>
-            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-              {explanation}
-            </p>
+            <p className="text-xs font-medium text-primary">{t.cards.whyMatches}</p>
+            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{explanation}</p>
           </div>
         </CardContent>
       </Card>

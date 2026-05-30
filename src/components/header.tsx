@@ -3,16 +3,19 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MapPin } from "lucide-react";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { LinkButton } from "@/components/link-button";
+import { useTranslation } from "@/context/locale";
 import { cn } from "@/lib/utils";
-
-const navItems = [
-  { href: "/explore", label: "Discover" },
-  { href: "/profile", label: "Profile" },
-];
 
 export function Header() {
   const pathname = usePathname();
+  const { t } = useTranslation();
+
+  const navItems = [
+    { href: "/explore", label: t.nav.discover },
+    { href: "/profile", label: t.nav.profile },
+  ];
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-card/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-card/80">
@@ -22,7 +25,7 @@ export function Header() {
             <MapPin className="size-5 text-primary-foreground" />
           </div>
           <span className="text-xl font-bold tracking-tight text-foreground">
-            AccessPath
+            {t.common.appName}
           </span>
         </Link>
 
@@ -44,12 +47,14 @@ export function Header() {
               </LinkButton>
             );
           })}
+          <LanguageSwitcher className="ml-1" />
           <LinkButton size="sm" href="/explore" className="ml-2 shadow-sm">
-            Ask AI
+            {t.nav.askAi}
           </LinkButton>
         </nav>
 
         <div className="flex items-center gap-1 md:hidden">
+          <LanguageSwitcher />
           {navItems.map(({ href, label }) => (
             <LinkButton
               key={href}

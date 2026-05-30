@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { MapPin } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useTranslation } from "@/context/locale";
 import { events, getMatchTier, latLngToPercent } from "@/lib/events";
+import { interpolate } from "@/lib/i18n/types";
 import { places } from "@/lib/places";
 import {
   geocodeAddress,
@@ -41,6 +43,7 @@ interface HoveredMarker {
 }
 
 export function LocationPicker({ value, onChange, compact, scoredMarkers }: LocationPickerProps) {
+  const { t } = useTranslation();
   const [addressInput, setAddressInput] = useState(value.address);
   const [hoveredMarker, setHoveredMarker] = useState<HoveredMarker | null>(null);
 
@@ -52,13 +55,15 @@ export function LocationPicker({ value, onChange, compact, scoredMarkers }: Loca
     const nextAddress = (rawAddress ?? addressInput).trim();
     if (!nextAddress) {
       onChange(geocodeAddress("City Center"));
-      setAddressInput("City Center");
+      setAddressInput(t.common.cityCenter);
       return;
     }
 
     const resolved = geocodeAddress(nextAddress);
     onChange(resolved);
-    setAddressInput(resolved.address);
+    setAddressInput(
+      resolved.address === "City Center" ? t.common.cityCenter : resolved.address
+    );
   };
 
   const handleMapClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -71,7 +76,7 @@ export function LocationPicker({ value, onChange, compact, scoredMarkers }: Loca
     );
     const address = reverseGeocode(lat, lng);
     onChange({ address, lat, lng });
-    setAddressInput(address);
+    setAddressInput(address === "City Center" ? t.common.cityCenter : address);
   };
 
   const userPin = latLngToPercent(value.lat, value.lng);
@@ -80,10 +85,8 @@ export function LocationPicker({ value, onChange, compact, scoredMarkers }: Loca
   return (
     <div className="space-y-3">
       <div>
-        <Label htmlFor="search-location">Your location</Label>
-        <p className="mt-1 text-xs text-muted-foreground">
-          Enter an address or tap the map to set your starting point
-        </p>
+        <Label htmlFor="search-location">{t.location.yourLocation}</Label>
+        <p className="mt-1 text-xs text-muted-foreground">{t.location.hint}</p>
       </div>
 
       <div className="relative">
@@ -100,7 +103,7 @@ export function LocationPicker({ value, onChange, compact, scoredMarkers }: Loca
               applyAddress();
             }
           }}
-          placeholder="e.g. Central Square"
+          placeholder={t.location.placeholder}
           className="pl-9"
         />
         <datalist id="location-suggestions">
@@ -137,7 +140,7 @@ export function LocationPicker({ value, onChange, compact, scoredMarkers }: Loca
           type="button"
           onClick={handleMapClick}
           className="relative aspect-[4/3] w-full cursor-crosshair"
-          aria-label="Pick location on map"
+          aria-label={t.location.pickOnMap}
         >
           {scoredMarkers
             ? scoredMarkers.map((marker) => {
@@ -183,11 +186,16 @@ export function LocationPicker({ value, onChange, compact, scoredMarkers }: Loca
                 <p className="mt-0.5 truncate text-[10px] text-muted-foreground">
                   {hoveredMarker.marker.emoji} {hoveredMarker.marker.location}
                 </p>
-                <p className={cn(
-                  "mt-1 text-[10px] font-bold",
-                  TIER_TEXT_COLORS[getMatchTier(hoveredMarker.marker.score)]
-                )}>
-                  {hoveredMarker.marker.score}% match · {hoveredMarker.marker.kind}
+                <p
+                  className={cn(
+                    "mt-1 text-[10px] font-bold",
+                    TIER_TEXT_COLORS[getMatchTier(hoveredMarker.marker.score)]
+                  )}
+                >
+                  {interpolate(t.cards.matchPercent, { score: hoveredMarker.marker.score })} ·{" "}
+                  {hoveredMarker.marker.kind === "event"
+                    ? t.common.event
+                    : t.common.place}
                 </p>
               </div>
             </div>
@@ -202,7 +210,7 @@ export function LocationPicker({ value, onChange, compact, scoredMarkers }: Loca
               <MapPin className="size-4" />
             </span>
             <span className="absolute left-1/2 top-full mt-1 w-max max-w-[140px] -translate-x-1/2 truncate rounded-md bg-card px-2 py-0.5 text-[10px] font-medium text-foreground shadow-sm">
-              You
+              {t.location.you}
             </span>
           </span>
         </button>
@@ -211,21 +219,22 @@ export function LocationPicker({ value, onChange, compact, scoredMarkers }: Loca
           <div className="absolute bottom-2 right-2 flex flex-col items-end gap-1.5">
             <div className="flex items-center gap-2.5 rounded-md bg-card/90 px-2.5 py-1.5 text-[10px] shadow-sm">
               <span className="flex items-center gap-1 font-medium">
-                <span className="size-2.5 rounded-full bg-green-500" /> Great
+                <span className="size-2.5 rounded-full bg-green-500" /> {t.location.legendGreat}
               </span>
               <span className="flex items-center gap-1 font-medium">
-                <span className="size-2.5 rounded-full bg-amber-400" /> OK
+                <span className="size-2.5 rounded-full bg-amber-400" /> {t.location.legendOk}
               </span>
               <span className="flex items-center gap-1 font-medium">
-                <span className="size-2.5 rounded-full bg-red-400" /> Low
+                <span className="size-2.5 rounded-full bg-red-400" /> {t.location.legendLow}
               </span>
             </div>
             <div className="flex items-center gap-2 rounded-md bg-card/90 px-2.5 py-1 text-[10px] shadow-sm">
               <span className="flex items-center gap-1">
-                <span className="size-2 rounded-full bg-muted-foreground/50" /> Event
+                <span className="size-2 rounded-full bg-muted-foreground/50" />{" "}
+                {t.location.legendEvent}
               </span>
               <span className="flex items-center gap-1">
-                <span className="size-2 rotate-45 bg-muted-foreground/50" /> Place
+                <span className="size-2 rotate-45 bg-muted-foreground/50" /> {t.location.legendPlace}
               </span>
             </div>
           </div>

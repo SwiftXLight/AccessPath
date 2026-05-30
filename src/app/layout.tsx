@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
+import { LocaleProvider } from "@/context/locale";
 import { UserPreferencesProvider } from "@/context/user-preferences";
 import "./globals.css";
 
@@ -30,7 +31,9 @@ export default function RootLayout({
       className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <UserPreferencesProvider>{children}</UserPreferencesProvider>
+        <LocaleProvider>
+          <UserPreferencesProvider>{children}</UserPreferencesProvider>
+        </LocaleProvider>
       </body>
     </html>
   );
