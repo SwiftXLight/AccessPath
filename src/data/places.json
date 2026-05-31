@@ -45,21 +45,30 @@
         "author": "Marta K.",
         "date": "2026-05-14",
         "rating": 5,
-        "text": "Perfect for an evening stroll. Benches along the water and stunning sunset views."
+        "text": {
+          "en": "Perfect for an evening stroll. Benches along the water and stunning sunset views.",
+          "pl": "Idealny na wieczorny spacer. Ławki nad wodą i wspaniałe widoki zachodu słońca."
+        }
       },
       {
         "source": "tripadvisor",
         "author": "John S.",
         "date": "2026-04-22",
         "rating": 5,
-        "text": "Peaceful promenade away from the busy square. Great for picnics."
+        "text": {
+          "en": "Peaceful promenade away from the busy square. Great for picnics.",
+          "pl": "Spokojny bulwar z dala od tłocznego placu. Świetny na piknik."
+        }
       },
       {
         "source": "facebook",
         "author": "Ewa L.",
         "date": "2026-05-02",
         "rating": 4,
-        "text": "Always open and wheelchair accessible. Our favorite spot to unwind."
+        "text": {
+          "en": "Always open and wheelchair accessible. Our favorite spot to unwind.",
+          "pl": "Otwarte całą dobę i dostępne dla wózków. Nasze ulubione miejsce na relaks."
+        }
       }
     ]
   },
@@ -109,21 +118,30 @@
         "author": "Tomasz P.",
         "date": "2026-05-18",
         "rating": 5,
-        "text": "Huge oaks, good playgrounds, and plenty of space for jogging or yoga."
+        "text": {
+          "en": "Huge oaks, good playgrounds, and plenty of space for jogging or yoga.",
+          "pl": "Ogromne dęby, dobre place zabaw i dużo miejsca na jogging lub jogę."
+        }
       },
       {
         "source": "yelp",
         "author": "Amy R.",
         "date": "2026-04-30",
         "rating": 4,
-        "text": "Gets busy on sunny weekends but still feels spacious. Dawn visits are quietest."
+        "text": {
+          "en": "Gets busy on sunny weekends but still feels spacious. Dawn visits are quietest.",
+          "pl": "W słoneczne weekendy tłoczno, ale nadal przestronnie. O świcie najspokojniej."
+        }
       },
       {
         "source": "facebook",
         "author": "Natalia W.",
         "date": "2026-05-10",
         "rating": 5,
-        "text": "Family favorite. Kids love the meadows and we love the shade in summer."
+        "text": {
+          "en": "Family favorite. Kids love the meadows and we love the shade in summer.",
+          "pl": "Ulubione miejsce rodziny. Dzieci kochają łąki, my — cień latem."
+        }
       }
     ]
   },
@@ -173,21 +191,30 @@
         "author": "Piotr Z.",
         "date": "2026-05-20",
         "rating": 5,
-        "text": "Calm lake with a lovely 3 km trail. Kayak rental in summer is worth it."
+        "text": {
+          "en": "Calm lake with a lovely 3 km trail. Kayak rental in summer is worth it.",
+          "pl": "Spokojne jezioro z piękną 3 km pętlą. Wynajem kajaków latem — warto."
+        }
       },
       {
         "source": "tripadvisor",
         "author": "Laura M.",
         "date": "2026-04-15",
         "rating": 4,
-        "text": "Beautiful year-round. Feeding ducks is fun for kids — bring bird-safe snacks."
+        "text": {
+          "en": "Beautiful year-round. Feeding ducks is fun for kids — bring bird-safe snacks.",
+          "pl": "Pięknie przez cały rok. Karmienie kaczek bawi dzieci — weź bezpieczne przekąski."
+        }
       },
       {
         "source": "facebook",
         "author": "Kasia H.",
         "date": "2026-05-08",
         "rating": 5,
-        "text": "Open 24 hours and free. Best at sunrise when the water is mirror-still."
+        "text": {
+          "en": "Open 24 hours and free. Best at sunrise when the water is mirror-still.",
+          "pl": "Otwarte 24/7 i za darmo. Najlepiej o wschodzie, gdy woda jak lustro."
+        }
       }
     ]
   },
@@ -234,21 +261,30 @@
         "author": "Adam F.",
         "date": "2026-05-16",
         "rating": 5,
-        "text": "Shaded forest path — cool even on hot days. Saw woodpeckers and deer tracks."
+        "text": {
+          "en": "Shaded forest path — cool even on hot days. Saw woodpeckers and deer tracks.",
+          "pl": "Zacieniona leśna ścieżka — chłodno nawet w upały. Widzieliśmy dzięcioły i tropy jeleni."
+        }
       },
       {
         "source": "tripadvisor",
         "author": "Chris B.",
         "date": "2026-04-28",
         "rating": 4,
-        "text": "Well marked trail through pine and birch. Wear proper shoes after rain."
+        "text": {
+          "en": "Well marked trail through pine and birch. Wear proper shoes after rain.",
+          "pl": "Dobrze oznaczona trasa przez sosny i brzozy. Po deszczu — solidne buty."
+        }
       },
       {
         "source": "yelp",
         "author": "Monika S.",
         "date": "2026-05-05",
         "rating": 5,
-        "text": "Fresh air escape from the city. Mushroom foragers were friendly and helpful."
+        "text": {
+          "en": "Fresh air escape from the city. Mushroom foragers were friendly and helpful.",
+          "pl": "Ucieczka od miasta w świeże powietrze. Grzybiarze byli mili i pomocni."
+        }
       }
     ]
   },
@@ -299,21 +335,30 @@
         "author": "Barbara T.",
         "date": "2026-05-22",
         "rating": 5,
-        "text": "Excellent exhibitions from medieval times onward. Audio guides and rooftop terrace are highlights."
+        "text": {
+          "en": "Excellent exhibitions from medieval times onward. Audio guides and rooftop terrace are highlights.",
+          "pl": "Znakomite wystawy od średniowiecza. Audio przewodniki i taras na dachu — hity."
+        }
       },
       {
         "source": "tripadvisor",
         "author": "Michael D.",
         "date": "2026-04-20",
         "rating": 4,
-        "text": "Interactive displays keep kids engaged. Closed Mondays — plan ahead."
+        "text": {
+          "en": "Interactive displays keep kids engaged. Closed Mondays — plan ahead.",
+          "pl": "Interaktywne ekspozycje angażują dzieci. Zamknięte w poniedziałki — planuj z wyprzedzeniem."
+        }
       },
       {
         "source": "facebook",
         "author": "Zofia R.",
         "date": "2026-05-11",
         "rating": 5,
-        "text": "Fully wheelchair accessible with elevator. Worth the entry fee."
+        "text": {
+          "en": "Fully wheelchair accessible with elevator. Worth the entry fee.",
+          "pl": "W pełni dostępne dla wózków, z windą. Warto zapłacić za bilet."
+        }
       }
     ]
   },
@@ -364,21 +409,30 @@
         "author": "James L.",
         "date": "2026-05-19",
         "rating": 5,
-        "text": "Panoramic city views from the hill. Ruins are atmospheric and well maintained."
+        "text": {
+          "en": "Panoramic city views from the hill. Ruins are atmospheric and well maintained.",
+          "pl": "Panoramiczne widoki na miasto ze wzgórza. Ruiny klimatyczne i zadbane."
+        }
       },
       {
         "source": "tripadvisor",
         "author": "Helen W.",
         "date": "2026-04-25",
         "rating": 5,
-        "text": "Explore at your own pace. Golden hour from the towers is spectacular."
+        "text": {
+          "en": "Explore at your own pace. Golden hour from the towers is spectacular.",
+          "pl": "Zwiedzaj we własnym tempie. Złota godzina z wież — spektakularna."
+        }
       },
       {
         "source": "facebook",
         "author": "Marcin K.",
         "date": "2026-05-06",
         "rating": 4,
-        "text": "Steep paths in places but seating areas help. History lovers will enjoy this."
+        "text": {
+          "en": "Steep paths in places but seating areas help. History lovers will enjoy this.",
+          "pl": "Miejscami strome ścieżki, ale są ławki. Miłośnicy historii będą zadowoleni."
+        }
       }
     ]
   },
@@ -429,21 +483,30 @@
         "author": "Anna P.",
         "date": "2026-05-21",
         "rating": 5,
-        "text": "Rose pavilion and Japanese zen corner are stunning. Peaceful oasis all year."
+        "text": {
+          "en": "Rose pavilion and Japanese zen corner are stunning. Peaceful oasis all year.",
+          "pl": "Pawilon róż i japoński zen — zachwycające. Spokojna oaza przez cały rok."
+        }
       },
       {
         "source": "tripadvisor",
         "author": "Sophie G.",
         "date": "2026-04-18",
         "rating": 5,
-        "text": "Four hectares of themed gardens — easy to spend half a day here."
+        "text": {
+          "en": "Four hectares of themed gardens — easy to spend half a day here.",
+          "pl": "Cztery hektary ogrodów tematycznych — spokojnie pół dnia."
+        }
       },
       {
         "source": "yelp",
         "author": "Robert N.",
         "date": "2026-05-09",
         "rating": 4,
-        "text": "Stroller-friendly paths and greenhouse is a hit with toddlers."
+        "text": {
+          "en": "Stroller-friendly paths and greenhouse is a hit with toddlers.",
+          "pl": "Ścieżki dla wózków i szklarnia — hit u maluchów."
+        }
       }
     ]
   },
@@ -491,21 +554,30 @@
         "author": "Ewa M.",
         "date": "2026-05-23",
         "rating": 5,
-        "text": "Best golden-hour views in the city. Small café nearby for a drink while you wait."
+        "text": {
+          "en": "Best golden-hour views in the city. Small café nearby for a drink while you wait.",
+          "pl": "Najlepsze widoki o złotej godzinie w mieście. Mała kawiarnia obok na drinka w oczekiwaniu."
+        }
       },
       {
         "source": "facebook",
         "author": "Tomek J.",
         "date": "2026-05-12",
         "rating": 5,
-        "text": "Open 24/7 and free. Benches face the river valley — perfect for couples."
+        "text": {
+          "en": "Open 24/7 and free. Benches face the river valley — perfect for couples.",
+          "pl": "Otwarte 24/7 i za darmo. Ławki w stronę doliny rzeki — idealne dla par."
+        }
       },
       {
         "source": "tripadvisor",
         "author": "Kate H.",
         "date": "2026-04-14",
         "rating": 4,
-        "text": "Can get windy at night — bring a jacket. Worth every step up the hill."
+        "text": {
+          "en": "Can get windy at night — bring a jacket. Worth every step up the hill.",
+          "pl": "W nocy bywa wietrznie — weź kurtkę. Warte każdego kroku pod górę."
+        }
       }
     ]
   },
@@ -554,21 +626,30 @@
         "author": "Katarzyna B.",
         "date": "2026-05-17",
         "rating": 5,
-        "text": "Kids adore the splash pad and mini train. Free entry makes it a no-brainer for families."
+        "text": {
+          "en": "Kids adore the splash pad and mini train. Free entry makes it a no-brainer for families.",
+          "pl": "Dzieci uwielbiają brodzik i mini pociąg. Wolny wstęp — must-have dla rodzin."
+        }
       },
       {
         "source": "facebook",
         "author": "Paweł S.",
         "date": "2026-05-04",
         "rating": 4,
-        "text": "Busy on weekends but well designed. Picnic areas and snack kiosks on site."
+        "text": {
+          "en": "Busy on weekends but well designed. Picnic areas and snack kiosks on site.",
+          "pl": "W weekendy tłoczno, ale dobrze zaprojektowane. Strefy piknikowe i kioski z przekąskami."
+        }
       },
       {
         "source": "yelp",
         "author": "Jenny L.",
         "date": "2026-04-26",
         "rating": 5,
-        "text": "Climbing frames for all ages. Stroller-friendly and lots of shade."
+        "text": {
+          "en": "Climbing frames for all ages. Stroller-friendly and lots of shade.",
+          "pl": "Place zabaw dla każdego wieku. Przyjazne wózkom i dużo cienia."
+        }
       }
     ]
   },
@@ -618,21 +699,30 @@
         "author": "Marek D.",
         "date": "2026-05-20",
         "rating": 5,
-        "text": "Historic heart of the city — cobblestones, cafés, street performers. Always lively."
+        "text": {
+          "en": "Historic heart of the city — cobblestones, cafés, street performers. Always lively.",
+          "pl": "Historyczne serce miasta — bruk, kawiarnie, artyści uliczni. Zawsze tętni życiem."
+        }
       },
       {
         "source": "tripadvisor",
         "author": "Paul R.",
         "date": "2026-04-22",
         "rating": 4,
-        "text": "Beautiful architecture and great people-watching. Touristy but authentic."
+        "text": {
+          "en": "Beautiful architecture and great people-watching. Touristy but authentic.",
+          "pl": "Piękna architektura i świetne obserwowanie ludzi. Turystycznie, ale autentycznie."
+        }
       },
       {
         "source": "facebook",
         "author": "Ola K.",
         "date": "2026-05-15",
         "rating": 5,
-        "text": "Open around the clock. Evening atmosphere with lights is magical."
+        "text": {
+          "en": "Open around the clock. Evening atmosphere with lights is magical.",
+          "pl": "Otwarte całą dobę. Wieczorna atmosfera z iluminacją — magiczna."
+        }
       }
     ]
   },
@@ -683,21 +773,30 @@
         "author": "Chris A.",
         "date": "2026-05-18",
         "rating": 5,
-        "text": "Lively 2 km boardwalk with restaurants and public art. Perfect evening walk."
+        "text": {
+          "en": "Lively 2 km boardwalk with restaurants and public art. Perfect evening walk.",
+          "pl": "Tętniący życiem 2 km deptak z restauracjami i sztuką publiczną. Idealny wieczorny spacer."
+        }
       },
       {
         "source": "tripadvisor",
         "author": "Maria F.",
         "date": "2026-04-30",
         "rating": 4,
-        "text": "Harbor views and benches every few meters. Wheelchair accessible throughout."
+        "text": {
+          "en": "Harbor views and benches every few meters. Wheelchair accessible throughout.",
+          "pl": "Widoki na port i ławki co kilka metrów. Dostępne dla wózków na całej długości."
+        }
       },
       {
         "source": "facebook",
         "author": "Daniel W.",
         "date": "2026-05-07",
         "rating": 5,
-        "text": "Our go-to after dinner. Street musicians and sunset over the water."
+        "text": {
+          "en": "Our go-to after dinner. Street musicians and sunset over the water.",
+          "pl": "Nasze miejsce po kolacji. Uliczni muzycy i zachód słońca nad wodą."
+        }
       }
     ]
   },
@@ -745,21 +844,30 @@
         "author": "Art Lover",
         "date": "2026-05-16",
         "rating": 5,
-        "text": "Former factories turned galleries — murals and sculptures everywhere. Explore anytime."
+        "text": {
+          "en": "Former factories turned galleries — murals and sculptures everywhere. Explore anytime.",
+          "pl": "Dawne fabryki zamienione w galerie — murale i rzeźby wszędzie. Zwiedzaj kiedy chcesz."
+        }
       },
       {
         "source": "tripadvisor",
         "author": "Nina C.",
         "date": "2026-04-12",
         "rating": 4,
-        "text": "Open-air art you can visit on your own schedule. Great for photographers."
+        "text": {
+          "en": "Open-air art you can visit on your own schedule. Great for photographers.",
+          "pl": "Sztuka plenerowa we własnym tempie. Świetnie dla fotografów."
+        }
       },
       {
         "source": "facebook",
         "author": "Jakub M.",
         "date": "2026-05-03",
         "rating": 5,
-        "text": "Pop-up exhibitions change often. Industrial vibe meets creative energy."
+        "text": {
+          "en": "Pop-up exhibitions change often. Industrial vibe meets creative energy.",
+          "pl": "Wystawy pop-up często się zmieniają. Industrialny klimat i kreatywna energia."
+        }
       }
     ]
   }

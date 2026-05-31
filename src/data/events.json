@@ -41,21 +41,30 @@
         "author": "Marta K.",
         "date": "2026-05-12",
         "rating": 5,
-        "text": "Magical atmosphere by the water. The jazz trio was excellent and the sunset view made it unforgettable."
+        "text": {
+          "en": "Magical atmosphere by the water. The jazz trio was excellent and the sunset view made it unforgettable.",
+          "pl": "Magiczna atmosfera nad wodą. Trio jazzowe było znakomite, a widok zachodu słońca — niezapomniany."
+        }
       },
       {
         "source": "facebook",
         "author": "Tomasz W.",
         "date": "2026-05-05",
         "rating": 4,
-        "text": "Great vibe every Saturday. Gets busy after 8 pm — arrive early for a good spot near the stage."
+        "text": {
+          "en": "Great vibe every Saturday. Gets busy after 8 pm — arrive early for a good spot near the stage.",
+          "pl": "Świetny klimat w każdą sobotę. Po 20:00 robi się tłoczno — warto przyjść wcześniej na miejsce przy scenie."
+        }
       },
       {
         "source": "eventbrite",
         "author": "Anna L.",
         "date": "2026-04-28",
         "rating": 5,
-        "text": "Well organized, friendly staff, and the craft drinks menu is a nice touch. Will come back."
+        "text": {
+          "en": "Well organized, friendly staff, and the craft drinks menu is a nice touch. Will come back.",
+          "pl": "Dobra organizacja, miła obsługa i fajne rzemieślnicze napoje. Wrócimy na pewno."
+        }
       }
     ]
   },
@@ -103,21 +112,30 @@
         "author": "Ewa P.",
         "date": "2026-05-18",
         "rating": 5,
-        "text": "Best Saturday morning routine in the city. Fresh bread, local honey, and the street food stalls are amazing."
+        "text": {
+          "en": "Best Saturday morning routine in the city. Fresh bread, local honey, and the street food stalls are amazing.",
+          "pl": "Najlepszy sobotni poranek w mieście. Świeży chleb, lokalny miód i stoiska street food — rewelacja."
+        }
       },
       {
         "source": "facebook",
         "author": "Piotr M.",
         "date": "2026-05-11",
         "rating": 4,
-        "text": "Very crowded after 10 am but worth it. Bring a reusable bag and cash for smaller vendors."
+        "text": {
+          "en": "Very crowded after 10 am but worth it. Bring a reusable bag and cash for smaller vendors.",
+          "pl": "Po 10:00 bardzo tłoczno, ale warto. Weź torbę wielorazową i gotówkę dla mniejszych sprzedawców."
+        }
       },
       {
         "source": "tripadvisor",
         "author": "Sarah D.",
         "date": "2026-04-20",
         "rating": 5,
-        "text": "A must-visit for food lovers. Loved the artisan cheese stand and friendly community feel."
+        "text": {
+          "en": "A must-visit for food lovers. Loved the artisan cheese stand and friendly community feel.",
+          "pl": "Must-have dla miłośników jedzenia. Uwielbiam stoisko z serami i przyjazną atmosferę."
+        }
       }
     ]
   },
@@ -163,21 +181,30 @@
         "author": "Jakub R.",
         "date": "2026-05-08",
         "rating": 5,
-        "text": "Our guide knew every mural's story. Hidden gems in alleys you'd never find on your own."
+        "text": {
+          "en": "Our guide knew every mural's story. Hidden gems in alleys you'd never find on your own.",
+          "pl": "Przewodnik znał historię każdego muralu. Skarby w zaułkach, których sam nie znajdziesz."
+        }
       },
       {
         "source": "tripadvisor",
         "author": "Claire B.",
         "date": "2026-04-15",
         "rating": 4,
-        "text": "Informative and visually stunning. Wear comfortable shoes — lots of walking on uneven pavement."
+        "text": {
+          "en": "Informative and visually stunning. Wear comfortable shoes — lots of walking on uneven pavement.",
+          "pl": "Ciekawie i pięknie wizualnie. Wygodne buty obowiązkowe — dużo chodzenia po nierównym chodniku."
+        }
       },
       {
         "source": "facebook",
         "author": "Ola S.",
         "date": "2026-05-01",
         "rating": 5,
-        "text": "Perfect for art lovers and photographers. Small group size made it feel personal."
+        "text": {
+          "en": "Perfect for art lovers and photographers. Small group size made it feel personal.",
+          "pl": "Idealnie dla miłośników sztuki i fotografów. Mała grupa — bardzo kameralnie."
+        }
       }
     ]
   },
@@ -223,21 +250,30 @@
         "author": "Katarzyna N.",
         "date": "2026-05-14",
         "rating": 5,
-        "text": "My 8-year-old didn't want to leave. Hands-on experiments kept every kid engaged for two hours."
+        "text": {
+          "en": "My 8-year-old didn't want to leave. Hands-on experiments kept every kid engaged for two hours.",
+          "pl": "Ośmiolatek nie chciał wychodzić. Eksperymenty na żywo zajęły dzieci na dwie godziny."
+        }
       },
       {
         "source": "facebook",
         "author": "Marcin H.",
         "date": "2026-04-27",
         "rating": 4,
-        "text": "Staff are patient and enthusiastic. Booking ahead helps on rainy weekends."
+        "text": {
+          "en": "Staff are patient and enthusiastic. Booking ahead helps on rainy weekends.",
+          "pl": "Personel cierpliwy i pełen energii. Rezerwacja z wyprzedzeniem pomaga w deszczowe weekendy."
+        }
       },
       {
         "source": "eventbrite",
         "author": "Helen T.",
         "date": "2026-05-03",
         "rating": 5,
-        "text": "Great value for families. The volcano experiment was the highlight for our group."
+        "text": {
+          "en": "Great value for families. The volcano experiment was the highlight for our group.",
+          "pl": "Świetny stosunek jakości do ceny dla rodzin. Eksperyment z wulkanem — hit naszej grupy."
+        }
       }
     ]
   },
@@ -283,21 +319,30 @@
         "author": "Nina V.",
         "date": "2026-05-20",
         "rating": 5,
-        "text": "Peaceful start to the day under the oak trees. Instructor adjusts poses for all levels."
+        "text": {
+          "en": "Peaceful start to the day under the oak trees. Instructor adjusts poses for all levels.",
+          "pl": "Spokojny początek dnia pod dębami. Instruktor dopasowuje pozycje do każdego poziomu."
+        }
       },
       {
         "source": "facebook",
         "author": "Adam C.",
         "date": "2026-05-06",
         "rating": 4,
-        "text": "Free and welcoming. Mats provided — just show up a few minutes early."
+        "text": {
+          "en": "Free and welcoming. Mats provided — just show up a few minutes early.",
+          "pl": "Bezpłatnie i bardzo otwarte. Maty są — wystarczy przyjść kilka minut wcześniej."
+        }
       },
       {
         "source": "eventbrite",
         "author": "Lisa F.",
         "date": "2026-04-22",
         "rating": 5,
-        "text": "Calm, uncrowded, and the park setting is beautiful at dawn."
+        "text": {
+          "en": "Calm, uncrowded, and the park setting is beautiful at dawn.",
+          "pl": "Spokojnie, bez tłumów, a park o świcie jest przepiękny."
+        }
       }
     ]
   },
@@ -342,21 +387,30 @@
         "author": "Dev User",
         "date": "2026-05-10",
         "rating": 4,
-        "text": "Solid lightning talks and good networking. Pizza ran out fast — grab some early."
+        "text": {
+          "en": "Solid lightning talks and good networking. Pizza ran out fast — grab some early.",
+          "pl": "Solidne lightning talki i dobry networking. Pizza szybko znika — łap wcześniej."
+        }
       },
       {
         "source": "facebook",
         "author": "Karol Z.",
         "date": "2026-04-30",
         "rating": 5,
-        "text": "Friendly dev community. Great place to meet collaborators on side projects."
+        "text": {
+          "en": "Friendly dev community. Great place to meet collaborators on side projects.",
+          "pl": "Przyjazna społeczność devów. Świetne miejsce na współpracę przy side projectach."
+        }
       },
       {
         "source": "eventbrite",
         "author": "Mike R.",
         "date": "2026-05-02",
         "rating": 4,
-        "text": "Monthly staple for local engineers. AI talk this month was especially interesting."
+        "text": {
+          "en": "Monthly staple for local engineers. AI talk this month was especially interesting.",
+          "pl": "Comiesięczny stały punkt dla lokalnych inżynierów. Prelekcja o AI w tym miesiącu — super."
+        }
       }
     ]
   },
@@ -403,21 +457,30 @@
         "author": "Barbara J.",
         "date": "2026-05-16",
         "rating": 5,
-        "text": "The guide brought centuries of history to life. Small groups mean you can actually hear everything."
+        "text": {
+          "en": "The guide brought centuries of history to life. Small groups mean you can actually hear everything.",
+          "pl": "Przewodnik ożywił wieki historii. Małe grupy — słychać wszystko bez problemu."
+        }
       },
       {
         "source": "tripadvisor",
         "author": "James W.",
         "date": "2026-04-18",
         "rating": 5,
-        "text": "One of the best walking tours I've done. Stories about merchants and revolutions were fascinating."
+        "text": {
+          "en": "One of the best walking tours I've done. Stories about merchants and revolutions were fascinating.",
+          "pl": "Jeden z najlepszych spacerów z przewodnikiem. Historie kupców i rewolucji — fascynujące."
+        }
       },
       {
         "source": "facebook",
         "author": "Zofia K.",
         "date": "2026-05-04",
         "rating": 4,
-        "text": "Wheelchair-friendly route and plenty of stops to rest. Highly recommend for history buffs."
+        "text": {
+          "en": "Wheelchair-friendly route and plenty of stops to rest. Highly recommend for history buffs.",
+          "pl": "Trasa przyjazna wózkom i dużo postojów na odpoczynek. Polecam miłośnikom historii."
+        }
       }
     ]
   },
@@ -462,21 +525,30 @@
         "author": "Chris M.",
         "date": "2026-05-22",
         "rating": 4,
-        "text": "Incredible variety of street food. Gets packed after 9 pm — go earlier if you hate queues."
+        "text": {
+          "en": "Incredible variety of street food. Gets packed after 9 pm — go earlier if you hate queues.",
+          "pl": "Niesamowity wybór street foodu. Po 21:00 tłoczno — idź wcześniej, jeśli nie lubisz kolejek."
+        }
       },
       {
         "source": "facebook",
         "author": "Daria L.",
         "date": "2026-05-15",
         "rating": 5,
-        "text": "Best food night of the year. DJs, dessert bars, and vendors from all over the region."
+        "text": {
+          "en": "Best food night of the year. DJs, dessert bars, and vendors from all over the region.",
+          "pl": "Najlepsza noc jedzenia w roku. DJ-e, bary z deserami i vendorzy z całego regionu."
+        }
       },
       {
         "source": "eventbrite",
         "author": "Tom H.",
         "date": "2026-04-25",
         "rating": 4,
-        "text": "Lively atmosphere on the waterfront. Bring cash and an appetite."
+        "text": {
+          "en": "Lively atmosphere on the waterfront. Bring cash and an appetite.",
+          "pl": "Tętniąca życiem atmosfera nad wodą. Weź gotówkę i apetyt."
+        }
       }
     ]
   },
@@ -523,21 +595,30 @@
         "author": "Irena S.",
         "date": "2026-05-09",
         "rating": 5,
-        "text": "Lovely community spirit. Picked up great urban gardening tips and swapped seeds with neighbors."
+        "text": {
+          "en": "Lovely community spirit. Picked up great urban gardening tips and swapped seeds with neighbors.",
+          "pl": "Wspaniały duch społeczności. Super porady urban gardening i wymiana nasion z sąsiadami."
+        }
       },
       {
         "source": "facebook",
         "author": "Paweł D.",
         "date": "2026-04-12",
         "rating": 4,
-        "text": "Free, relaxed, and kid-friendly. Perfect afternoon for families who like nature."
+        "text": {
+          "en": "Free, relaxed, and kid-friendly. Perfect afternoon for families who like nature.",
+          "pl": "Za darmo, luźno i przyjaznie dla dzieci. Idealne popołudnie dla rodzin lubiących naturę."
+        }
       },
       {
         "source": "tripadvisor",
         "author": "Emma G.",
         "date": "2026-05-01",
         "rating": 5,
-        "text": "Hidden gem in the east side. The shared plots are inspiring."
+        "text": {
+          "en": "Hidden gem in the east side. The shared plots are inspiring.",
+          "pl": "Ukryty skarb na wschodzie miasta. Wspólne działki naprawdę inspirują."
+        }
       }
     ]
   },
@@ -582,21 +663,30 @@
         "author": "Film Fan",
         "date": "2026-05-17",
         "rating": 5,
-        "text": "Wonderful selection of local shorts. Q&A with directors afterward was a real treat."
+        "text": {
+          "en": "Wonderful selection of local shorts. Q&A with directors afterward was a real treat.",
+          "pl": "Wspaniały wybór lokalnych krótkometrażówek. Q&A z reżyserami — prawdziwa gratka."
+        }
       },
       {
         "source": "facebook",
         "author": "Monika A.",
         "date": "2026-04-28",
         "rating": 4,
-        "text": "Intimate venue with subtitles available. Support regional filmmakers — you won't regret it."
+        "text": {
+          "en": "Intimate venue with subtitles available. Support regional filmmakers — you won't regret it.",
+          "pl": "Kameralne kino z napisami. Wspieraj regionalnych twórców — nie pożałujesz."
+        }
       },
       {
         "source": "eventbrite",
         "author": "David K.",
         "date": "2026-05-05",
         "rating": 5,
-        "text": "Cozy art house vibe. Low crowd, high quality programming."
+        "text": {
+          "en": "Cozy art house vibe. Low crowd, high quality programming.",
+          "pl": "Przytulny klimat art house. Mały tłum, wysoka jakość programu."
+        }
       }
     ]
   },
@@ -641,21 +731,30 @@
         "author": "Runner42",
         "date": "2026-05-19",
         "rating": 5,
-        "text": "Friendly 5K group run with a beautiful lakeside loop. Coffee afterward is the best part."
+        "text": {
+          "en": "Friendly 5K group run with a beautiful lakeside loop. Coffee afterward is the best part.",
+          "pl": "Przyjazny grupowy bieg 5 km w pięknej pętli nad jeziorem. Kawa potem — najlepsza część."
+        }
       },
       {
         "source": "facebook",
         "author": "Agata W.",
         "date": "2026-05-12",
         "rating": 4,
-        "text": "All paces welcome. Great way to meet people if you're new to the city."
+        "text": {
+          "en": "All paces welcome. Great way to meet people if you're new to the city.",
+          "pl": "Każde tempo mile widziane. Świetny sposób na poznanie ludzi, gdy jesteś nowy w mieście."
+        }
       },
       {
         "source": "facebook",
         "author": "Ben P.",
         "date": "2026-04-14",
         "rating": 5,
-        "text": "Casual, no pressure, and the trail views are stunning in the morning light."
+        "text": {
+          "en": "Casual, no pressure, and the trail views are stunning in the morning light.",
+          "pl": "Swobodnie, bez presji, a widoki ze ścieżki o poranku są zachwycające."
+        }
       }
     ]
   },
@@ -701,21 +800,30 @@
         "author": "Janina M.",
         "date": "2026-05-21",
         "rating": 5,
-        "text": "Warm, welcoming space. Board games, tea, and good conversation — exactly what the neighborhood needed."
+        "text": {
+          "en": "Warm, welcoming space. Board games, tea, and good conversation — exactly what the neighborhood needed.",
+          "pl": "Ciepłe, gościnne miejsce. Gry, herbata i rozmowy — dokładnie tego potrzebowała okolica."
+        }
       },
       {
         "source": "facebook",
         "author": "Stefan B.",
         "date": "2026-05-07",
         "rating": 5,
-        "text": "Free entry and no reservation hassle. Quiet room makes it easy to chat."
+        "text": {
+          "en": "Free entry and no reservation hassle. Quiet room makes it easy to chat.",
+          "pl": "Wstęp wolny, bez rezerwacji. Cicha sala ułatwia rozmowę."
+        }
       },
       {
         "source": "tripadvisor",
         "author": "Rose T.",
         "date": "2026-04-19",
         "rating": 4,
-        "text": "Lovely afternoon activity for seniors. Staff are attentive and kind."
+        "text": {
+          "en": "Lovely afternoon activity for seniors. Staff are attentive and kind.",
+          "pl": "Miłe popołudniowe zajęcie dla seniorów. Personel uważny i życzliwy."
+        }
       }
     ]
   }

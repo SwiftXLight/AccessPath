@@ -26,7 +26,7 @@ export interface SourceComment {
   author: string;
   date: string;
   rating?: number;
-  text: string;
+  text: LocalizedText;
 }
 
 export interface SearchLocation {

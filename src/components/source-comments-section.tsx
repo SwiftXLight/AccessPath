@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "@/context/locale";
 import { formatDate } from "@/lib/events";
+import { getLocalizedText } from "@/lib/i18n/types";
 import type { CommentSource, SourceComment } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -53,7 +54,9 @@ export function SourceCommentsSection({ comments }: SourceCommentsSectionProps) 
               </Badge>
               {comment.rating != null && <StarRating rating={comment.rating} />}
             </div>
-            <p className="text-sm leading-relaxed text-foreground">{comment.text}</p>
+            <p className="text-sm leading-relaxed text-foreground">
+              {getLocalizedText(comment.text, locale)}
+            </p>
             <p className="mt-2 text-xs text-muted-foreground">
               {comment.author} · {formatDate(comment.date, locale)}
             </p>
