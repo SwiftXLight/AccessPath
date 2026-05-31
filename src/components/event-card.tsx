@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { useTranslation } from "@/context/locale";
 import { formatDate, formatPrice } from "@/lib/events";
-import { getCategoryTagLabel, interpolate } from "@/lib/i18n/types";
+import { getCategoryTagLabel, getLocalizedText, interpolate } from "@/lib/i18n/types";
 import { getCategoryGradient } from "@/lib/recommendations";
 import type { ScoredEvent } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -64,8 +64,12 @@ export function EventCard({ scored, highlight }: EventCardProps) {
             </Badge>
             {highlight && <Badge>{t.common.topPick}</Badge>}
           </div>
-          <CardTitle className="line-clamp-2 text-lg">{event.title}</CardTitle>
-          <CardDescription className="line-clamp-2">{event.description}</CardDescription>
+          <CardTitle className="line-clamp-2 text-lg">
+            {getLocalizedText(event.title, locale)}
+          </CardTitle>
+          <CardDescription className="line-clamp-2">
+            {getLocalizedText(event.description, locale)}
+          </CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-3">

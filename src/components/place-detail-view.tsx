@@ -20,7 +20,7 @@ import {
   formatPrice,
   getSimilarPlaces,
 } from "@/lib/places";
-import { getCategoryTagLabel, interpolate } from "@/lib/i18n/types";
+import { getCategoryTagLabel, getLocalizedText, interpolate } from "@/lib/i18n/types";
 import {
   buildPlaceRecommendation,
   buildWhatToExpectAtPlace,
@@ -89,7 +89,9 @@ export function PlaceDetailView({ place }: PlaceDetailViewProps) {
               {getCategoryTagLabel(place.categoryTag, t, place.category)}
             </Badge>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight">{place.title}</h1>
+          <h1 className="text-3xl font-bold tracking-tight">
+            {getLocalizedText(place.title, locale)}
+          </h1>
           <p className="mt-1 text-muted-foreground">{place.managedBy}</p>
         </div>
 
@@ -122,7 +124,9 @@ export function PlaceDetailView({ place }: PlaceDetailViewProps) {
 
         <div className="space-y-4 p-6">
           <h2 className="font-semibold">{t.detail.aboutPlace}</h2>
-          <p className="leading-relaxed text-muted-foreground">{place.description}</p>
+          <p className="leading-relaxed text-muted-foreground">
+            {getLocalizedText(place.description, locale)}
+          </p>
           <div className="flex flex-wrap gap-2">
             {place.interests.map((interest) => (
               <Badge key={interest} variant="secondary" className="capitalize">
@@ -176,7 +180,7 @@ export function PlaceDetailView({ place }: PlaceDetailViewProps) {
             </CardHeader>
             <CardContent>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                {buildWhatToExpectAtPlace(place, t)}
+                {buildWhatToExpectAtPlace(place, t, locale)}
               </p>
             </CardContent>
           </Card>

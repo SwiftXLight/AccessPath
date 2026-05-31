@@ -9,7 +9,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useTranslation } from "@/context/locale";
 import { formatPrice } from "@/lib/events";
+import { getLocalizedText } from "@/lib/i18n/types";
 import { buildAiSummary } from "@/lib/recommendations";
 import type { ScoredEvent, UserProfile } from "@/lib/types";
 
@@ -22,7 +24,8 @@ export function AiRecommendationPanel({
   recommendations,
   profile,
 }: AiRecommendationPanelProps) {
-  const summary = buildAiSummary(recommendations, profile);
+  const { t, locale } = useTranslation();
+  const summary = buildAiSummary(recommendations, profile, t, locale);
 
   return (
     <Card className="rounded-2xl border-primary/20 border-border/80 bg-gradient-to-br from-primary/5 via-card to-secondary/20 shadow-sm">
@@ -61,7 +64,9 @@ export function AiRecommendationPanel({
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
                       <span aria-hidden>{event.emoji}</span>
-                      <span className="truncate font-medium">{event.title}</span>
+                      <span className="truncate font-medium">
+                        {getLocalizedText(event.title, locale)}
+                      </span>
                       {index === 0 && <Badge>Top pick</Badge>}
                     </div>
                     <p className="mt-1 text-xs text-muted-foreground">

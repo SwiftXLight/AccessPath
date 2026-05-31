@@ -1,6 +1,11 @@
 import eventsData from "@/data/events.json";
 import { getTranslations } from "@/lib/i18n";
-import { interpolate, type Translations } from "@/lib/i18n/types";
+import {
+  getLocalizedText,
+  interpolate,
+  type Locale,
+  type Translations,
+} from "@/lib/i18n/types";
 import { haversineKm } from "@/lib/location";
 import type {
   AccessibilityNeed,
@@ -462,14 +467,14 @@ export function formatCrowdLevel(
   return t.options.crowdLevel[level];
 }
 
-export function toMapMarker(scored: ScoredEvent): MapMarker {
+export function toMapMarker(scored: ScoredEvent, locale: Locale = "pl"): MapMarker {
   return {
     id: scored.event.id,
     kind: "event",
     lat: scored.event.lat,
     lng: scored.event.lng,
     score: scored.score,
-    title: scored.event.title,
+    title: getLocalizedText(scored.event.title, locale),
     emoji: scored.event.emoji,
     location: scored.event.location,
   };

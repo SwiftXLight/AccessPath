@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { useTranslation } from "@/context/locale";
 import { formatPrice } from "@/lib/events";
-import { interpolate } from "@/lib/i18n/types";
+import { getLocalizedText, interpolate } from "@/lib/i18n/types";
 import { getCategoryGradient } from "@/lib/recommendations";
 import type { PlaceType, ScoredPlace } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -22,7 +22,7 @@ interface PlaceCardProps {
 }
 
 export function PlaceCard({ scored, highlight }: PlaceCardProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const { place, score, explanation, distanceKm } = scored;
   const gradient = getCategoryGradient(place.categoryTag);
 
@@ -70,8 +70,12 @@ export function PlaceCard({ scored, highlight }: PlaceCardProps) {
             </Badge>
             {highlight && <Badge>{t.common.topPick}</Badge>}
           </div>
-          <CardTitle className="line-clamp-2 text-lg">{place.title}</CardTitle>
-          <CardDescription className="line-clamp-2">{place.description}</CardDescription>
+          <CardTitle className="line-clamp-2 text-lg">
+            {getLocalizedText(place.title, locale)}
+          </CardTitle>
+          <CardDescription className="line-clamp-2">
+            {getLocalizedText(place.description, locale)}
+          </CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-3">

@@ -1,3 +1,5 @@
+import type { LocalizedText } from "@/lib/i18n/types";
+
 export type TimeOfDay = "morning" | "afternoon" | "evening" | "night";
 export type SocialMode = "alone" | "family" | "friends" | "meeting";
 export type CrowdLevel = "low" | "medium" | "high";
@@ -35,8 +37,8 @@ export interface SearchLocation {
 
 export interface LocalEvent {
   id: string;
-  title: string;
-  description: string;
+  title: LocalizedText;
+  description: LocalizedText;
   location: string;
   distanceKm: number;
   lat: number;
@@ -101,8 +103,8 @@ export interface ScoredEvent {
 
 export interface Place {
   id: string;
-  title: string;
-  description: string;
+  title: LocalizedText;
+  description: LocalizedText;
   location: string;
   lat: number;
   lng: number;

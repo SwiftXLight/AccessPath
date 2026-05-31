@@ -2,7 +2,20 @@ import type { en } from "./en";
 
 export type Locale = "en" | "pl";
 
+export interface LocalizedText {
+  en: string;
+  pl: string;
+}
+
 export type Translations = typeof en;
+
+export function getLocalizedText(text: LocalizedText, locale: Locale): string {
+  return text[locale] ?? text.en;
+}
+
+export function getLocalizedSearchText(text: LocalizedText): string {
+  return `${text.en} ${text.pl}`;
+}
 
 export const LOCALES: { value: Locale; label: string }[] = [
   { value: "en", label: "EN" },

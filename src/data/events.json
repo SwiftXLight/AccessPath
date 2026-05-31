@@ -1,8 +1,14 @@
 [
   {
     "id": "riverside-jazz",
-    "title": "Riverside Jazz Sessions",
-    "description": "Live jazz on the waterfront every Saturday. Local musicians, craft drinks, and sunset views over the river.",
+    "title": {
+      "en": "Riverside Jazz Sessions",
+      "pl": "Sesje jazzu nad brzegiem"
+    },
+    "description": {
+      "en": "Live jazz on the waterfront every Saturday. Local musicians, craft drinks, and sunset views over the river.",
+      "pl": "Muzyka jazz na żywo nad wodą w każdą sobotę. Lokalni muzycy, rzemieślnicze napoje i widoki zachodu słońca nad rzeką."
+    },
     "location": "Old Town Riverside Park",
     "distanceKm": 1.2,
     "lat": 50.448,
@@ -55,8 +61,14 @@
   },
   {
     "id": "farmers-market",
-    "title": "Saturday Farmers Market",
-    "description": "Fresh produce, artisan bread, local honey, and street food from regional vendors. A weekly community staple.",
+    "title": {
+      "en": "Saturday Farmers Market",
+      "pl": "Sobotni targ rolniczy"
+    },
+    "description": {
+      "en": "Fresh produce, artisan bread, local honey, and street food from regional vendors. A weekly community staple.",
+      "pl": "Świeże produkty, rzemieślniczy chleb, lokalny miód i street food od regionalnych sprzedawców. Cotygodniowy punkt spotkań społeczności."
+    },
     "location": "Central Square",
     "distanceKm": 0.8,
     "lat": 50.451,
@@ -111,8 +123,14 @@
   },
   {
     "id": "street-art-walk",
-    "title": "Hidden Murals Walking Tour",
-    "description": "Discover murals and street art in back alleys most tourists never see. Guided by local artists.",
+    "title": {
+      "en": "Hidden Murals Walking Tour",
+      "pl": "Spacer po ukrytych muralach"
+    },
+    "description": {
+      "en": "Discover murals and street art in back alleys most tourists never see. Guided by local artists.",
+      "pl": "Odkryj murale i street art w zaułkach, których większość turystów nie zna. Prowadzenie przez lokalnych artystów."
+    },
     "location": "Industrial District",
     "distanceKm": 2.5,
     "lat": 50.446,
@@ -165,8 +183,14 @@
   },
   {
     "id": "kids-science-lab",
-    "title": "Kids Science Lab Weekend",
-    "description": "Hands-on experiments for ages 6–12. Build volcanoes, explore magnets, and meet young science enthusiasts.",
+    "title": {
+      "en": "Kids Science Lab Weekend",
+      "pl": "Weekend laboratorium nauki dla dzieci"
+    },
+    "description": {
+      "en": "Hands-on experiments for ages 6–12. Build volcanoes, explore magnets, and meet young science enthusiasts.",
+      "pl": "Eksperymenty dla dzieci w wieku 6–12 lat. Wulkany, magnesy i spotkania z młodymi entuzjastami nauki."
+    },
     "location": "Community Science Center",
     "distanceKm": 3.1,
     "lat": 50.455,
@@ -219,8 +243,14 @@
   },
   {
     "id": "sunrise-yoga",
-    "title": "Sunrise Yoga in the Park",
-    "description": "Start your day with gentle yoga surrounded by old oak trees. All levels welcome, mats provided.",
+    "title": {
+      "en": "Sunrise Yoga in the Park",
+      "pl": "Poranna joga w parku"
+    },
+    "description": {
+      "en": "Start your day with gentle yoga surrounded by old oak trees. All levels welcome, mats provided.",
+      "pl": "Zacznij dzień od łagodnej jogi wśród starych dęb. Wszystkie poziomy mile widziane, maty zapewnione."
+    },
     "location": "Greenwood Park",
     "distanceKm": 4,
     "lat": 50.458,
@@ -273,8 +303,14 @@
   },
   {
     "id": "tech-meetup",
-    "title": "Local Dev Meetup: AI & Community",
-    "description": "Monthly meetup for developers and curious minds. Lightning talks, networking, and pizza.",
+    "title": {
+      "en": "Local Dev Meetup: AI & Community",
+      "pl": "Lokalny meetup devów: AI i społeczność"
+    },
+    "description": {
+      "en": "Monthly meetup for developers and curious minds. Lightning talks, networking, and pizza.",
+      "pl": "Comiesięczne spotkanie dla programistów i ciekawskich. Lightning talki, networking i pizza."
+    },
     "location": "Innovation Hub Coworking",
     "distanceKm": 1.8,
     "lat": 50.449,
@@ -326,8 +362,14 @@
   },
   {
     "id": "heritage-walk",
-    "title": "Old Town Heritage Walk",
-    "description": "Stories of merchants, revolutions, and everyday life from centuries past. Small groups, big history.",
+    "title": {
+      "en": "Old Town Heritage Walk",
+      "pl": "Spacer po dziedzictwie Starego Miasta"
+    },
+    "description": {
+      "en": "Stories of merchants, revolutions, and everyday life from centuries past. Small groups, big history.",
+      "pl": "Historie kupców, rewolucji i codziennego życia sprzed wieków. Małe grupy, wielka historia."
+    },
     "location": "Old Town Square",
     "distanceKm": 1,
     "lat": 50.45,
@@ -381,8 +423,14 @@
   },
   {
     "id": "night-food-festival",
-    "title": "Night Food Festival",
-    "description": "Street food from 20+ local vendors, live DJs, and pop-up dessert bars. The city's biggest food night.",
+    "title": {
+      "en": "Night Food Festival",
+      "pl": "Nocny festiwal jedzenia"
+    },
+    "description": {
+      "en": "Street food from 20+ local vendors, live DJs, and pop-up dessert bars. The city's biggest food night.",
+      "pl": "Street food od ponad 20 lokalnych vendorów, DJ-e na żywo i pop-upowe bary z deserami. Największa noc jedzenia w mieście."
+    },
     "location": "Waterfront Promenade",
     "distanceKm": 2.2,
     "lat": 50.447,
@@ -434,8 +482,14 @@
   },
   {
     "id": "community-garden",
-    "title": "Community Garden Open Day",
-    "description": "Tour shared plots, swap seeds, and learn urban gardening tips from neighborhood growers.",
+    "title": {
+      "en": "Community Garden Open Day",
+      "pl": "Dzień otwarty ogrodu społecznego"
+    },
+    "description": {
+      "en": "Tour shared plots, swap seeds, and learn urban gardening tips from neighborhood growers.",
+      "pl": "Zwiedzanie wspólnych działek, wymiana nasion i porady urban gardening od sąsiedzkich ogrodników."
+    },
     "location": "Eastside Community Garden",
     "distanceKm": 5.5,
     "lat": 50.462,
@@ -489,8 +543,14 @@
   },
   {
     "id": "indie-cinema",
-    "title": "Indie Cinema: Local Shorts Night",
-    "description": "Screening of short films made by regional filmmakers, followed by Q&A with directors.",
+    "title": {
+      "en": "Indie Cinema: Local Shorts Night",
+      "pl": "Kino niezależne: wieczór krótkich filmów"
+    },
+    "description": {
+      "en": "Screening of short films made by regional filmmakers, followed by Q&A with directors.",
+      "pl": "Pokaz krótkometrażówek regionalnych twórców, po którym następuje Q&A z reżyserami."
+    },
     "location": "Art House Cinema",
     "distanceKm": 2.8,
     "lat": 50.453,
@@ -542,8 +602,14 @@
   },
   {
     "id": "running-club",
-    "title": "Sunday Social Run",
-    "description": "Casual 5K loop through the lakeside trail. Coffee and chat afterward at a nearby café.",
+    "title": {
+      "en": "Sunday Social Run",
+      "pl": "Niedzielny bieg towarzyski"
+    },
+    "description": {
+      "en": "Casual 5K loop through the lakeside trail. Coffee and chat afterward at a nearby café.",
+      "pl": "Swobodna pętla 5 km wzdłuż jeziornej ścieżki. Kawa i rozmowy potem w pobliskiej kawiarni."
+    },
     "location": "Lake Trail Starting Point",
     "distanceKm": 6.2,
     "lat": 50.465,
@@ -595,8 +661,14 @@
   },
   {
     "id": "senior-tea",
-    "title": "Senior Social Tea & Board Games",
-    "description": "A welcoming afternoon of tea, board games, and conversation. Free entry, no reservation needed.",
+    "title": {
+      "en": "Senior Social Tea & Board Games",
+      "pl": "Popołudnie herbaty i gier dla seniorów"
+    },
+    "description": {
+      "en": "A welcoming afternoon of tea, board games, and conversation. Free entry, no reservation needed.",
+      "pl": "Przyjazne popołudnie z herbatą, grami planszowymi i rozmową. Wstęp wolny, bez rezerwacji."
+    },
     "location": "Neighborhood Center",
     "distanceKm": 2,
     "lat": 50.452,

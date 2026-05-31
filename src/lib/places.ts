@@ -1,6 +1,11 @@
 import placesData from "@/data/places.json";
 import { getTranslations } from "@/lib/i18n";
-import { interpolate, type Translations } from "@/lib/i18n/types";
+import {
+  getLocalizedText,
+  interpolate,
+  type Locale,
+  type Translations,
+} from "@/lib/i18n/types";
 import {
   formatPrice,
   getMatchColor,
@@ -412,14 +417,14 @@ export function getSimilarPlaces(
     .slice(0, limit);
 }
 
-export function toMapMarker(scored: ScoredPlace): MapMarker {
+export function toMapMarker(scored: ScoredPlace, locale: Locale = "pl"): MapMarker {
   return {
     id: scored.place.id,
     kind: "place",
     lat: scored.place.lat,
     lng: scored.place.lng,
     score: scored.score,
-    title: scored.place.title,
+    title: getLocalizedText(scored.place.title, locale),
     emoji: scored.place.emoji,
     location: scored.place.location,
   };

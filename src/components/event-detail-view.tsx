@@ -21,7 +21,7 @@ import {
   formatPrice,
   getSimilarEvents,
 } from "@/lib/events";
-import { getCategoryTagLabel, interpolate } from "@/lib/i18n/types";
+import { getCategoryTagLabel, getLocalizedText, interpolate } from "@/lib/i18n/types";
 import {
   buildEventRecommendation,
   buildWhatToExpect,
@@ -81,7 +81,9 @@ export function EventDetailView({ event }: EventDetailViewProps) {
           <Badge className="mb-2">
             {getCategoryTagLabel(event.categoryTag, t, event.category)}
           </Badge>
-          <h1 className="text-3xl font-bold tracking-tight">{event.title}</h1>
+          <h1 className="text-3xl font-bold tracking-tight">
+            {getLocalizedText(event.title, locale)}
+          </h1>
           <p className="mt-1 text-muted-foreground">{event.organizer}</p>
         </div>
 
@@ -116,7 +118,9 @@ export function EventDetailView({ event }: EventDetailViewProps) {
 
         <div className="space-y-4 p-6">
           <h2 className="font-semibold">{t.detail.aboutEvent}</h2>
-          <p className="leading-relaxed text-muted-foreground">{event.description}</p>
+          <p className="leading-relaxed text-muted-foreground">
+            {getLocalizedText(event.description, locale)}
+          </p>
           <div className="flex flex-wrap gap-2">
             {event.interests.map((interest) => (
               <Badge key={interest} variant="secondary" className="capitalize">
@@ -170,7 +174,7 @@ export function EventDetailView({ event }: EventDetailViewProps) {
             </CardHeader>
             <CardContent>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                {buildWhatToExpect(event, t)}
+                {buildWhatToExpect(event, t, locale)}
               </p>
             </CardContent>
           </Card>

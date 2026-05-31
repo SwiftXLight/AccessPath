@@ -1,7 +1,11 @@
-import type { Locale } from "@/lib/i18n/types";
 import type { LocalEvent, Place, ScoredEvent, ScoredPlace, UserProfile } from "./types";
 import { getTranslations } from "@/lib/i18n";
-import { interpolate, type Translations } from "@/lib/i18n/types";
+import {
+  getLocalizedText,
+  interpolate,
+  type Locale,
+  type Translations,
+} from "@/lib/i18n/types";
 import { formatPrice } from "./events";
 
 export function buildProfileSummary(
@@ -66,7 +70,8 @@ export function buildProfileSummary(
 export function buildAiSummary(
   recommendations: ScoredEvent[],
   profile: UserProfile,
-  t: Translations = getTranslations("en")
+  t: Translations = getTranslations("pl"),
+  locale: Locale = "pl"
 ): string {
   if (recommendations.length === 0) {
     return t.ai.noMatches;
@@ -92,7 +97,7 @@ export function buildAiSummary(
 
   parts.push(
     interpolate(t.ai.topPick, {
-      title: top.event.title,
+      title: getLocalizedText(top.event.title, locale),
       score: top.score,
       explanation: top.explanation.toLowerCase(),
     })
@@ -107,13 +112,14 @@ export function buildEventRecommendation(scored: ScoredEvent): string {
 
 export function buildWhatToExpect(
   event: LocalEvent,
-  t: Translations = getTranslations("en")
+  t: Translations = getTranslations("pl"),
+  locale: Locale = "pl"
 ): string {
   const crowd = t.ai.whatToExpect[event.crowdLevel];
 
   return interpolate(t.ai.whatToExpectEvent, {
     crowd,
-    description: event.description.split(".")[0],
+    description: getLocalizedText(event.description, locale).split(".")[0],
     startTime: event.startTime,
     endTime: event.endTime,
     location: event.location,
@@ -122,8 +128,8 @@ export function buildWhatToExpect(
 
 export function buildWhoIsBestFor(
   event: LocalEvent,
-  t: Translations = getTranslations("en"),
-  locale: Locale = "en"
+  t: Translations = getTranslations("pl"),
+  locale: Locale = "pl"
 ): string {
   const w = t.ai.whoBestFor;
   const modes = event.socialModes.map((m) => {
@@ -162,13 +168,14 @@ export function buildPlaceRecommendation(scored: ScoredPlace): string {
 
 export function buildWhatToExpectAtPlace(
   place: Place,
-  t: Translations = getTranslations("en")
+  t: Translations = getTranslations("pl"),
+  locale: Locale = "pl"
 ): string {
   const crowd = t.ai.whatToExpectPlace[place.typicalCrowd];
 
   return interpolate(t.ai.whatToExpectPlaceFull, {
     crowd,
-    description: place.description.split(".")[0],
+    description: getLocalizedText(place.description, locale).split(".")[0],
     hours: place.openingHours.toLowerCase(),
     location: place.location,
   });
@@ -176,8 +183,8 @@ export function buildWhatToExpectAtPlace(
 
 export function buildWhoIsPlaceBestFor(
   place: Place,
-  t: Translations = getTranslations("en"),
-  locale: Locale = "en"
+  t: Translations = getTranslations("pl"),
+  locale: Locale = "pl"
 ): string {
   const w = t.ai.whoBestFor;
   const modes = place.socialModes.map((m) => {
@@ -256,14 +263,14 @@ export function buildConciergeResponse(
 
   const combined: ConciergePick[] = [
     ...recommendations.map(({ event, score, explanation }) => ({
-      title: event.title,
+      title: getLocalizedText(event.title, locale),
       explanation,
       score,
       href: `/events/${event.id}`,
       kind: "event" as const,
     })),
     ...placeRecommendations.map(({ place, score, explanation }) => ({
-      title: place.title,
+      title: getLocalizedText(place.title, locale),
       explanation,
       score,
       href: `/places/${place.id}`,

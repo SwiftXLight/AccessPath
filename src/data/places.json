@@ -1,8 +1,14 @@
 [
   {
     "id": "old-town-riverside",
-    "title": "Old Town Riverside Park",
-    "description": "A scenic waterfront promenade along the river with benches, walking paths, and sunset views. Always open for a peaceful stroll or picnic.",
+    "title": {
+      "en": "Old Town Riverside Park",
+      "pl": "Park nad rzeką w Starym Mieście"
+    },
+    "description": {
+      "en": "A scenic waterfront promenade along the river with benches, walking paths, and sunset views. Always open for a peaceful stroll or picnic.",
+      "pl": "Malowniczy bulwar nad rzeką z ławkami, ścieżkami spacerowymi i widokami zachodu słońca. Otwarty całą dobę na spokojny spacer lub piknik."
+    },
     "location": "Old Town Riverside Park",
     "lat": 50.448,
     "lng": 30.529,
@@ -59,8 +65,14 @@
   },
   {
     "id": "greenwood-park",
-    "title": "Greenwood Park",
-    "description": "A sprawling urban park with old oak trees, playgrounds, and open meadows. Perfect for yoga, jogging, or a lazy afternoon.",
+    "title": {
+      "en": "Greenwood Park",
+      "pl": "Park Greenwood"
+    },
+    "description": {
+      "en": "A sprawling urban park with old oak trees, playgrounds, and open meadows. Perfect for yoga, jogging, or a lazy afternoon.",
+      "pl": "Rozległy park miejski ze starymi dębami, placami zabaw i otwartymi łąkami. Idealny na jogę, jogging lub leniwe popołudnie."
+    },
     "location": "Greenwood Park",
     "lat": 50.458,
     "lng": 30.511,
@@ -117,8 +129,14 @@
   },
   {
     "id": "crystal-lake",
-    "title": "Crystal Lake",
-    "description": "A calm lake surrounded by a 3 km trail loop. Rent kayaks in summer, feed ducks year-round, or simply enjoy the water views.",
+    "title": {
+      "en": "Crystal Lake",
+      "pl": "Jezioro Crystal"
+    },
+    "description": {
+      "en": "A calm lake surrounded by a 3 km trail loop. Rent kayaks in summer, feed ducks year-round, or simply enjoy the water views.",
+      "pl": "Spokojne jezioro otoczone 3 km pętlą tras. Wynajem kajaków latem, karmienie kaczek przez cały rok lub po prostu widoki na wodę."
+    },
     "location": "Crystal Lake",
     "lat": 50.464,
     "lng": 30.507,
@@ -175,8 +193,14 @@
   },
   {
     "id": "greenwood-forest-trail",
-    "title": "Greenwood Forest Trail",
-    "description": "A shaded 5 km forest path through pine and birch woodland. Birdwatching, mushroom foraging, and fresh air away from the city bustle.",
+    "title": {
+      "en": "Greenwood Forest Trail",
+      "pl": "Leśna ścieżka Greenwood"
+    },
+    "description": {
+      "en": "A shaded 5 km forest path through pine and birch woodland. Birdwatching, mushroom foraging, and fresh air away from the city bustle.",
+      "pl": "Zacieniona 5 km leśna ścieżka przez sosnowy i brzozowy las. Obserwacja ptaków, grzybobranie i świeże powietrze z dala od zgiełku miasta."
+    },
     "location": "Greenwood Forest Entrance",
     "lat": 50.461,
     "lng": 30.503,
@@ -230,8 +254,14 @@
   },
   {
     "id": "city-history-museum",
-    "title": "City History Museum",
-    "description": "Permanent exhibitions on local history from medieval times to the present. Interactive displays, audio guides, and a rooftop terrace.",
+    "title": {
+      "en": "City History Museum",
+      "pl": "Muzeum Historii Miasta"
+    },
+    "description": {
+      "en": "Permanent exhibitions on local history from medieval times to the present. Interactive displays, audio guides, and a rooftop terrace.",
+      "pl": "Stałe wystawy historii lokalnej od średniowiecza po dziś. Interaktywne ekspozycje, przewodniki audio i taras na dachu."
+    },
     "location": "City History Museum",
     "lat": 50.452,
     "lng": 30.522,
@@ -289,8 +319,14 @@
   },
   {
     "id": "hilltop-castle",
-    "title": "Hilltop Castle Ruins",
-    "description": "Medieval castle ruins perched on a hill with panoramic city views. Explore towers, courtyards, and centuries of history at your own pace.",
+    "title": {
+      "en": "Hilltop Castle Ruins",
+      "pl": "Ruiny zamku na wzgórzu"
+    },
+    "description": {
+      "en": "Medieval castle ruins perched on a hill with panoramic city views. Explore towers, courtyards, and centuries of history at your own pace.",
+      "pl": "Średniowieczne ruiny zamku na wzgórzu z panoramicznym widokiem na miasto. Wieże, dziedzińce i wieki historii we własnym tempie."
+    },
     "location": "Hilltop Castle Ruins",
     "lat": 50.456,
     "lng": 30.516,
@@ -348,8 +384,14 @@
   },
   {
     "id": "botanical-gardens",
-    "title": "Botanical Gardens",
-    "description": "Four hectares of themed gardens — rose pavilion, tropical greenhouse, and a Japanese zen corner. A year-round oasis of color and calm.",
+    "title": {
+      "en": "Botanical Gardens",
+      "pl": "Ogród botaniczny"
+    },
+    "description": {
+      "en": "Four hectares of themed gardens — rose pavilion, tropical greenhouse, and a Japanese zen corner. A year-round oasis of color and calm.",
+      "pl": "Cztery hektary ogrodów tematycznych — pawilon róż, tropikalna szklarnia i japoński zen. Całoroczna oaza koloru i spokoju."
+    },
     "location": "Botanical Gardens",
     "lat": 50.454,
     "lng": 30.538,
@@ -407,8 +449,14 @@
   },
   {
     "id": "sunset-viewpoint",
-    "title": "Sunset Viewpoint",
-    "description": "The city's best panoramic lookout over rooftops and the river valley. Benches, a small café, and unforgettable golden-hour views.",
+    "title": {
+      "en": "Sunset Viewpoint",
+      "pl": "Punkt widokowy zachodu słońca"
+    },
+    "description": {
+      "en": "The city's best panoramic lookout over rooftops and the river valley. Benches, a small café, and unforgettable golden-hour views.",
+      "pl": "Najlepszy punkt widokowy na dachy miasta i dolinę rzeki. Ławki, mała kawiarnia i niezapomniane widoki o złotej godzinie."
+    },
     "location": "Sunset Viewpoint",
     "lat": 50.459,
     "lng": 30.526,
@@ -463,8 +511,14 @@
   },
   {
     "id": "children-adventure-park",
-    "title": "Children's Adventure Park",
-    "description": "Climbing frames, splash pad, mini train, and picnic areas designed for families. Free entry with optional snack kiosks.",
+    "title": {
+      "en": "Children's Adventure Park",
+      "pl": "Park przygód dla dzieci"
+    },
+    "description": {
+      "en": "Climbing frames, splash pad, mini train, and picnic areas designed for families. Free entry with optional snack kiosks.",
+      "pl": "Place zabaw, brodzik, mini pociąg i strefy piknikowe dla rodzin. Wstęp wolny, opcjonalne kioski z przekąskami."
+    },
     "location": "Children's Adventure Park",
     "lat": 50.453,
     "lng": 30.541,
@@ -520,8 +574,14 @@
   },
   {
     "id": "old-town-square",
-    "title": "Old Town Square",
-    "description": "The historic heart of the city — cobblestone plaza, cafés, street performers, and architecture dating back centuries. Always alive with activity.",
+    "title": {
+      "en": "Old Town Square",
+      "pl": "Rynek Starego Miasta"
+    },
+    "description": {
+      "en": "The historic heart of the city — cobblestone plaza, cafés, street performers, and architecture dating back centuries. Always alive with activity.",
+      "pl": "Historyczne serce miasta — brukowany plac, kawiarnie, uliczni artyści i architektura sprzed wieków. Zawsze tętni życiem."
+    },
     "location": "Old Town Square",
     "lat": 50.45,
     "lng": 30.524,
@@ -578,8 +638,14 @@
   },
   {
     "id": "waterfront-promenade",
-    "title": "Waterfront Promenade",
-    "description": "A lively 2 km boardwalk along the harbor with restaurants, benches, and public art installations. Great for an evening walk any day of the week.",
+    "title": {
+      "en": "Waterfront Promenade",
+      "pl": "Promenada nadbrzeżna"
+    },
+    "description": {
+      "en": "A lively 2 km boardwalk along the harbor with restaurants, benches, and public art installations. Great for an evening walk any day of the week.",
+      "pl": "Tętniący życiem 2 km deptak wzdłuż portu z restauracjami, ławkami i instalacjami sztuki publicznej. Świetny na wieczorny spacer."
+    },
     "location": "Waterfront Promenade",
     "lat": 50.447,
     "lng": 30.521,
@@ -637,8 +703,14 @@
   },
   {
     "id": "industrial-art-district",
-    "title": "Industrial Art District",
-    "description": "Former factory buildings turned into open-air galleries and studios. Murals, sculptures, and pop-up exhibitions you can explore anytime.",
+    "title": {
+      "en": "Industrial Art District",
+      "pl": "Dzielnica sztuki przemysłowej"
+    },
+    "description": {
+      "en": "Former factory buildings turned into open-air galleries and studios. Murals, sculptures, and pop-up exhibitions you can explore anytime.",
+      "pl": "Dawne fabryki zamienione w galerie plenerowe i pracownie. Murale, rzeźby i wystawy pop-up, które można zwiedzać o każdej porze."
+    },
     "location": "Industrial District",
     "lat": 50.445,
     "lng": 30.514,

@@ -34,7 +34,7 @@ interface FilterSidebarProps {
 }
 
 export function FilterSidebar({ profile, onChange }: FilterSidebarProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
 
   const update = (partial: Partial<UserProfile>) => {
     onChange({ ...profile, ...partial });
@@ -42,10 +42,14 @@ export function FilterSidebar({ profile, onChange }: FilterSidebarProps) {
 
   const scoredMarkers = useMemo(
     () => [
-      ...allEvents.map((event) => eventToMapMarker(calculateMatchScore(profile, event, t))),
-      ...allPlaces.map((place) => placeToMapMarker(calculatePlaceMatchScore(profile, place, t))),
+      ...allEvents.map((event) =>
+        eventToMapMarker(calculateMatchScore(profile, event, t), locale)
+      ),
+      ...allPlaces.map((place) =>
+        placeToMapMarker(calculatePlaceMatchScore(profile, place, t), locale)
+      ),
     ],
-    [profile, t]
+    [profile, t, locale]
   );
 
   const toggleTimeOfDay = (value: TimeOfDay) => {

@@ -20,7 +20,7 @@ import {
 import { useTranslation } from "@/context/locale";
 import { useUserPreferences } from "@/context/user-preferences";
 import { getFilteredEvents } from "@/lib/events";
-import { interpolate } from "@/lib/i18n/types";
+import { getLocalizedSearchText, interpolate } from "@/lib/i18n/types";
 import { getFilteredPlaces } from "@/lib/places";
 import { buildProfileSummary } from "@/lib/recommendations";
 import {
@@ -137,8 +137,8 @@ export function ExploreView() {
       score: scored.score,
       id: scored.event.id,
       searchText: [
-        scored.event.title,
-        scored.event.description,
+        getLocalizedSearchText(scored.event.title),
+        getLocalizedSearchText(scored.event.description),
         scored.event.category,
         ...scored.event.interests,
       ].join(" ").toLowerCase(),
@@ -150,8 +150,8 @@ export function ExploreView() {
       score: scored.score,
       id: scored.place.id,
       searchText: [
-        scored.place.title,
-        scored.place.description,
+        getLocalizedSearchText(scored.place.title),
+        getLocalizedSearchText(scored.place.description),
         scored.place.category,
         scored.place.placeType,
         ...scored.place.interests,
